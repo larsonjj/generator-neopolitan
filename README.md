@@ -14,7 +14,6 @@ A "Choose your own adventure" generator for creating single page applications. H
 - [Gulp Workflow](#gulp-workflow)
 - [Sub-Generators](#sub-generators)
 - [Automated Documentation](#automated-documentation)
-- [Extending Neopolitan](#extending-neopolitan)
 - [Common Issues](#common-issues)
 - [Testing](#testing)
 - [Roadmap](#roadmap)
@@ -451,9 +450,6 @@ Produces:
 client/app/myprovider/myprovider.provider.js
 client/app/myprovider/myprovider.provider.spec.js
 ```
-
-## Extending Neopolitan
-Check out the [Guides](docs/guides/README.md) section to learn how to integrate other technologies like Ruby Sass, Bootstrap, Animate.css, etc
 
 ## Common Issues
 
