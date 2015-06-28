@@ -5,7 +5,7 @@ var path = require('path');
 var gulp = require('gulp');
 var gulpLoadPlugins = require('gulp-load-plugins');
 var browserSync = require('browser-sync').create();
-var config = require('./yeogurt.conf');
+var config = require('./neopolitan.conf');
 
 // Load all gulp plugins based on their names
 // EX: gulp-copy -> copy

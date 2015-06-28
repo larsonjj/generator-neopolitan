@@ -27,7 +27,7 @@ describe('Neopolitan generator using Git', function() {
     ];
 
     helpers.mockPrompt(this.app, {
-      versionControl: 'git',
+      versionControl: 'git'
     });
 
     this.app.run([], function() {

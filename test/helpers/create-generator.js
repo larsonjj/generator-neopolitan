@@ -7,6 +7,7 @@ var Output = require('../helpers/mute');
 var createSubGenerator = function(type, args, options, mockPrompts, asserts) {
   var _options = options || {};
   var _path = _options.path || '../../../';
+
   var subGenerator = helpers.createGenerator('neopolitan:' + type, [
     _path + '/' + type
   ], args, options);

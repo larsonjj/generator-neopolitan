@@ -3,11 +3,11 @@ var util = require('util');
 var yeoman = require('yeoman-generator');
 var getDirCount = require('../helpers/get-dir-count');
 var path = require('path');
-var yeogurtConf;
+var neopolitanConf;
 
 try {
-  yeogurtConf = require(path.join(process.cwd(), './yeogurt.conf'));
-  var directories = yeogurtConf.directories;
+  neopolitanConf = require(path.join(process.cwd(), './neopolitan.conf'));
+  var directories = neopolitanConf.directories;
 }
 catch(e) {
   return; // Do Nothing
@@ -43,24 +43,12 @@ ModuleGenerator.prototype.ask = function ask() {
   var self = this;
   var done = this.async();
   var prompts = [{
-    when: function(answers) {
-      return self.singlePageApplication;
-    },
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return yeogurtConf ? directories.source + '/' + directories.modules : directories.source + '/_modules';
+      return neopolitanConf ? directories.source + '/' + directories.modules : directories.source + '/_modules';
     }
   }, {
-    when: function(answers) {
-      return !self.singlePageApplication;
-    },
-    name: 'moduleFile',
-    message: 'Where would you like to create this module?',
-    default: function(answers) {
-      return yeogurtConf ? directories.source + '/' + directories.modules : directories.source + '/_modules';
-    }
-  },{
     when: function(answers) {
       return self.jsFramework === 'angular';
     },
@@ -115,32 +103,7 @@ ModuleGenerator.prototype.ask = function ask() {
 
 ModuleGenerator.prototype.files = function files() {
 
-  if (!this.singlePageApplication) {
-
-    if (this.htmlOption === 'jade') {
-      this.template('module.jade', this.moduleFile + '.jade');
-      this.template('module.js', this.moduleFile + '.js');
-      if (this.useTesting) {
-        this.template('module.spec.js', this.testFile + '.spec.js');
-      }
-      if (this.useDashboard) {
-        this.template('module.dash.jade', this.dashFile + '.jade');
-        this.template('module.dash.json', this.dashFile + '.json');
-      }
-    }
-    else if (this.htmlOption === 'nunjucks') {
-      this.template('module.nunjucks', this.moduleFile + '.nunjucks');
-      this.template('module.js', this.moduleFile + '.js');
-      if (this.useTesting) {
-        this.template('module.spec.js', this.testFile + '.spec.js');
-      }
-      if (this.useDashboard) {
-        this.template('module.dash.nunjucks', this.dashFile + '.nunjucks');
-        this.template('module.dash.json', this.dashFile + '.json');
-      }
-    }
-  }
-  else if (this.jsFramework === 'angular') {
+  if (this.jsFramework === 'angular') {
     this.template('angular/module.js', this.moduleFile + '.js');
     this.template('angular/module.controller.js', this.moduleFile + '.controller.js');
     this.template('angular/module.html', this.moduleFile + '.html');

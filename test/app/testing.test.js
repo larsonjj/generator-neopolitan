@@ -7,7 +7,7 @@ var helpers = yeoman.test;
 var assert = yeoman.assert;
 var createAppGenerator = require('../helpers/create-generator').createAppGenerator;
 
-describe('Yeogurt generator testing', function() {
+describe('Neopolitan generator testing', function() {
   beforeEach(function(done) {
     helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
       if (err) {

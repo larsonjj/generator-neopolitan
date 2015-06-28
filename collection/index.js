@@ -3,11 +3,11 @@ var util = require('util');
 var yeoman = require('yeoman-generator');
 var getDirCount = require('../helpers/get-dir-count');
 var path = require('path');
-var yeogurtConf;
+var neopolitanConf;
 
 try {
-  yeogurtConf = require(path.join(process.cwd(), './yeogurt.conf'));
-  var directories = yeogurtConf.directories;
+  neopolitanConf = require(path.join(process.cwd(), './neopolitan.conf'));
+  var directories = neopolitanConf.directories;
 }
 catch(e) {
   return; // Do Nothing
@@ -45,7 +45,7 @@ CollectionGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'collectionFile',
     message: 'Where would you like to create this collection?',
-    default: yeogurtConf ? directories.source + '/' + directories.scripts + '/collections' : 'src/_scripts/collections'
+    default: neopolitanConf ? directories.source + '/' + directories.scripts + '/collections' : 'src/_scripts/collections'
   }, {
     name: 'existingModelName',
     message: 'What is the name of the model you would like to use with this collection?',
@@ -53,7 +53,7 @@ CollectionGenerator.prototype.ask = function ask() {
   }, {
     name: 'existingModelLocation',
     message: 'What folder is the model file located in?',
-    default: yeogurtConf ? directories.source + '/' + directories.scripts + '/models' : 'src/_scripts/models'
+    default: neopolitanConf ? directories.source + '/' + directories.scripts + '/models' : 'src/_scripts/models'
   }];
 
   this.prompt(prompts, function(answers) {

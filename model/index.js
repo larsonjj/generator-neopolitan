@@ -3,11 +3,11 @@ var util = require('util');
 var yeoman = require('yeoman-generator');
 var getDirCount = require('../helpers/get-dir-count');
 var path = require('path');
-var yeogurtConf;
+var neopolitanConf;
 
 try {
-  yeogurtConf = require(path.join(process.cwd(), './yeogurt.conf'));
-  var directories = yeogurtConf.directories;
+  neopolitanConf = require(path.join(process.cwd(), './neopolitan.conf'));
+  var directories = neopolitanConf.directories;
 }
 catch(e) {
   return; // Do Nothing
@@ -44,7 +44,7 @@ ModelGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'modelFile',
     message: 'Where would you like to create this model?',
-    default: yeogurtConf ? directories.source + '/' + directories.scripts + '/models' : 'src/_scripts/models'
+    default: neopolitanConf ? directories.source + '/' + directories.scripts + '/models' : 'src/_scripts/models'
   }];
 
   this.prompt(prompts, function(answers) {
