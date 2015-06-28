@@ -1,0 +1,6 @@
+node_modules
+*.log
+build
+tmp
+.DS_Store
+.yo-rc.json

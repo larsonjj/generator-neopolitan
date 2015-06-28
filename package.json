@@ -1,0 +1,61 @@
+{
+  "name": "generator-neopolitan",
+  "version": "1.0.0",
+  "description": "A \"Choose your own adventure\" generator for creating single page applications. Helps you harness the power of your favorite tools: Angular, React + Flux, Backbone, Gulp, and much more!",
+  "keywords": [
+    "yeoman-generator",
+    "neopolitan",
+    "frontend",
+    "html5",
+    "sass",
+    "less",
+    "browserify",
+    "dashboard",
+    "backbone",
+    "react",
+    "angular",
+    "jsx",
+    "reflux",
+    "underscore"
+  ],
+  "homepage": "https://github.com/larsonjj/generator-neopolitan",
+  "bugs": "https://github.com/larsonjj/generator-neopolitan/issues",
+  "author": {
+    "name": "Jake Larson",
+    "email": "jake.j.larson@gmail.com",
+    "url": "https://github.com/larsonjj"
+  },
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/larsonjj/generator-neopolitan.git"
+  },
+  "scripts": {
+    "clean": "rimraf node_modules coverage test/app/temp test/subgenerators/temp",
+    "test": "istanbul cover _mocha -- test/app/*.test.js test/subgenerators/angular/*.test.js test/subgenerators/backbone/*.test.js test/subgenerators/react/*.test.js test/subgenerators/static/*.test.js --reporter list --timeout 100000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "localtest": "mocha test/app/*.test.js test/subgenerators/angular/*.test.js test/subgenerators/backbone/*.test.js test/subgenerators/react/*.test.js -b --reporter spec",
+    "localtest-report": "istanbul cover _mocha test/app/*.test.js test/subgenerators/angular/*.test.js test/subgenerators/backbone/*.test.js test/subgenerators/react/*.test.js && open ./coverage/lcov-report/index.html"
+  },
+  "dependencies": {
+    "yeoman-generator": "~0.17.7",
+    "colors": "~0.6.2",
+    "lodash": "~2.4.1",
+    "rimraf": "2.2.8"
+  },
+  "devDependencies": {
+    "coveralls": "~2.11.2",
+    "fixture-stdout": "~0.2.1",
+    "istanbul": "~0.3.6",
+    "mocha": "~2.1.0",
+    "mocha-lcov-reporter": "~0.0.2"
+  },
+  "engines": {
+    "node": ">=0.12.0",
+    "npm": ">=1.3.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ]
+}
