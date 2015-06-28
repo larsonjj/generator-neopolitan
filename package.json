@@ -1,6 +1,6 @@
 {
   "name": "generator-neopolitan",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha",
   "description": "A \"Choose your own adventure\" generator for creating single page applications. Helps you harness the power of your favorite tools: Angular, React + Flux, Backbone, Gulp, and much more!",
   "keywords": [
     "yeoman-generator",
