@@ -17,8 +17,8 @@ describe('Controller: <%= _.classify(name) %>Ctrl', function() {
     });
   }));
 
-  it('should attach a property named yeogurt to the scope', function() {
+  it('should attach a property named neopolitan to the scope', function() {
     expect(<%= _.classify(name) %>Ctrl)<% if (testFramework === 'jasmine') { %>.toBe('awesome')<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
-    expect(scope.yeogurt)<% if (testFramework === 'jasmine') { %>.toBe('awesome')<% } else if (testFramework === 'mocha') { %>.to.equal('awesome')<% } %>;
+    expect(scope.neopolitan)<% if (testFramework === 'jasmine') { %>.toBe('awesome')<% } else if (testFramework === 'mocha') { %>.to.equal('awesome')<% } %>;
   });
 });

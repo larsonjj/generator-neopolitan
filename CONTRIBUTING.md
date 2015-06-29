@@ -85,7 +85,7 @@ implementing features, refactoring code, porting to a different language),
 otherwise you risk spending a lot of time working on something that the
 project's developers might not want to merge into the project.
 
-Please adhere to the coding conventions used throughout a project (see [.editorconfig](https://github.com/larsonjj/generator-yeogurt/blob/master/.editorconfig)).
+Please adhere to the coding conventions used throughout a project (see [.editorconfig](https://github.com/larsonjj/generator-neopolitan/blob/master/.editorconfig)).
 
 Follow this process if you'd like your work considered for inclusion in the
 project:

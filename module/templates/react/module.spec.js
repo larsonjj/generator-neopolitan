@@ -1,6 +1,8 @@
 'use strict';
 
+/*eslint-disable no-unused-vars*/
 var React = require('react');
+/*eslint-enable no-unused-vars*/
 
 // Uncomment to use React testing tools
 // var ReactTestUtils;

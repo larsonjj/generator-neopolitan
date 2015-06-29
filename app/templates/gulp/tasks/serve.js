@@ -13,12 +13,12 @@ var serveTask = function serveTask(options) {
   var browserSync = options.browserSync;
 
   // Main task
-  gulp.task('serve', ['clean:tmp'], function() {
-    gulp.start('serve:tasks:dev');
+  gulp.task('serve', function() {
+    runSequence('clean:tmp', 'serve:tasks:dev');
   });
 
-  gulp.task('serve:build', ['clean:build'], function() {
-    runSequence('build:tasks', 'serve:tasks:prod');
+  gulp.task('serve:build', function() {
+    runSequence('clean:build', 'build:tasks', 'serve:tasks:prod');
   });
 
   // Server tasks
@@ -97,7 +97,34 @@ var serveTask = function serveTask(options) {
         path.join(rootPath, dirs.temporary, '**/*')
       ]).on('change', browserSync.reload);
 
-  });
+  });<% if (useE2e) { %>
+
+  // Server tasks for protractor testing
+  gulp.task('serve:tasks:test', [
+      'imagemin:serve',
+      'copy:serve'<% if (jsOption === 'browserify') { %>,
+      'browserify:serve'<% } %><% if (cssOption === 'less') { %>,
+      'less:serve'<% } %><% if (cssOption === 'sass') { %>,
+      'sass:serve'<% } %><% if (cssOption === 'stylus') { %>,
+      'stylus:serve'<% } %>
+    ], function() {
+
+      browserSync.init({
+        open: false,
+        startPath: config.baseUrl,
+        server: {
+          baseDir: dirs.temporary,
+          routes: (function() {
+            var routes = {};
+
+            // Map base URL to routes
+            routes[config.baseUrl] = dirs.temporary;
+
+            return routes;
+          })()
+        }
+      });
+  });<% } %>
 
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "generator-neopolitan",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0-beta",
   "description": "A \"Choose your own adventure\" generator for creating single page applications. Helps you harness the power of your favorite tools: Angular, React + Flux, Backbone, Gulp, and much more!",
   "keywords": [
     "yeoman-generator",
@@ -43,7 +43,10 @@
     "rimraf": "2.2.8"
   },
   "devDependencies": {
+    "babel-eslint": "^3.1.19",
     "coveralls": "~2.11.2",
+    "eslint": "^0.24.0",
+    "eslint-plugin-react": "^2.6.2",
     "fixture-stdout": "~0.2.1",
     "istanbul": "~0.3.6",
     "mocha": "~2.1.0",

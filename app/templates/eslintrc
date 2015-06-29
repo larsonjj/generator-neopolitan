@@ -1,33 +1,31 @@
-{
-  "settings": {
-    "ecmascript": 6<% if (jsFramework === 'react') { %>,
-    "jsx": true<% } %>
-  },
+{<% if (jsFramework === 'react') { %>
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+  "ecmaFeatures": {
+    "jsx": true
+  },<% } %>
   "env": {
-      "browser": true,
-      "amd": true,
-      "node": true
+    "browser": true,
+    "amd": true,
+    "node": true,
+    "es6": true
   },
   "globals": {
-      "DocumentFragment": true,
-      "$": true,
-      "Modernizr": true,<% if (jsFramework === 'marionette') { %>
-      "Backbone": true,
-      "JST": true,<% } %><% if (jsFramework === 'angular') { %>
-      "angular": true,
-      "inject": true,<% } %>
-      "jQuery": true,
-      "it": true,
-      "describe": true,
-      "beforeEach": true,
-      "runs": true,
-      "spyOn": true,
-      "spyOnEvent": true,
-      "waitsFor": true,
-      "expect": true,<% if (testFramework === 'jasmine') { %>
-      "jasmine": true,<% } %><% if (jsOption === 'requirejs') { %>
-      "requirejs": true,<% } %>
-      "afterEach": true
+    "DocumentFragment": true,<% if (jsFramework === 'angular') { %>
+    "angular": true,
+    "inject": true,<% } %>
+    "it": true,
+    "describe": true,
+    "beforeEach": true,
+    "runs": true,
+    "spyOn": true,
+    "spyOnEvent": true,
+    "waitsFor": true,
+    "expect": true,<% if (testFramework === 'jasmine') { %>
+    "jasmine": true,<% } %>
+    "afterEach": true
   },
   "rules": {
     "indent": [2, 2],

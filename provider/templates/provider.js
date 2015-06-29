@@ -5,18 +5,18 @@ angular.module('<%= _.camelize(projectName) %>')
 
     // Private API
 
-    var yeogurt = 'awesome';
+    var neopolitan = 'awesome';
 
     function Describe() {
       this.greet = function() {
-        return yeogurt;
+        return neopolitan;
       };
     }
 
     // Public API (use 'this' to make public)
 
     this.setDescription = function(value) {
-      yeogurt = value;
+      neopolitan = value;
     };
 
     this.$get = function() {

@@ -3,7 +3,7 @@
 angular.module('<%= _.camelize(projectName) %>')
   .factory('<%= _.camelize(name) %>', function() {
     // Private API
-    var name = 'yeogurt';
+    var name = 'neopolitan';
 
     // Public API
     return {

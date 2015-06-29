@@ -10,13 +10,13 @@ var HomeComponent = React.createClass({
   render: function() {
     return (
       <div>
-        <div className="yeogurt-info">
+        <div className="neopolitan-info">
           <h1>Welcome to Yeogurt!</h1>
           <p>
-            Take a look at the <a href="https://github.com/larsonjj/generator-yeogurt#yeogurt-generator">documentation</a> and start mixing up something awesome.
+            Take a look at the <a href="https://github.com/larsonjj/generator-neopolitan#neopolitan-generator">documentation</a> and start mixing up something awesome.
           </p>
           <p>
-            <img src="images/yeogurt-swirl.png" width="75px" className="logo" />
+            <img src="images/neopolitan-logo.png" width="75px" className="logo" />
           </p>
         </div>
         <code className="version">v<%= pkg.version %></code>

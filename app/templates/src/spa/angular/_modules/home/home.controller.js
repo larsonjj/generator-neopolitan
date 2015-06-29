@@ -2,5 +2,5 @@
 
 angular.module('<%= _.camelize(projectName) %>')
   .controller('HomeCtrl', function($scope) {
-    $scope.yeogurt = 'awesome';
+    $scope.neopolitan = 'awesome';
   });

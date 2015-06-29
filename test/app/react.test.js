@@ -56,11 +56,11 @@ describe('Neopolitan generator using React', function() {
           it('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'src/_screens/home/home.jsx',
+              'src/_modules/home/home.jsx',
               'src/_layouts/base.jsx'
             ];
             var fileContentToTest = [
-              ['src/_screens/home/home.jsx', /<div>/i],
+              ['src/_modules/home/home.jsx', /<div>/i],
               ['package.json', /node-jsx/i],
               ['src/_scripts/routes.jsx', /jsx/i]
             ];
@@ -86,11 +86,11 @@ describe('Neopolitan generator using React', function() {
           it('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'src/_screens/home/home.jsx',
+              'src/_modules/home/home.jsx',
               'src/_layouts/base.jsx'
             ];
             var fileContentToTest = [
-              ['src/_screens/home/home.jsx', /<div>/i],
+              ['src/_modules/home/home.jsx', /<div>/i],
               ['package.json', /node-jsx/i],
               ['src/_scripts/routes.jsx', /jsx/i]
             ];

@@ -5,19 +5,16 @@
 'use strict';
 
 var logoPrompt = function logoPrompt() {
-  var yeogurtLogo = '' +
-    '                                    _   \n'.red +
-    '  ' + 'Welcome to'.green + '                       | |  \n'.red +
-    '  _   _  ___  ___   __ _ _   _ _ __| |_ \n'.red +
-    ' | | | |/ _ \\\/ _ \\ \/ _` | | | | \'__| __|\n'.red +
-    ' | |_| |  __/ (_) | (_| | |_| | |  | |_ \n'.red +
-    '  \\__, |\\___|\\___/ \\__, |\\__,_|_|   \\__|\n'.red +
-    '   __/ |            __/ |\n'.red +
-    '  |___/            |___/  '.red +
-    '               \n';
+  var neopolitanLogo = '\n' +
+    '  welcome to'.green + '                   _ _ _\n'.red +
+    '  _ __   ___  ___  _ __   ___ | (_) |_ __ _ _ __  \n'.red +
+    ' | \'_ \\ / _ \\/ _ \\| \'_ \\ / _ \\| | | __/ _` | \'_ \\ \n'.red +
+    ' | | | |  __/ (_) | |_) | (_) | | | || (_| | | | |\n' +
+    ' |_| |_|\\___|\\___/| .__/ \\___/|_|_|\\__\\__,_|_| |_|\n'.grey +
+    '                  |_| \n'.grey;
 
   // have Yeogurt greet the user.
-  this.log(yeogurtLogo);
+  this.log(neopolitanLogo);
 };
 
 module.exports = logoPrompt;

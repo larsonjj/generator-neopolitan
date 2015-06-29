@@ -18,6 +18,6 @@ angular
   }]);
 
 // Include Screens and Modules
-require('../_screens/home/home');
+require('../_modules/home/home');
 
 console.log('Welcome to Yeogurt!');
