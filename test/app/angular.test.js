@@ -25,9 +25,9 @@ describe('Neopolitan generator using Angular', function() {
       it('Creates expected files', function(done) {
         var expected = [
           'src/_scripts/main.js',
-          'src/_screens/home/home.js',
-          'src/_screens/home/home.controller.js',
-          'src/_screens/home/home.html'
+          'src/_modules/home/home.js',
+          'src/_modules/home/home.controller.js',
+          'src/_modules/home/home.html'
         ];
 
         var fileContentToTest = [];
@@ -50,11 +50,11 @@ describe('Neopolitan generator using Angular', function() {
         describe('With Jasmine', function() {
           it('Creates expected files', function(done) {
             var expected = [
-              'src/_screens/home/__tests__/home.spec.js'
+              'src/_modules/home/__tests__/home.spec.js'
             ];
 
             var fileContentToTest = [
-              ['src/_screens/home/__tests__/home.spec.js', /toBe/i]
+              ['src/_modules/home/__tests__/home.spec.js', /toBe/i]
             ];
 
             helpers.mockPrompt(this.app, {
@@ -75,11 +75,11 @@ describe('Neopolitan generator using Angular', function() {
         describe('With Mocha', function() {
           it('Creates expected files', function(done) {
             var expected = [
-              'src/_screens/home/__tests__/home.spec.js'
+              'src/_modules/home/__tests__/home.spec.js'
             ];
 
             var fileContentToTest = [
-              ['src/_screens/home/__tests__/home.spec.js', /to\./i]
+              ['src/_modules/home/__tests__/home.spec.js', /to\./i]
             ];
 
             helpers.mockPrompt(this.app, {

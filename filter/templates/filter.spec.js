@@ -13,7 +13,7 @@ describe('Filter: <%= _.camelize(name) %>', function() {
   }));
 
   it('should return the input prefixed with "<%= _.camelize(name) %> filter:"', function() {
-    var text = 'yeogurt';
+    var text = 'neopolitan';
     expect( <%= _.camelize(name) %>(text))<% if (testFramework === 'jasmine') { %>.toBe('<%= _.camelize(name) %> filter: ' + text)<% } else if (testFramework === 'mocha') { %>.to.equal('<%= _.camelize(name) %> filter: ' + text)<% } %>;
   });
 

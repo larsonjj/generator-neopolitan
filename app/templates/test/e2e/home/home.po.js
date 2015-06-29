@@ -6,7 +6,7 @@
 'use strict';
 
 var IndexPage = function() {
-  this.heroEl = element(by.css('.yeogurt-info'));
+  this.heroEl = element(by.css('.neopolitan-info'));
   this.h1El = this.heroEl.element(by.css('h1'));
   this.imgEl = this.heroEl.element(by.css('img.logo'));
 };

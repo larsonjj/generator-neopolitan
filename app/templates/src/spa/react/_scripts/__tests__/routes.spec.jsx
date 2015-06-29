@@ -1,7 +1,9 @@
 <% if (testFramework === 'mocha') { %>/*eslint no-unused-expressions:0 */<% } %>
 'use strict';
 
+/*eslint-disable no-unused-vars*/
 var React = require('react');
+/*eslint-enable no-unused-vars*/
 var routes = require('../routes.jsx');
 
 describe('Routes for router', function() {

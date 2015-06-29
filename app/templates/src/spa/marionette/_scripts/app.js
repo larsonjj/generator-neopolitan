@@ -4,7 +4,7 @@ var $ = require('jquery');
 var Backbone = require('backbone');
 Backbone.$ = $;
 var Marionette = require('backbone.marionette');
-var HomeScreen = require('../_screens/home/home');
+var HomeScreen = require('../_modules/home/home');
 var Wreqr = require('./wreqr');
 
 // Set up the app instance

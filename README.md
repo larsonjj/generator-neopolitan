@@ -82,6 +82,7 @@ Now you can run:
 - `gulp serve` for previewing your site/app on a development server.
 - `gulp serve:dist` for previewing a production version of your site/app.
 - `gulp test` for linting your scripts running unit tests.
+- `gulp test:e2e` for running end-to-end functional tests.
 
 You can learn more about what tasks are available in the [gulp tasks](#gulp-workflow) section.
 
@@ -107,6 +108,7 @@ Congratulations! You should now have successfully created a Neopolitan project a
 - Modular JavaScript with [Browserify](http://browserify.org/).
 - JavaScript unit testing with [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/)
 - Test running with [Karma](http://karma-runner.github.io/0.12/index.html)
+- End-to-end test running with [Protractor](https://angular.github.io/protractor/#/)
 
 ### Single Page Application Options
 - [Angular](https://angularjs.org/)
@@ -141,21 +143,20 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 |Tasks| Description
 |---------|-------
 |gulp test:watch| runs [`gulp test`](#gulp-test), but also watches test files and auto runs tests when changes are detected.
+|gulp test:e2e| runs end-to-end functional tests using [Protractor](https://angular.github.io/protractor/#/).
 
 ## Sub-Generators
 
 #### React application
-* [neopolitan:react](#react)
-* [neopolitan:flux](#flux)
+* [neopolitan:react](#react-module)
 
 #### Backbone application
-* [neopolitan:view](#view)
-* [neopolitan:template](#view-template)
+* [neopolitan:module](#backbone-module)
 * [neopolitan:model](#model)
 * [neopolitan:collection](#collection)
 
 #### Angular application
-* [neopolitan:template](#ng-template)
+* [neopolitan:module](#angular-module)
 * [neopolitan:controller](#controller)
 * [neopolitan:directive](#directive)
 * [neopolitan:filter](#filter)
@@ -169,86 +170,50 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 ## React Sub-generators
 ***Note: (The following sub-generators can only be used with React applications)***
 
-### React
+### Module
 
 Creates React Component File.
 
 Example:
 
 ```
-yo neopolitan:react mycomponent
-? Where would you like to create this react component?: client/scripts/components
-? Where would you like to create this react component's test?: test/spec/components
+yo neopolitan:module mycomponent
+? Where would you like to create this react component?: src/_modules
 ```
 
 Produces:
 
 ```
-client/scripts/components/mycomponent.jsx
-test/spec/components/mycomponent.spec.js
+src/_modules/mymodule/mymodule.jsx
+src/_modules/mymodule/mymodule.{css,styl,less,scss,sass}
+src/_modules/mymodule/__tests__/mymodule.spec.jsx
 ```
 
-### Flux
-
-Creates Flux files:
-
-Example:
-
-```
-yo neopolitan:flux myflux
-? Where would you like to create flux files?: client/scripts
-? Where would you like to create flux file tests?: test/spec
-```
-
-Produces:
-
-```
-client/scripts/flux/constants/myflux.js
-client/scripts/flux/actions/myflux.js
-client/scripts/flux/stores/myflux.js
-test/spec/flux/constants/myflux.spec.js
-test/spec/flux/actions/myflux.spec.js
-test/spec/flux/stores/myflux.spec.js
-```
+***NOTE: `{css,styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `CSS, Stylus, Less or Sass` respectively***
 
 ## Backbone Sub-generators
 ***Note: (The following sub-generators can only be used with Backbone applications)***
 
-### View
+### Module
 Creates a Backbone view along with a corresponding template:
 
 Example:
 
 ```
-yo neopolitan:view myview
-? Where would you like to create this view?: client/scripts/views
-? Where would you like to create this view's template?: client/templates
-? Where would you like to create this view's test?: test/spec/views
+yo neopolitan:module mymodule
+? Where would you like to create this view?: src/_modules
 ```
 
 Produces:
 
 ```
-client/scripts/views/myview.js
-client/templates/myview.jst
-test/spec/views/myview.spec.js
+src/_modules/mymodule/mymodule.js
+src/_modules/mymodule/mymodule.jst
+src/_modules/mymodule/mymodule.{css,styl,less,scss,sass}
+src/_modules/mymodule/__tests__/mymodule.spec.js
 ```
 
-### View Template
-Creates a new template file (Jade, Handlebars, or Lo-dash depending on which you chose).
-
-Example:
-
-```
-yo neopolitan:template mytemplate
-? Where would you like to create this template?: client/templates
-```
-
-Produces:
-
-```
-client/templates/mytemplate.jst
-```
+***NOTE: `{css,styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `CSS, Stylus, Less or Sass` respectively***
 
 ### Model
 
@@ -258,15 +223,14 @@ Example:
 
 ```
 yo neopolitan:model mymodel
-? Where would you like to create this model?: client/scripts/models
-? Where would you like to create this model's test?: test/spec/models
+? Where would you like to create this model?: src/_scripts/models
 ```
 
 Produces:
 
 ```
-client/scripts/models/mymodel.js
-test/spec/models/mymodel.spec.js
+src/_scripts/models/mymodel.js
+src/_scripts/models/__tests__/mymodel.spec.js
 ```
 
 ### Collection
@@ -277,59 +241,42 @@ Example:
 
 ```
 yo neopolitan:model mycollection
-? Where would you like to create this collection?: client/scripts/collections
+? Where would you like to create this collection?: src/_scripts/collections
 ? What is the name of the model you would like to use with this collection?: mycollection-model
-? What folder is the model file located in?: client/scripts/models
-? Where would you like to create this collection's test?: test/spec/collections
+? What folder is the model file located in?: src/_scripts/models
 ```
 
 Produces:
 
 ```
-client/scripts/collections/mycollection.js
-test/spec/collections/mycollection.spec.js
+src/_scripts/collections/mycollection.js
+src/_scripts/collections/__tests__/mycollection.spec.js
 ```
 
 ## Angular Sub-generators
 ***Note: (The following sub-generators can only be used with Angular applications)***
 
-### Route
+### Module
 Creates an Angular template:
 
 Example:
 
 ```
-yo neopolitan:route myroute
-? Where would you like to create this view?: client/app
+yo neopolitan:module contact
+? Where would you like to create this view?: src/module
 ```
 
 Produces:
 
 ```
-client/app/myroute/myroute.html
-client/app/myroute/myroute.controller.js
-client/app/myroute/myroute.controller.spec.js
-client/app/myroute/myroute.{css,styl,less,scss,sass}
-client/app/myroute/myroute.js
+src/_modules/contact/contact.html
+src/_modules/contact/contact.controller.js
+src/_modules/contact/__tests__/contact.controller.spec.js
+src/_modules/contact/contact.{css,styl,less,scss,sass}
+src/_modules/contact/contact.js
 ```
 
 ***NOTE: `{css,styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `CSS, Stylus, Less or Sass` respectively***
-
-### ng Template
-Creates an Angular template:
-
-Example:
-
-```
-yo neopolitan:template mytemp
-? Where would you like to create this view?: client/app/templates
-```
-
-Produces:
-
-```
-client/app/templates/mytemp.html
-```
 
 ### Controller
 Creates an Angular controller:
@@ -338,14 +285,14 @@ Example:
 
 ```
 yo neopolitan:controller mycontroller
-? Where would you like to create this controller?: client/app
+? Where would you like to create this controller?: src/_modules
 ```
 
 Produces:
 
 ```
-client/app/mycontroller/mycontroller.controller.js
-client/app/mycontroller/mycontroller.controller.spec.js
+src/_modules/mycontroller/mycontroller.controller.js
+src/_modules/mycontroller/__tests__/mycontroller.controller.spec.js
 ```
 
 ### Directive
@@ -355,16 +302,16 @@ Example:
 
 ```
 yo neopolitan:directive mydirective
-? Where would you like to create this directive?: client/app
+? Where would you like to create this directive?: src/_modules
 ? Does this directive need an HTML template?: Yes
 ```
 
 Produces:
 
 ```
-client/app/mydirective/mydirective.directive.js
-client/app/mydirective/mydirective.directive.spec.js
-client/app/mydirective/mydirective.html (optional)
+src/_modules/mydirective/mydirective.directive.js
+src/_modules/mydirective/__tests__/mydirective.directive.spec.js
+src/_modules/mydirective/mydirective.html (optional)
 ```
 
 ### Filter
@@ -374,14 +321,14 @@ Example:
 
 ```
 yo neopolitan:filter myfilter
-? Where would you like to create this filter?: client/app
+? Where would you like to create this filter?: src/_modules
 ```
 
 Produces:
 
 ```
-client/app/myfilter/myfilter.filter.js
-client/app/myfilter/myfilter.filter.spec.js
+src/_modules/myfilter/myfilter.filter.js
+src/_modules/myfilter/__tests__/myfilter.filter.spec.js
 ```
 
 ### Decorator
@@ -391,13 +338,13 @@ Example:
 
 ```
 yo neopolitan:decorator mydecorator
-? Where would you like to create this decorator?: client/app
+? Where would you like to create this decorator?: src/_modules
 ```
 
 Produces:
 
 ```
-client/app/mydecorator/mydecorator.decorator.js
+src/_modules/mydecorator/mydecorator.decorator.js
 ```
 
 ### Service
@@ -407,14 +354,14 @@ Example:
 
 ```
 yo neopolitan:service myservice
-? Where would you like to create this service?: client/app
+? Where would you like to create this service?: src/_modules
 ```
 
 Produces:
 
 ```
-client/app/myservice/myservice.service.js
-client/app/myservice/myservice.service.spec.js
+src/_modules/myservice/myservice.service.js
+src/_modules/myservice/__tests__/myservice.service.spec.js
 ```
 
 ### Factory
@@ -424,14 +371,14 @@ Example:
 
 ```
 yo neopolitan:factory myfactory
-? Where would you like to create this factory?: client/app
+? Where would you like to create this factory?: src/_modules
 ```
 
 Produces:
 
 ```
-client/app/myfactory/myfactory.factory.js
-client/app/myfactory/myfactory.factory.spec.js
+src/_modules/myfactory/myfactory.factory.js
+src/_modules/myfactory/__tests__/myfactory.factory.spec.js
 ```
 
 ### Provider
@@ -441,14 +388,14 @@ Example:
 
 ```
 yo neopolitan:provider myprovider
-? Where would you like to create this provider?: client/app
+? Where would you like to create this provider?: src/_modules
 ```
 
 Produces:
 
 ```
-client/app/myprovider/myprovider.provider.js
-client/app/myprovider/myprovider.provider.spec.js
+src/_modules/myprovider/myprovider.provider.js
+src/_modules/myprovider/__tests__/myprovider.provider.spec.js
 ```
 
 ## Common Issues

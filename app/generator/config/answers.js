@@ -28,7 +28,6 @@ var answersConfig = function answersConfig() {
   this.versionControl = this.answers.versionControl;
 
   // Client
-  this.singlePageApplication = this.answers.singlePageApplication;
   this.jsFramework = this.answers.jsFramework;
   this.jsOption = this.answers.jsOption;
   this.cssOption = this.answers.cssOption;

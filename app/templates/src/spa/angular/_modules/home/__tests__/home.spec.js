@@ -27,7 +27,7 @@ describe('Controller: HomeCtrl', function() {
     expect(HomeCtrl)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
   });
 
-  it('should have scope.yeogurt defined as "awesome"', function() {
-    expect(scope.yeogurt)<% if (testFramework === 'jasmine') { %>.toEqual('awesome')<% } else if (testFramework === 'mocha') { %>.to.equal('awesome')<% } %>;
+  it('should have scope.neopolitan defined as "awesome"', function() {
+    expect(scope.neopolitan)<% if (testFramework === 'jasmine') { %>.toEqual('awesome')<% } else if (testFramework === 'mocha') { %>.to.equal('awesome')<% } %>;
   });
 });

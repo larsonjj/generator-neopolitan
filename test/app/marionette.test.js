@@ -27,16 +27,16 @@ describe('Neopolitan generator using Marionette', function() {
           it('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'src/_screens/home/home.js',
-              'src/_screens/home/home.controller.js',
-              'src/_screens/home/views/home.item.jst',
-              'src/_screens/home/views/home.item.js',
+              'src/_modules/home/home.js',
+              'src/_modules/home/home.controller.js',
+              'src/_modules/home/views/home.item.jst',
+              'src/_modules/home/views/home.item.js',
               'src/_scripts/wreqr.js',
               'src/index.html'
             ];
             var fileContentToTest = [
-              ['src/_screens/home/views/home.item.js', /HomeView/i],
-              ['src/_screens/home/views/home.item.jst', /<\/div>/i],
+              ['src/_modules/home/views/home.item.js', /HomeView/i],
+              ['src/_modules/home/views/home.item.jst', /<\/div>/i],
               ['src/index.html', /app\-wrapper/i]
             ];
 
@@ -59,16 +59,16 @@ describe('Neopolitan generator using Marionette', function() {
           it('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'src/_screens/home/home.js',
-              'src/_screens/home/home.controller.js',
-              'src/_screens/home/views/home.item.jst',
-              'src/_screens/home/views/home.item.js',
+              'src/_modules/home/home.js',
+              'src/_modules/home/home.controller.js',
+              'src/_modules/home/views/home.item.jst',
+              'src/_modules/home/views/home.item.js',
               'src/_scripts/wreqr.js',
               'src/index.html'
             ];
             var fileContentToTest = [
-              ['src/_screens/home/views/home.item.js', /HomeView/i],
-              ['src/_screens/home/views/home.item.jst', /<\/div>/i],
+              ['src/_modules/home/views/home.item.js', /HomeView/i],
+              ['src/_modules/home/views/home.item.jst', /<\/div>/i],
               ['src/index.html', /app\-wrapper/i]
             ];
 
@@ -95,15 +95,15 @@ describe('Neopolitan generator using Marionette', function() {
           it('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'src/_screens/home/home.js',
-              'src/_screens/home/home.controller.js',
-              'src/_screens/home/views/home.item.jst',
-              'src/_screens/home/views/home.item.js',
+              'src/_modules/home/home.js',
+              'src/_modules/home/home.controller.js',
+              'src/_modules/home/views/home.item.jst',
+              'src/_modules/home/views/home.item.js',
               'src/_scripts/wreqr.js',
               'src/index.html'
             ];
             var fileContentToTest = [
-              ['src/_screens/home/views/home.item.js', /HomeView/i],
+              ['src/_modules/home/views/home.item.js', /HomeView/i],
               ['src/_scripts/wreqr.js', /module\.exports/i],
               ['src/index.html', /app\-wrapper/i]
             ];
@@ -126,15 +126,15 @@ describe('Neopolitan generator using Marionette', function() {
           it('Creates expected files with expected content', function(done) {
             var expected = [
               // add files and folders you expect to exist here.
-              'src/_screens/home/home.js',
-              'src/_screens/home/home.controller.js',
-              'src/_screens/home/views/home.item.jst',
-              'src/_screens/home/views/home.item.js',
+              'src/_modules/home/home.js',
+              'src/_modules/home/home.controller.js',
+              'src/_modules/home/views/home.item.jst',
+              'src/_modules/home/views/home.item.js',
               'src/_scripts/wreqr.js',
               'src/index.html'
             ];
             var fileContentToTest = [
-              ['src/_screens/home/views/home.item.jst', /<\/div>/i],
+              ['src/_modules/home/views/home.item.jst', /<\/div>/i],
               ['src/_scripts/wreqr.js', /module\.exports/i],
               ['src/index.html', /app\-wrapper/i]
             ];

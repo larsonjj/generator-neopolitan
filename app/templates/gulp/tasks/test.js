@@ -21,11 +21,11 @@ var testTask = function testTask(options) {
     gulp.watch([
       path.join(rootPath, dirs.source, '**/*.js')
     ], ['browserify:test']);
-  });
+  });<% if (useE2e) { %>
 
   gulp.task('test:e2e', function() {
-    runSequence('eslint', 'serve', 'protractor');
-  });
+    runSequence('eslint', 'clean:tmp', 'serve:tasks:test', 'protractor');
+  });<% } %>
 
 };
 

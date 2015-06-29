@@ -17,7 +17,7 @@ var browserifyTask = function browserifyTask(options) {
 
   // Set up the browserify instance with default options
   var browserifyOptions = browserify(
-    path.join(rootPath, dirs.source, dirs.scripts, '/main.js'), {
+    path.join(rootPath, dirs.source, dirs.scripts, '/main.<%if (jsFramework === 'react') { %>jsx<% } else { %>js<% } %>'), {
     debug: true,
     transform: [
       require('envify'),
