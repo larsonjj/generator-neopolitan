@@ -170,7 +170,7 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 ## React Sub-generators
 ***Note: (The following sub-generators can only be used with React applications)***
 
-### Module
+### React Module
 
 Creates React Component File.
 
@@ -194,7 +194,7 @@ src/_modules/mymodule/__tests__/mymodule.spec.jsx
 ## Backbone Sub-generators
 ***Note: (The following sub-generators can only be used with Backbone applications)***
 
-### Module
+### Backbone Module
 Creates a Backbone view along with a corresponding template:
 
 Example:
@@ -256,7 +256,7 @@ src/_scripts/collections/__tests__/mycollection.spec.js
 ## Angular Sub-generators
 ***Note: (The following sub-generators can only be used with Angular applications)***
 
-### Module
+### Angular Module
 Creates an Angular template:
 
 Example:
