@@ -4,7 +4,7 @@
 
 # Neopolitan Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-neopolitan.png?branch=master)](https://travis-ci.org/larsonjj/generator-neopolitan) [![NPM version](https://badge.fury.io/js/generator-neopolitan.png)](http://badge.fury.io/js/generator-neopolitan) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-neopolitan/badge.png)](https://coveralls.io/r/larsonjj/generator-neopolitan)
 
-A generator for creating single page applications. Helps you harness the power of your favorite JavaScript frameworks: Angular, React + Flux, Backbone, Gulp, and much more!
+A generator for creating single page applications. Helps you harness the power of your favorite JavaScript frameworks: Angular, React + Flux, Marionette, Gulp, and much more!
 
 # Table of Contents
 
@@ -24,7 +24,7 @@ A generator for creating single page applications. Helps you harness the power o
 ## What can I create with Neopolitan?
 ### Create Single Page Applications using one of the following:
 -  [Angular](https://angularjs.org/), 
--  [Backbone](http://backbonejs.org/)
+-  [Marionette](http://marionettejs.com/)
 -  [React](http://facebook.github.io/react/) + [Reflux](https://github.com/spoike/refluxjs).
 
 Check out the [features](#features) section to see everything this generator has to offer.
@@ -117,7 +117,7 @@ Congratulations! You should now have successfully created a Neopolitan project a
 
 - Facebook's [React](http://facebook.github.io/react/) with [ReFlux](https://github.com/spoike/refluxjs)
 
-- Backbone with [underscore](http://underscorejs.com/) templating
+- [Marionette](http://marionettejs.com/) with [underscore](http://underscorejs.com/) templating
 
 
 ## Gulp Workflow
@@ -156,7 +156,7 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 #### React application
 * [neopolitan:module](#react-module)
 
-#### Backbone application
+#### Marionette application
 * [neopolitan:module](#backbone-module)
 * [neopolitan:model](#model)
 * [neopolitan:collection](#collection)
@@ -197,11 +197,11 @@ src/_modules/mymodule/__tests__/mymodule.spec.jsx
 
 ***NOTE: `{css,styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `CSS, Stylus, Less or Sass` respectively***
 
-## Backbone Sub-generators
-***Note: (The following sub-generators can only be used with Backbone applications)***
+## Marionette Sub-generators
+***Note: (The following sub-generators can only be used with Marionette applications)***
 
-### Backbone Module
-Creates a Backbone view along with a corresponding template:
+### Marionette Module
+Creates a Marionette itemview along with a corresponding template:
 
 Example:
 
