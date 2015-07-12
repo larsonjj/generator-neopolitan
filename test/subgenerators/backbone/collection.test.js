@@ -82,7 +82,7 @@ describe('Collection sub-generator', function() {
       var collection = 'mycollection';
       var fileContentToTest = [
         ['src/_scripts/' + collection + '/__tests__/' + collection + '.spec.js', /describe/i],
-        ['src/_scripts/' + collection + '/' + collection + '.js', /module\.exports/i]
+        ['src/_scripts/' + collection + '/' + collection + '.js', /export/i]
       ];
 
       helpers.mockPrompt(this.app, {

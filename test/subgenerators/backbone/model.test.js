@@ -81,7 +81,7 @@ describe('Model sub-generator', function() {
       var model = 'mymodel';
       var fileContentToTest = [
         ['src/_scripts/' + model + '/__tests__/' + model + '.spec.js', /describe/i],
-        ['src/_scripts/' + model + '/' + model + '.js', /module\.exports/i]
+        ['src/_scripts/' + model + '/' + model + '.js', /export/i]
       ];
 
       helpers.mockPrompt(this.app, {

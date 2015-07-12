@@ -61,7 +61,7 @@ describe('Marionette module sub-generator', function() {
 
           var fileContentToTest = [
             ['src/_modules/' + module + '/' + module + '.jst', /<div>/i],
-            ['src/_modules/' + module + '/' + module + '.js', /module\.exports/i],
+            ['src/_modules/' + module + '/' + module + '.js', /export/i],
             ['src/_modules/' + module + '/__tests__/' + module + '.spec.js', /toBe/i]
           ];
 
@@ -97,7 +97,7 @@ describe('Marionette module sub-generator', function() {
 
           var fileContentToTest = [
             ['src/_modules/' + module + '/' + module + '.jst', /<div>/i],
-            ['src/_modules/' + module + '/' + module + '.js', /module\.exports/i],
+            ['src/_modules/' + module + '/' + module + '.js', /export/i],
             ['src/_modules/' + module + '/__tests__/' + module + '.spec.js', /to\.exist/i]
           ];
 
