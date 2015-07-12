@@ -64,7 +64,7 @@ describe('Collection sub-generator', function() {
         useTesting: false,
         jsTemplate: 'underscore',
         jsOption: 'browserify',
-        testFramework: 'jasmine'
+        testFramework: 'none'
       });
       this.app.run([], function() {
         createSubGenerator('collection', collection, {path: '../../../../'}, {

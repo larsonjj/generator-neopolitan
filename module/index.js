@@ -3,15 +3,9 @@ var util = require('util');
 var yeoman = require('yeoman-generator');
 var getDirCount = require('../helpers/get-dir-count');
 var path = require('path');
-var neopolitanConf;
-
-try {
-  neopolitanConf = require(path.join(process.cwd(), './neopolitan.conf'));
-  var directories = neopolitanConf.directories;
-}
-catch (e) {
-  return; // Do Nothing
-}
+var pjson = require(path.join(process.cwd(), './package.json'));
+var config = pjson.config;
+var directories = config.directories;
 
 var ModuleGenerator = module.exports = function ModuleGenerator() {
   // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -45,7 +39,7 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return neopolitanConf ? directories.source + '/' + directories.modules : directories.source + '/_modules';
+      return config ? directories.source + '/' + directories.modules : directories.source + '/_modules';
     }
   }, {
     when: function(answers) {

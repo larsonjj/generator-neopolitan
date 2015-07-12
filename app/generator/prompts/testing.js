@@ -30,7 +30,7 @@ var testingPrompts = function testingPrompts() {
     }
   }, {
     when: function(answers) {
-      return testFramework !== 'none';
+      return answers.testFramework !== 'none';
     },
     type: 'confirm',
     name: 'useE2e',

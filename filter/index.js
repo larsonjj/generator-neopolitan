@@ -3,15 +3,9 @@ var util = require('util');
 var yeoman = require('yeoman-generator');
 // var getDirCount = require('../helpers/get-dir-count');
 var path = require('path');
-var neopolitanConf;
-
-try {
-  neopolitanConf = require(path.join(process.cwd(), './neopolitan.conf'));
-  var directories = neopolitanConf.directories;
-}
-catch(e) {
-  return; // Do Nothing
-}
+var pjson = require(path.join(process.cwd(), './package.json'));
+var config = pjson.config;
+var directories = config.directories;
 
 var FilterGenerator = module.exports = function FilterGenerator() {
   // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -42,7 +36,7 @@ FilterGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'filterFile',
     message: 'Where would you like to create this filter?',
-    default: neopolitanConf ? directories.source + '/' + directories.scripts : 'src/_scripts'
+    default: config ? directories.source + '/' + directories.scripts : 'src/_scripts'
   }];
 
   this.prompt(prompts, function(answers) {
