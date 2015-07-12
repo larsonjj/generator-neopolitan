@@ -1,6 +1,6 @@
 {
   "name": "generator-neopolitan",
-  "version": "1.0.0-beta",
+  "version": "1.0.0-beta2",
   "description": "A generator for creating single page applications. Helps you harness the power of your favorite JavaScript frameworks: Angular, React + Flux, Backbone, Gulp, and much more!",
   "keywords": [
     "yeoman-generator",
