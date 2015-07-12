@@ -1,9 +1,9 @@
 'use strict';
 
-var Marionette = require('backbone.marionette');
-var baseTemplate = require('./base.jst');
+import Marionette from 'backbone.marionette';
+import baseTemplate from './base.jst';
 
-var BaseLayoutView = Marionette.LayoutView.extend({
+let BaseLayoutView = Marionette.LayoutView.extend({
 
   template: baseTemplate,
 
@@ -13,4 +13,4 @@ var BaseLayoutView = Marionette.LayoutView.extend({
 
 });
 
-module.exports = BaseLayoutView;
+export default BaseLayoutView;

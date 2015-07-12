@@ -1,16 +1,16 @@
 'use strict';
 
-var $ = require('jquery');
-var Backbone = require('backbone');
+import $ from 'jquery';
+import Backbone from 'backbone';
 Backbone.$ = $;
-var Marionette = require('backbone.marionette');
-var HomeController = require('./home.controller');
+import Marionette from 'backbone.marionette';
+import HomeController from './home.controller';
 
-var homeRouter = Marionette.AppRouter.extend({
+let homeRouter = Marionette.AppRouter.extend({
   appRoutes: {
     '/': 'showHome'
   },
   controller: new HomeController()
 });
 
-module.exports = homeRouter;
+export default homeRouter;

@@ -2,23 +2,23 @@
 'use strict';
 
 /*eslint-disable no-unused-vars*/
-var React = require('react');
+import React from 'react';
 /*eslint-enable no-unused-vars*/
-var BaseLayout = require('../base.jsx');
+import BaseLayout from '../base.jsx';
 
-describe('Base Component', function() {
+describe('Base Component', () => {
 
   // Uncomment to use React testing tools
   // var ReactTestUtils;
   // var reactRender;
 
-  beforeEach(function() {
+  beforeEach(() => {
     // ReactTestUtils = require('react/addons').addons.TestUtils;
     // reactRender = ReactTestUtils.renderIntoDocument;
     this.baseLayout = <BaseLayout />;
   });
 
-  it('provides the "Base Component" instance', function() {
+  it('provides the "Base Component" instance', () => {
     // Expect it to exist
     expect(this.baseLayout)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
   });

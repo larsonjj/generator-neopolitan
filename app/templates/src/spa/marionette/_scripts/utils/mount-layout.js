@@ -1,8 +1,8 @@
-var Wreqr = require('../wreqr');
+import Wreqr from '../wreqr';
 
 // Mounts a specified layout view
-var mountLayout = function(LayoutView) {
-  var layoutView = new LayoutView();
+let mountLayout = (LayoutView) => {
+  let layoutView = new LayoutView();
 
   // Trigger mounting base layout within DOM
   Wreqr.trigger('app:show', layoutView);
@@ -10,4 +10,4 @@ var mountLayout = function(LayoutView) {
   return layoutView;
 };
 
-module.exports = mountLayout;
+export default mountLayout;

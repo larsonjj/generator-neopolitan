@@ -1,7 +1,7 @@
 /*eslint no-unused-vars:0*/
-var $ = require('jquery');
-var Backbone = require('backbone');
+import $ from 'jquery';
+import Backbone from 'backbone';
 Backbone.$ = $;
-var Marionette = require('backbone.marionette');
+import Marionette from 'backbone.marionette';
 
-module.exports = new Backbone.Wreqr.EventAggregator();
+export default new Backbone.Wreqr.EventAggregator();

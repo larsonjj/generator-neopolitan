@@ -1,13 +1,13 @@
 'use strict';
 
-var React = require('react');
-var mainActions = require('../../_scripts/actions/main.actions');
+import React from 'react';
+import mainActions from '../../_scripts/actions/main.actions';
 
-var HomeComponent = React.createClass({
-  componentWillMount: function() {
+const HomeComponent = React.createClass({
+  componentWillMount() {
     mainActions.setPage({title: '<%= projectName %>'});
   },
-  render: function() {
+  render() {
     return (
       <div>
         <div className="neopolitan-info">
@@ -25,4 +25,4 @@ var HomeComponent = React.createClass({
   }
 });
 
-module.exports = HomeComponent;
+export default HomeComponent;

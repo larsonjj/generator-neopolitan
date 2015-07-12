@@ -1,24 +1,24 @@
 'use strict';
 
-var Reflux = require('reflux');
-var mainActions = require('../actions/main.actions');
+import Reflux from 'reflux';
+import mainActions from '../actions/main.actions';
 
-var _page;
+let _page;
 
-var mainStore = new Reflux.createStore({
+let mainStore = new Reflux.createStore({
 
-  init: function() {
+  init() {
     this.listenTo(mainActions.setPage, this.updatePage);
   },
 
-  updatePage: function(page) {
+  updatePage(page) {
     _page = page;
   },
 
-  getPage: function() {
+  getPage() {
     return _page;
   }
 
 });
 
-module.exports = mainStore;
+export default mainStore;
