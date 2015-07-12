@@ -18,11 +18,11 @@ describe('Home Page', function() {
 
   it('should include welcome message', function() {
 <% if (testFramework === 'mocha') { %>
-    expect(page.h1El.getText()).to.eventually.equal('Welcome to Yeogurt!');
-    expect(page.imgEl.getAttribute('src')).to.eventually.match(/\/images\/neopolitan\-swirl\.png/);
+    expect(page.h1El.getText()).to.eventually.equal('Welcome to Neopolitan!');
+    expect(page.imgEl.getAttribute('src')).to.eventually.match(/\/images\/neopolitan\-logo\.png/);
 <% } else { %>
-  expect(page.h1El.getText()).toBe('Welcome to Yeogurt!');
-    expect(page.imgEl.getAttribute('src')).toMatch(/\/images\/neopolitan\-swirl\.png/);
+  expect(page.h1El.getText()).toBe('Welcome to Neopolitan!');
+    expect(page.imgEl.getAttribute('src')).toMatch(/\/images\/neopolitan\-logo\.png/);
 <% } %>
   });
 

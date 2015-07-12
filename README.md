@@ -121,7 +121,13 @@ Congratulations! You should now have successfully created a Neopolitan project a
 ## Gulp Workflow
 
 ### `gulp`
-Runs both [`gulp test`](#gulp-test) and [`gulp build`](#gulp-build).
+Runs [`gulp test`](#gulp-test) and compiles/creates temporary server files
+
+**Extra Task Target(s)**
+
+|Tasks| Description
+|---------|-------
+|`gulp --production`| Builds out an optimized site through compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, and optimization of images.
 
 ### `gulp serve`
 Starts up a development server that watches files and automatically reloads them to the browser when a change is detected.
@@ -130,10 +136,8 @@ Starts up a development server that watches files and automatically reloads them
 
 |Tasks| Description
 |---------|-------
-|gulp serve:build| runs [`gulp build`](#gulp-build) and starts up a server that loads the optimized files
-
-### `gulp build`
-Builds out an optimized site through compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, optimization of images, and processing of [usemin blocks](Usemin blocks). All files created from this task are put in the `{project root}/build/` folder.
+|`gulp serve --production`|  starts up a server that loads a production version of the site
+|`gulp serve --open`|  starts up a server and opens it withing your default browser
 
 ### `gulp test`
 Runs ESLint and Karma to lint and run JavaScript tests, respectively.
@@ -142,13 +146,13 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 
 |Tasks| Description
 |---------|-------
-|gulp test:watch| runs [`gulp test`](#gulp-test), but also watches test files and auto runs tests when changes are detected.
-|gulp test:e2e| runs end-to-end functional tests using [Protractor](https://angular.github.io/protractor/#/).
+|`gulp test --watch`| runs [`gulp test`](#gulp-test), but also watches test files and auto runs tests when changes are detected.
+| gulp test:e2e | runs end-to-end functional tests using [Protractor](https://angular.github.io/protractor/#/).
 
 ## Sub-Generators
 
 #### React application
-* [neopolitan:react](#react-module)
+* [neopolitan:module](#react-module)
 
 #### Backbone application
 * [neopolitan:module](#backbone-module)

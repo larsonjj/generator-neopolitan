@@ -9,7 +9,7 @@ try {
   neopolitanConf = require(path.join(process.cwd(), './neopolitan.conf'));
   var directories = neopolitanConf.directories;
 }
-catch(e) {
+catch (e) {
   return; // Do Nothing
 }
 
@@ -23,7 +23,6 @@ var DecoratorGenerator = module.exports = function DecoratorGenerator() {
   // options
   this.projectName = fileJSON.projectName;
   this.jsFramework = fileJSON.jsFramework;
-  this.useTesting = fileJSON.useTesting;
 
 };
 

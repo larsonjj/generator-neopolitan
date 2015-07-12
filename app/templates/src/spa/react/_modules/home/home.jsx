@@ -11,7 +11,7 @@ var HomeComponent = React.createClass({
     return (
       <div>
         <div className="neopolitan-info">
-          <h1>Welcome to Yeogurt!</h1>
+          <h1>Welcome to Neopolitan!</h1>
           <p>
             Take a look at the <a href="https://github.com/larsonjj/generator-neopolitan#neopolitan-generator">documentation</a> and start mixing up something awesome.
           </p>

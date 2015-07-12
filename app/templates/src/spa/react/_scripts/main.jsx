@@ -13,4 +13,4 @@ Router.run(routes, function(Handler) {
   React.render(<Handler />, document.getElementById('app-wrapper'));
 });
 
-console.log('Welcome to Yeogurt');
+console.log('Welcome to Neopolitan');

@@ -9,7 +9,7 @@ try {
   neopolitanConf = require(path.join(process.cwd(), './neopolitan.conf'));
   var directories = neopolitanConf.directories;
 }
-catch(e) {
+catch (e) {
   return; // Do Nothing
 }
 
@@ -24,7 +24,6 @@ var DirectiveGenerator = module.exports = function DirectiveGenerator() {
   this.projectName = fileJSON.projectName;
   this.jsFramework = fileJSON.jsFramework;
   this.testFramework = fileJSON.testFramework;
-  this.useTesting = fileJSON.useTesting;
 
 };
 
@@ -82,7 +81,7 @@ DirectiveGenerator.prototype.files = function files() {
 
   this.template('directive.js', this.directiveFile + '.directive.js');
 
-  if (this.useTesting) {
+  if (this.testFramework !== 'none') {
     this.template('directive.spec.js', this.testFile + '.directive.spec.js');
   }
 

@@ -24,7 +24,6 @@ var FilterGenerator = module.exports = function FilterGenerator() {
   this.projectName = fileJSON.projectName;
   this.jsFramework = fileJSON.jsFramework;
   this.testFramework = fileJSON.testFramework;
-  this.useTesting = fileJSON.useTesting;
 
 };
 
@@ -71,7 +70,7 @@ FilterGenerator.prototype.files = function files() {
 
   this.template('filter.js', this.filterFile + '.filter.js');
 
-  if (this.useTesting) {
+  if (this.testFramework !== 'none') {
     this.template('filter.spec.js', this.testFile + '.filter.spec.js');
   }
 

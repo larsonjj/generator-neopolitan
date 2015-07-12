@@ -9,7 +9,7 @@ try {
   neopolitanConf = require(path.join(process.cwd(), './neopolitan.conf'));
   var directories = neopolitanConf.directories;
 }
-catch(e) {
+catch (e) {
   return; // Do Nothing
 }
 
@@ -24,7 +24,6 @@ var FactoryGenerator = module.exports = function FactoryGenerator() {
   this.projectName = fileJSON.projectName;
   this.jsFramework = fileJSON.jsFramework;
   this.testFramework = fileJSON.testFramework;
-  this.useTesting = fileJSON.useTesting;
 
 };
 
@@ -70,7 +69,7 @@ FactoryGenerator.prototype.files = function files() {
 
   this.template('factory.js', this.factoryFile + '.factory.js');
 
-  if (this.useTesting) {
+  if (this.testFramework !== 'none') {
     this.template('factory.spec.js', this.testFile + '.factory.spec.js');
   }
 

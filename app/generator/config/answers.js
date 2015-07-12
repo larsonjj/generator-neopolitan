@@ -38,7 +38,6 @@ var answersConfig = function answersConfig() {
 
   // Testing
   this.testFramework = this.answers.testFramework;
-  this.useTesting = this.answers.useTesting;
   this.useE2e = this.answers.useE2e;
 
   // Default jsOption to Browserify

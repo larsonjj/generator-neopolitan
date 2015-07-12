@@ -20,4 +20,4 @@ angular
 // Include Screens and Modules
 require('../_modules/home/home');
 
-console.log('Welcome to Yeogurt!');
+console.log('Welcome to Neopolitan!');

@@ -21,7 +21,6 @@ var order = [
   /* Files */
   'root',
   'image',
-  'gulp',
   'angular',
   'marionette',
   'react',

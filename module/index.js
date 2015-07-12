@@ -9,7 +9,7 @@ try {
   neopolitanConf = require(path.join(process.cwd(), './neopolitan.conf'));
   var directories = neopolitanConf.directories;
 }
-catch(e) {
+catch (e) {
   return; // Do Nothing
 }
 
@@ -29,7 +29,6 @@ var ModuleGenerator = module.exports = function ModuleGenerator() {
   this.cssOption = fileJSON.cssOption;
   this.sassSyntax = fileJSON.sassSyntax;
   this.testFramework = fileJSON.testFramework;
-  this.useTesting = fileJSON.useTesting;
   this.htmlOption = fileJSON.htmlOption;
   this.useDashboard = fileJSON.useDashboard;
 
@@ -108,20 +107,20 @@ ModuleGenerator.prototype.files = function files() {
     this.template('angular/module.controller.js', this.moduleFile + '.controller.js');
     this.template('angular/module.html', this.moduleFile + '.html');
 
-    if (this.useTesting) {
+    if (this.testFramework !== 'none') {
       this.template('angular/module.spec.js', this.testFile + '.controller.spec.js');
     }
   }
   else if (this.jsFramework === 'react') {
     this.template('react/module.jsx', this.moduleFile + '.jsx');
 
-    if (this.useTesting) {
+    if (this.testFramework !== 'none') {
       this.template('react/module.spec.js', this.testFile + '.spec.js');
     }
   }
   else if (this.jsFramework === 'marionette') {
     this.template('marionette/module.js', this.moduleFile + '.js');
-    if (this.useTesting) {
+    if (this.testFramework !== 'none') {
       this.template('marionette/module.spec.js', this.testFile + '.spec.js');
     }
 

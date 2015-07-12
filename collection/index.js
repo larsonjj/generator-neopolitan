@@ -9,7 +9,7 @@ try {
   neopolitanConf = require(path.join(process.cwd(), './neopolitan.conf'));
   var directories = neopolitanConf.directories;
 }
-catch(e) {
+catch (e) {
   return; // Do Nothing
 }
 
@@ -26,7 +26,6 @@ var CollectionGenerator = module.exports = function CollectionGenerator() {
   this.jsOption = fileJSON.jsOption;
   this.singlePageApplication = fileJSON.singlePageApplication;
   this.testFramework = fileJSON.testFramework;
-  this.useTesting = fileJSON.useTesting;
 
 };
 
@@ -45,7 +44,9 @@ CollectionGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'collectionFile',
     message: 'Where would you like to create this collection?',
-    default: neopolitanConf ? directories.source + '/' + directories.scripts + '/collections' : 'src/_scripts/collections'
+    default: neopolitanConf ?
+    directories.source + '/' + directories.scripts + '/collections' :
+    'src/_scripts/collections'
   }, {
     name: 'existingModelName',
     message: 'What is the name of the model you would like to use with this collection?',
@@ -68,7 +69,9 @@ CollectionGenerator.prototype.ask = function ask() {
     console.log(this.collectionFile);
 
     // Get root directory
-    this.rootDir = getDirCount(this.collectionFile.replace(directories.source + '/' + directories.scripts + '/collections', ''));
+    this.rootDir = getDirCount(
+      this.collectionFile.replace(directories.source + '/' + directories.scripts + '/collections', '')
+    );
 
     this.modelFile = path.join(
       answers.existingModelLocation.replace(directories.source + '/' + directories.scripts + '/', ''),
@@ -95,7 +98,7 @@ CollectionGenerator.prototype.files = function files() {
 
   if (this.jsOption === 'browserify') {
     this.template('browserify/collection.js', this.collectionFile + '.js');
-    if (this.useTesting) {
+    if (this.testFramework !== 'none') {
       this.template('browserify/collection.spec.js', this.testFile + '.spec.js');
     }
   }

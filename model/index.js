@@ -25,7 +25,6 @@ var ModelGenerator = module.exports = function ModelGenerator() {
   this.jsOption = fileJSON.jsOption;
   this.singlePageApplication = fileJSON.singlePageApplication;
   this.testFramework = fileJSON.testFramework;
-  this.useTesting = fileJSON.useTesting;
 
 };
 
@@ -75,7 +74,7 @@ ModelGenerator.prototype.files = function files() {
 
   if (this.jsOption === 'browserify') {
     this.template('browserify/model.js', this.modelFile + '.js');
-    if (this.useTesting) {
+    if (this.testFramework !== 'none') {
       this.template('browserify/model.spec.js', this.testFile + '.spec.js');
     }
   }
