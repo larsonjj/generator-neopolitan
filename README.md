@@ -403,11 +403,75 @@ src/_modules/myprovider/myprovider.provider.js
 src/_modules/myprovider/__tests__/myprovider.provider.spec.js
 ```
 
+## Guides
+
+### Adding third-party libraries
+Odds are that you will need to add some third party libraries to your project at some point. To do so, it is strongly recommended that you install them using [NPM](http://npmjs.com/):
+
+```
+npm install [package name] --save
+```
+
+Once installed, you can access scripts within your JavaScript files like so:
+
+```js
+import $ from 'jquery';
+
+$(function() {
+  console.log('Hello');
+});
+```
+
+And you can access stylesheets by importing them to you chosen preprocessor like so:
+
+```scss
+// SCSS
+@import 'node_modules/normalize.css/normalize';
+```
+
+```sass
+// SASS
+@import node_modules/normalize.css/normalize
+```
+
+```less
+// LESS or Stylus
+@import 'node_modules/normalize.css/normalize.css';
+```
+
+### Using SVN
+If you plan on using SVN instead of Git, you will want to setup some default ignores to make sure you aren't committing extraneous/generated files to your codebase. To do this, adhere to the following steps:
+
+#### Step 1
+Create a new file in the root of your project named `.svnignore` and give it the following contents:
+
+```
+node_modules
+*.log
+build
+.grunt
+.serve
+tmp
+secrets.js
+.DS_Store
+.yo-rc.json
+```
+
+#### Step 2
+Run the following command:
+
+```
+svn propset svn:ignore -R -F .svnignore .
+```
+
+This command will go through your newly created `.svnignore` file and set the specified files/folders to be ignored by SVN. 
+
+
 ## Common Issues
 
 ### ESLint giving errors for third-party scripts
 ##### Typical error message:
-> Backbone is not defined
+> jQuery is not defined
 
 When adding third-party scripts, you should always link to them using `<script>` tags within your base template file (See [Adding third-party libraries](#adding-third-party-libraries)). However, doing so does not inform ESLint that your new library is defined globally. Thus, giving you errors.
 
@@ -419,7 +483,7 @@ To remedy this situation, all you need to do is open up your `.eslintrc` file in
 {
 ...
   globals: {
-    Backbone: true // Tells ESLint that Backbone is defined globally
+    jQuery: true // Tells ESLint that jQuery is defined globally
   }
 ...
 }
