@@ -100,6 +100,7 @@ Congratulations! You should now have successfully created a Neopolitan project a
 - Automated build process that includes: compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, optimization of images, and processing of [usemin blocks](Usemin blocks)
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
 - JavaScript Linting with [ESLint](http://eslint.org//)
+- ES6/2015 support out of the box using [Babel](https://babeljs.io/)
 
 ### Available Options
 
