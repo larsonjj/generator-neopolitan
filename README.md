@@ -4,7 +4,7 @@
 
 # Neopolitan Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-neopolitan.png?branch=master)](https://travis-ci.org/larsonjj/generator-neopolitan) [![NPM version](https://badge.fury.io/js/generator-neopolitan.png)](http://badge.fury.io/js/generator-neopolitan) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-neopolitan/badge.png)](https://coveralls.io/r/larsonjj/generator-neopolitan)
 
-A "Choose your own adventure" generator for creating single page applications. Helps you harness the power of your favorite tools: Angular, React + Flux, Backbone, Gulp, and much more!
+A generator for creating single page applications. Helps you harness the power of your favorite JavaScript frameworks: Angular, React + Flux, Backbone, Gulp, and much more!
 
 # Table of Contents
 
@@ -15,7 +15,7 @@ A "Choose your own adventure" generator for creating single page applications. H
 - [Sub-Generators](#sub-generators)
 - [Automated Documentation](#automated-documentation)
 - [Common Issues](#common-issues)
-- [Testing](#testing)
+- [Testing Generator](#testing-generator)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Release History](#release-history)
@@ -489,7 +489,7 @@ To remedy this situation, all you need to do is open up your `.eslintrc` file in
 }
 ```
 
-## Testing
+## Testing Generator
 To run unit tests, you have a couple options:
 
 - `npm test`: This will run all unit tests with Mocha and send the report to [coveralls.io](http://coveralls.io) to be processed. (Don't run this for local testing)
