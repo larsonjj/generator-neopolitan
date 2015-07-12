@@ -78,9 +78,10 @@ Follow all the prompts and choose what suits you most for the project you would 
 
 Now you can run:
 
-- `gulp` for testing and building a production version of your site.
 - `gulp serve` for previewing your site/app on a development server.
-- `gulp serve:dist` for previewing a production version of your site/app.
+- `gulp serve --production` for previewing a production version of your site/app.
+- `gulp` for testing and building a development version of your site.
+- `gulp --production` same as `gulp` but builds a production version of your site.
 - `gulp test` for linting your scripts running unit tests.
 - `gulp test:e2e` for running end-to-end functional tests.
 
