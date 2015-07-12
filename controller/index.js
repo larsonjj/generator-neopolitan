@@ -3,15 +3,9 @@ var util = require('util');
 var yeoman = require('yeoman-generator');
 // var getDirCount = require('../helpers/get-dir-count');
 var path = require('path');
-var neopolitanConf;
-
-try {
-  neopolitanConf = require(path.join(process.cwd(), './neopolitan.conf'));
-  var directories = neopolitanConf.directories;
-}
-catch(e) {
-  return; // Do Nothing
-}
+var pjson = require(path.join(process.cwd(), './package.json'));
+var config = pjson.config;
+var directories = config.directories;
 
 var ControllerGenerator = module.exports = function ControllerGenerator() {
   // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -24,7 +18,6 @@ var ControllerGenerator = module.exports = function ControllerGenerator() {
   this.projectName = fileJSON.projectName;
   this.jsFramework = fileJSON.jsFramework;
   this.testFramework = fileJSON.testFramework;
-  this.useTesting = fileJSON.useTesting;
 
 };
 
@@ -43,7 +36,7 @@ ControllerGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'controllerFile',
     message: 'Where would you like to create this controller?',
-    default: neopolitanConf ? directories.source + '/' + directories.scripts : 'src/_scripts'
+    default: config ? directories.source + '/' + directories.scripts : 'src/_scripts'
   }];
 
   this.prompt(prompts, function(answers) {
@@ -72,7 +65,7 @@ ControllerGenerator.prototype.files = function files() {
 
   this.template('controller.js', this.controllerFile + '.controller.js');
 
-  if (this.useTesting) {
+  if (this.testFramework !== 'none') {
     this.template('controller.spec.js', this.testFile + '.controller.spec.js');
   }
 

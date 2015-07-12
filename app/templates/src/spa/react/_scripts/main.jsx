@@ -3,14 +3,14 @@
 
 'use strict';
 
-var React = require('react');
-var Router = require('react-router');
-var routes = require('./routes.jsx');
+import React from 'react';
+import Router from 'react-router';
+import routes from './routes.jsx';
 
 // Start listening to route changes
-Router.run(routes, function(Handler) {
+Router.run(routes, (Handler) => {
   // Mount app to #app-wrapper
   React.render(<Handler />, document.getElementById('app-wrapper'));
 });
 
-console.log('Welcome to Yeogurt');
+console.log('Welcome to Neopolitan');

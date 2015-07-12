@@ -1,13 +1,13 @@
 'use strict';
 
 // Load Controller
-require('./home.controller');
+import './home.controller';
 
 // Load Template
-require('./home.html');
+import './home.html';
 
 angular.module('Sample')
-  .config(function($routeProvider) {
+  .config(($routeProvider) => {
     $routeProvider
       .when('/', {
         templateUrl: 'home.html',

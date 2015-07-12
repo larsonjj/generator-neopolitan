@@ -1,28 +1,28 @@
-var $ = require('jquery');
-var Backbone = require('backbone');
+import $ from 'jquery';
+import Backbone from 'backbone';
 Backbone.$ = $;
-var Marionette = require('backbone.marionette');
-var HomeView = require('./views/home.item');
-var BaseLayoutView = require('../../_layouts/base');
-var mountLayout = require('../../_scripts/utils/mount-layout');
-var Wreqr = require('../../_scripts/wreqr');
+import Marionette from 'backbone.marionette';
+import HomeView from './views/home.item';
+import BaseLayoutView from '../../_layouts/base';
+import mountLayout from '../../_scripts/utils/mount-layout';
+import Wreqr from '../../_scripts/wreqr';
 
-var HomeController = Marionette.Controller.extend({
-  initialize: function() {
+let HomeController = Marionette.Controller.extend({
+  initialize() {
     return this.setHandlers();
   },
-  showHome: function() {
-    var homeView = new HomeView();
+  showHome() {
+    let homeView = new HomeView();
 
     // Mounts specified layout
-    var layout = mountLayout(BaseLayoutView);
+    let layout = mountLayout(BaseLayoutView);
 
     // Render home view within layout 'content' region
     layout.content.show(homeView);
   },
-  setHandlers: function() {
-    var self = this;
-    return Wreqr.on('home:show', function() {
+  setHandlers() {
+    let self = this;
+    return Wreqr.on('home:show', () => {
       Backbone.history.navigate('/');
       self.showHome();
     });

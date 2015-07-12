@@ -1,23 +1,23 @@
 'use strict';
 
-var React = require('react');
-var Router = require('react-router');
-var Reflux = require('reflux');
-var mainStore = require('../_scripts/stores/main.store');
-var RouteHandler = Router.RouteHandler;
+import React from 'react';
+import Router from 'react-router';
+import Reflux from 'reflux';
+import mainStore from '../_scripts/stores/main.store';
+let RouteHandler = Router.RouteHandler;
 
-var getState = function() {
+let getState = () => {
   return {
     page: mainStore.getPage()
   };
 };
 
-var DefaultComponent = React.createClass({
+const DefaultComponent = React.createClass({
   mixins: [Reflux.listenTo(mainStore, '_onStoreUpdate')],
-  getInitialState: function() {
+  getInitialState() {
     return getState();
   },
-  render: function() {
+  render() {
     return (
       <div className="base-layout">
         <div className="main-container">
@@ -27,9 +27,9 @@ var DefaultComponent = React.createClass({
     );
   },
   // Event handler for 'change' events coming from store mixins.
-  _onStoreUpdate: function() {
+  _onStoreUpdate() {
     this.setState(getState());
   }
 });
 
-module.exports = DefaultComponent;
+export default DefaultComponent;

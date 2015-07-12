@@ -1,17 +1,17 @@
 'use strict';
 
-var React = require('react');
-var mainActions = require('../../_scripts/actions/main.actions');
+import React from 'react';
+import mainActions from '../../_scripts/actions/main.actions';
 
-var HomeComponent = React.createClass({
-  componentWillMount: function() {
+const HomeComponent = React.createClass({
+  componentWillMount() {
     mainActions.setPage({title: '<%= projectName %>'});
   },
-  render: function() {
+  render() {
     return (
       <div>
         <div className="neopolitan-info">
-          <h1>Welcome to Yeogurt!</h1>
+          <h1>Welcome to Neopolitan!</h1>
           <p>
             Take a look at the <a href="https://github.com/larsonjj/generator-neopolitan#neopolitan-generator">documentation</a> and start mixing up something awesome.
           </p>
@@ -25,4 +25,4 @@ var HomeComponent = React.createClass({
   }
 });
 
-module.exports = HomeComponent;
+export default HomeComponent;

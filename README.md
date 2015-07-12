@@ -4,7 +4,7 @@
 
 # Neopolitan Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-neopolitan.png?branch=master)](https://travis-ci.org/larsonjj/generator-neopolitan) [![NPM version](https://badge.fury.io/js/generator-neopolitan.png)](http://badge.fury.io/js/generator-neopolitan) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-neopolitan/badge.png)](https://coveralls.io/r/larsonjj/generator-neopolitan)
 
-A "Choose your own adventure" generator for creating single page applications. Helps you harness the power of your favorite tools: Angular, React + Flux, Backbone, Gulp, and much more!
+A generator for creating single page applications. Helps you harness the power of your favorite JavaScript frameworks: Angular, React + Flux, Backbone, Gulp, and much more!
 
 # Table of Contents
 
@@ -15,7 +15,7 @@ A "Choose your own adventure" generator for creating single page applications. H
 - [Sub-Generators](#sub-generators)
 - [Automated Documentation](#automated-documentation)
 - [Common Issues](#common-issues)
-- [Testing](#testing)
+- [Testing Generator](#testing-generator)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Release History](#release-history)
@@ -25,7 +25,7 @@ A "Choose your own adventure" generator for creating single page applications. H
 ### Create Single Page Applications using one of the following:
 -  [Angular](https://angularjs.org/), 
 -  [Backbone](http://backbonejs.org/)
--  [React](http://facebook.github.io/react/) + [Flux](http://facebook.github.io/react/docs/flux-overview.html).
+-  [React](http://facebook.github.io/react/) + [Reflux](https://github.com/spoike/refluxjs).
 
 Check out the [features](#features) section to see everything this generator has to offer.
 
@@ -78,9 +78,10 @@ Follow all the prompts and choose what suits you most for the project you would 
 
 Now you can run:
 
-- `gulp` for testing and building a production version of your site.
 - `gulp serve` for previewing your site/app on a development server.
-- `gulp serve:dist` for previewing a production version of your site/app.
+- `gulp serve --production` for previewing a production version of your site/app.
+- `gulp` for testing and building a development version of your site.
+- `gulp --production` same as `gulp` but builds a production version of your site.
 - `gulp test` for linting your scripts running unit tests.
 - `gulp test:e2e` for running end-to-end functional tests.
 
@@ -99,6 +100,7 @@ Congratulations! You should now have successfully created a Neopolitan project a
 - Automated build process that includes: compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, optimization of images, and processing of [usemin blocks](Usemin blocks)
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
 - JavaScript Linting with [ESLint](http://eslint.org//)
+- ES6/2015 support out of the box using [Babel](https://babeljs.io/)
 
 ### Available Options
 
@@ -121,7 +123,13 @@ Congratulations! You should now have successfully created a Neopolitan project a
 ## Gulp Workflow
 
 ### `gulp`
-Runs both [`gulp test`](#gulp-test) and [`gulp build`](#gulp-build).
+Runs [`gulp test`](#gulp-test) and compiles/creates temporary server files
+
+**Extra Task Target(s)**
+
+|Tasks| Description
+|---------|-------
+|`gulp --production`| Builds out an optimized site through compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, and optimization of images.
 
 ### `gulp serve`
 Starts up a development server that watches files and automatically reloads them to the browser when a change is detected.
@@ -130,10 +138,8 @@ Starts up a development server that watches files and automatically reloads them
 
 |Tasks| Description
 |---------|-------
-|gulp serve:build| runs [`gulp build`](#gulp-build) and starts up a server that loads the optimized files
-
-### `gulp build`
-Builds out an optimized site through compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, optimization of images, and processing of [usemin blocks](Usemin blocks). All files created from this task are put in the `{project root}/build/` folder.
+|`gulp serve --production`|  starts up a server that loads a production version of the site
+|`gulp serve --open`|  starts up a server and opens it withing your default browser
 
 ### `gulp test`
 Runs ESLint and Karma to lint and run JavaScript tests, respectively.
@@ -142,13 +148,13 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 
 |Tasks| Description
 |---------|-------
-|gulp test:watch| runs [`gulp test`](#gulp-test), but also watches test files and auto runs tests when changes are detected.
-|gulp test:e2e| runs end-to-end functional tests using [Protractor](https://angular.github.io/protractor/#/).
+|`gulp test --watch`| runs [`gulp test`](#gulp-test), but also watches test files and auto runs tests when changes are detected.
+| gulp test:e2e | runs end-to-end functional tests using [Protractor](https://angular.github.io/protractor/#/).
 
 ## Sub-Generators
 
 #### React application
-* [neopolitan:react](#react-module)
+* [neopolitan:module](#react-module)
 
 #### Backbone application
 * [neopolitan:module](#backbone-module)
@@ -398,11 +404,75 @@ src/_modules/myprovider/myprovider.provider.js
 src/_modules/myprovider/__tests__/myprovider.provider.spec.js
 ```
 
+## Guides
+
+### Adding third-party libraries
+Odds are that you will need to add some third party libraries to your project at some point. To do so, it is strongly recommended that you install them using [NPM](http://npmjs.com/):
+
+```
+npm install [package name] --save
+```
+
+Once installed, you can access scripts within your JavaScript files like so:
+
+```js
+import $ from 'jquery';
+
+$(function() {
+  console.log('Hello');
+});
+```
+
+And you can access stylesheets by importing them to you chosen preprocessor like so:
+
+```scss
+// SCSS
+@import 'node_modules/normalize.css/normalize';
+```
+
+```sass
+// SASS
+@import node_modules/normalize.css/normalize
+```
+
+```less
+// LESS or Stylus
+@import 'node_modules/normalize.css/normalize.css';
+```
+
+### Using SVN
+If you plan on using SVN instead of Git, you will want to setup some default ignores to make sure you aren't committing extraneous/generated files to your codebase. To do this, adhere to the following steps:
+
+#### Step 1
+Create a new file in the root of your project named `.svnignore` and give it the following contents:
+
+```
+node_modules
+*.log
+build
+.grunt
+.serve
+tmp
+secrets.js
+.DS_Store
+.yo-rc.json
+```
+
+#### Step 2
+Run the following command:
+
+```
+svn propset svn:ignore -R -F .svnignore .
+```
+
+This command will go through your newly created `.svnignore` file and set the specified files/folders to be ignored by SVN. 
+
+
 ## Common Issues
 
 ### ESLint giving errors for third-party scripts
 ##### Typical error message:
-> Backbone is not defined
+> jQuery is not defined
 
 When adding third-party scripts, you should always link to them using `<script>` tags within your base template file (See [Adding third-party libraries](#adding-third-party-libraries)). However, doing so does not inform ESLint that your new library is defined globally. Thus, giving you errors.
 
@@ -414,13 +484,13 @@ To remedy this situation, all you need to do is open up your `.eslintrc` file in
 {
 ...
   globals: {
-    Backbone: true // Tells ESLint that Backbone is defined globally
+    jQuery: true // Tells ESLint that jQuery is defined globally
   }
 ...
 }
 ```
 
-## Testing
+## Testing Generator
 To run unit tests, you have a couple options:
 
 - `npm test`: This will run all unit tests with Mocha and send the report to [coveralls.io](http://coveralls.io) to be processed. (Don't run this for local testing)

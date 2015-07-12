@@ -63,7 +63,7 @@ describe('Model sub-generator', function() {
         useTesting: false,
         jsTemplate: 'underscore',
         jsOption: 'browserify',
-        testFramework: 'jasmine'
+        testFramework: 'none'
       });
       this.app.run([], function() {
         createSubGenerator('model', model, {path: '../../../../'}, {
@@ -81,7 +81,7 @@ describe('Model sub-generator', function() {
       var model = 'mymodel';
       var fileContentToTest = [
         ['src/_scripts/' + model + '/__tests__/' + model + '.spec.js', /describe/i],
-        ['src/_scripts/' + model + '/' + model + '.js', /module\.exports/i]
+        ['src/_scripts/' + model + '/' + model + '.js', /export/i]
       ];
 
       helpers.mockPrompt(this.app, {

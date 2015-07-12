@@ -3,15 +3,9 @@ var util = require('util');
 var yeoman = require('yeoman-generator');
 var getDirCount = require('../helpers/get-dir-count');
 var path = require('path');
-var neopolitanConf;
-
-try {
-  neopolitanConf = require(path.join(process.cwd(), './neopolitan.conf'));
-  var directories = neopolitanConf.directories;
-}
-catch(e) {
-  return; // Do Nothing
-}
+var pjson = require(path.join(process.cwd(), './package.json'));
+var config = pjson.config;
+var directories = config.directories;
 
 var ModelGenerator = module.exports = function ModelGenerator() {
   // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -25,7 +19,6 @@ var ModelGenerator = module.exports = function ModelGenerator() {
   this.jsOption = fileJSON.jsOption;
   this.singlePageApplication = fileJSON.singlePageApplication;
   this.testFramework = fileJSON.testFramework;
-  this.useTesting = fileJSON.useTesting;
 
 };
 
@@ -44,7 +37,7 @@ ModelGenerator.prototype.ask = function ask() {
   var prompts = [{
     name: 'modelFile',
     message: 'Where would you like to create this model?',
-    default: neopolitanConf ? directories.source + '/' + directories.scripts + '/models' : 'src/_scripts/models'
+    default: config ? directories.source + '/' + directories.scripts + '/models' : 'src/_scripts/models'
   }];
 
   this.prompt(prompts, function(answers) {
@@ -75,7 +68,7 @@ ModelGenerator.prototype.files = function files() {
 
   if (this.jsOption === 'browserify') {
     this.template('browserify/model.js', this.modelFile + '.js');
-    if (this.useTesting) {
+    if (this.testFramework !== 'none') {
       this.template('browserify/model.spec.js', this.testFile + '.spec.js');
     }
   }

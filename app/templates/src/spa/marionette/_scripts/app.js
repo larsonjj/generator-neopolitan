@@ -1,14 +1,14 @@
 'use strict';
 
-var $ = require('jquery');
-var Backbone = require('backbone');
+import $ from 'jquery';
+import Backbone from 'backbone';
 Backbone.$ = $;
-var Marionette = require('backbone.marionette');
-var HomeScreen = require('../_modules/home/home');
-var Wreqr = require('./wreqr');
+import Marionette from 'backbone.marionette';
+import HomeScreen from '../_modules/home/home';
+import Wreqr from './wreqr';
 
 // Set up the app instance
-var App = new Marionette.Application();
+let App = new Marionette.Application();
 
 // Define app regions
 App.addRegions({
@@ -30,4 +30,4 @@ Wreqr.on('app:show', function(appView) {
 // Screens & Modules
 new HomeScreen();
 
-module.exports = App;
+export default App;

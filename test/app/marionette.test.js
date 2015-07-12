@@ -104,7 +104,7 @@ describe('Neopolitan generator using Marionette', function() {
             ];
             var fileContentToTest = [
               ['src/_modules/home/views/home.item.js', /HomeView/i],
-              ['src/_scripts/wreqr.js', /module\.exports/i],
+              ['src/_scripts/wreqr.js', /export/i],
               ['src/index.html', /app\-wrapper/i]
             ];
 
@@ -135,7 +135,7 @@ describe('Neopolitan generator using Marionette', function() {
             ];
             var fileContentToTest = [
               ['src/_modules/home/views/home.item.jst', /<\/div>/i],
-              ['src/_scripts/wreqr.js', /module\.exports/i],
+              ['src/_scripts/wreqr.js', /export/i],
               ['src/index.html', /app\-wrapper/i]
             ];
 

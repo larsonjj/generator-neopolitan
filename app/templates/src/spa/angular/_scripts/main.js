@@ -3,21 +3,21 @@
 
 'use strict';
 
-var angular = require('angular');
+import angular from 'angular';
 
 // Include angular routing module
-require('angular-route');
+import 'angular-route';
 
 // Main module. Must be loaded before screens and modules
 angular
   .module('<%= _.camelize(projectName) %>', [
     'ngRoute'
   ])
-  .config(['$routeProvider', function($routeProvider) {
+  .config(['$routeProvider', ($routeProvider) => {
     $routeProvider.otherwise({redirectTo: '/'});
   }]);
 
 // Include Screens and Modules
-require('../_modules/home/home');
+import '../_modules/home/home';
 
-console.log('Welcome to Yeogurt!');
+console.log('Welcome to Neopolitan!');

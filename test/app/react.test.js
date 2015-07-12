@@ -33,7 +33,7 @@ describe('Neopolitan generator using React', function() {
           ];
 
           var fileContentToTest = [
-            ['src/_scripts/routes.jsx', /module\.exports/i],
+            ['src/_scripts/routes.jsx', /export/i],
             ['src/index.html', /app\-wrapper/i]
           ];
 

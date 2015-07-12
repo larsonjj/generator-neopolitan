@@ -1,6 +1,13 @@
 // Karma configuration
 // http://karma-runner.github.io/0.10/config/configuration-file.html
 'use strict';
+var path = require('path');
+var pjson = require('./package.json');
+var config = pjson.config;
+var dirs = config.directories;
+var testFiles = path.join(__dirname, dirs.source, '**/*.spec.{js,jsx}');
+var preprocessors = {};
+preprocessors[testFiles] = ['browserify'];
 
 var karmaConf = function(config) {
   config.set({
@@ -8,28 +15,36 @@ var karmaConf = function(config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: [<% if (testFramework === 'jasmine') { %>'jasmine'<% } else if (testFramework === 'mocha') { %>'mocha', 'chai'<% } %>],
+    frameworks: ['browserify'<% if (testFramework === 'jasmine') { %>, 'jasmine'<% } else if (testFramework === 'mocha') { %>, 'mocha', 'chai'<% } %>],
 
     // list of files / patterns to load in the browser
-    files: [<% if (jsFramework === 'angular') { %>,
+    files: [
+      testFiles<% if (jsFramework === 'angular') { %>,
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      'node_modules/angular-route/angular-route.js',<% } %><% if (jsFramework === 'marionette') { %>
+      'node_modules/angular-route/angular-route.js'<% } %><% if (jsFramework === 'marionette') { %>
       'node_modules/backbone/node_modules/underscore/underscore.js',
-      'node_modules/backbone/backbone.js',<% } %><% if (jsOption === 'browserify') { %>
-      'tmp/scripts/main.js'<% } else { %><% if (jsFramework === 'marionette') { %>
-      // Load all scripts except ones that require a specific order (ie. 'main' and 'routes')
-      'src/*scripts/**/!(main|routes).js',<% if (jsFramework === 'marionette' && jsOption === 'none') { %>
-      'src/**/_layouts/**/*.js',<% } %>
-      'src/*scripts/routes.js',<% } %><% if (jsFramework !== 'angular') { %>
-      'src/*scripts/main.js',
-      'src/**/*.spec.js'<% } %><% } %>
+      'node_modules/backbone/backbone.js'<% } %>
     ],
 
     // list of files to exclude
-    exclude: [<% if (jsOption === 'requirejs') { %>
-      'src/*scripts/main.js'
-    <% } %>],
+    exclude: [],
+
+    preprocessors: preprocessors,
+
+    browserify: {
+      debug: true,
+      transform: [
+        require('envify'),
+        require('babelify')<% if (jsFramework === 'angular') { %>,
+        require('browserify-ngannotate'),
+        require('browserify-ng-html2js')({
+          module: '<%= _.camelize(projectName) %>',
+          extension: 'html'
+        })<% } else if (jsFramework === 'marionette') { %>,
+        require('jstify')<% } %>
+      ]
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'

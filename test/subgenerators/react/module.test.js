@@ -84,7 +84,7 @@ describe('React module sub-generator', function() {
 
       helpers.mockPrompt(this.app, {
         jsFramework: 'react',
-        useTesting: false
+        testFramework: 'none'
       });
       this.app.run([], function() {
         createSubGenerator('module', module, {path: '../../../../'}, {
