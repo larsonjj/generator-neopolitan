@@ -25,7 +25,7 @@ A generator for creating single page applications. Helps you harness the power o
 ### Create Single Page Applications using one of the following:
 -  [Angular](https://angularjs.org/), 
 -  [Backbone](http://backbonejs.org/)
--  [React](http://facebook.github.io/react/) + [Flux](http://facebook.github.io/react/docs/flux-overview.html).
+-  [React](http://facebook.github.io/react/) + [ReFlux](https://github.com/spoike/refluxjs).
 
 Check out the [features](#features) section to see everything this generator has to offer.
 
