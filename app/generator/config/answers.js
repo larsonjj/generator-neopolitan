@@ -25,7 +25,6 @@ var answersConfig = function answersConfig() {
 
   // Project Info
   this.projectName = this.answers.projectName;
-  this.versionControl = this.answers.versionControl;
 
   // Client
   this.jsFramework = this.answers.jsFramework;
