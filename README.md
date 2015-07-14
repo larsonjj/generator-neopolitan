@@ -87,8 +87,6 @@ Now you can run:
 
 You can learn more about what tasks are available in the [gulp tasks](#gulp-workflow) section.
 
-> IMPORTANT: SVN users should choose the 'SVN' version control option when running the generator. Then be sure to run the `svn-init.sh` (Linux, OSX) or `svn-init.bat` (Window) script in order to correctly setup ignores for your project. These scripts will be located in the root of your project folder. It is recommended that you do this before committing any code.
-
 Congratulations! You should now have successfully created a Neopolitan project and are ready to start building out your site/app.
 
 
