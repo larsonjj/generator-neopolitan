@@ -1,7 +1,7 @@
 <% if (testFramework === 'mocha') { %>/*eslint no-unused-expressions:0 */<% } %>
 'use strict';
 
-let HomeView from '../home.view';
+import HomeView from '../home.view';
 
 describe('Home View', () => {
 
