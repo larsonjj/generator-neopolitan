@@ -17,9 +17,9 @@ import gulpif from 'gulp-if';
 // Load all gulp plugins based on their names
 // EX: gulp-copy -> copy
 const plugins = gulpLoadPlugins();
-
+<% if (testFramework !== 'none') { %>
 // Create karma server
-const karma = require('karma').server;
+const karma = require('karma').server;<% } %>
 
 let config = pjson.config;
 let argv = minimist(process.argv.slice(2));
@@ -72,7 +72,8 @@ gulp.task('stylus', () => {
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.stylus({
-      compress: false
+      compress: true,
+      'inline css': true
     }))
     .pipe(plugins.postcss([autoprefixer({browsers: ['ie >= 9']})]))
     .pipe(plugins.sourcemaps.write())

@@ -1,8 +1,6 @@
 'use strict';
 
-import $ from 'jquery';
 import Backbone from 'backbone';
-Backbone.$ = $;
 import Marionette from 'backbone.marionette';
 import HomeScreen from '../_modules/home/home';
 import Wreqr from './wreqr';
