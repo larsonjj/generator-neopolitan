@@ -1,6 +1,5 @@
 'use strict';
 
-import Backbone from'backbone';
 import Marionette from'backbone.marionette';
 import homeTemplate from'./home.item.jst';
 
