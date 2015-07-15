@@ -14,14 +14,14 @@ App.addRegions({
   appRegion: '#app-wrapper'
 });
 
-App.on('start', function() {
+App.on('start', () => {
   // Start listening to route changes
   if (Backbone.history) {
     Backbone.history.start();
   }
 });
 
-Wreqr.on('app:show', function(appView) {
+Wreqr.on('app:show', (appView) => {
   App.appRegion.show(appView);
 });
 
