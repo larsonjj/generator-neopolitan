@@ -12,7 +12,7 @@
 }
 
 // Screens and Modules
-@import '../_modules/home/home';
+@import './screens/Home/components/home-view/home';
 
 // Styling on warning for users on IE7 or below
 .browsehappy {

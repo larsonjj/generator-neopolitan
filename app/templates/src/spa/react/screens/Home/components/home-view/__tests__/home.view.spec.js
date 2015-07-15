@@ -4,9 +4,9 @@
 /*eslint-disable no-unused-vars*/
 import React from 'react';
 /*eslint-enable no-unused-vars*/
-import routes from '../routes.jsx';
+import HomeView from '../home.view';
 
-describe('Routes for router', () => {
+describe('Home Component', () => {
 
   // Uncomment to use React testing tools
   // var ReactTestUtils;
@@ -15,12 +15,12 @@ describe('Routes for router', () => {
   beforeEach(() => {
     // ReactTestUtils = require('react/addons').addons.TestUtils;
     // reactRender = ReactTestUtils.renderIntoDocument;
-    this.routes = routes;
+    this.homeView = <HomeView />;
   });
 
-  it('provides the "Router" instance', () => {
+  it('provides the "Home Component" instance', () => {
     // Expect it to exist
-    expect(this.routes)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+    expect(this.homeView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
   });
 
 });

@@ -35,7 +35,7 @@ let browserSync = browserSyncLib.create();
 <% if (cssOption === 'sass') { %>
 // Sass compilation
 gulp.task('sass', () => {
-  let dest = path.join(__dirname, taskTarget, dirs.styles.replace(/^_/, ''));
+  let dest = path.join(__dirname, taskTarget, dirs.styles);
   gulp.src(path.join(__dirname, dirs.source, dirs.styles, '/*.{scss,sass}'))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
@@ -52,7 +52,7 @@ gulp.task('sass', () => {
 
 // Less compilation
 gulp.task('less', () => {
-  let dest = path.join(__dirname, taskTarget, dirs.styles.replace(/^_/, ''));
+  let dest = path.join(__dirname, taskTarget, dirs.styles);
   return gulp.src(path.join(__dirname, dirs.source, dirs.styles, '/*.less'))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
@@ -67,7 +67,7 @@ gulp.task('less', () => {
 
 // Stylus compilation
 gulp.task('stylus', () => {
-  let dest = path.join(__dirname, taskTarget, dirs.styles.replace(/^_/, ''));
+  let dest = path.join(__dirname, taskTarget, dirs.styles);
   gulp.src(path.join(__dirname, dirs.source, dirs.styles, '/*.styl'))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
@@ -87,7 +87,7 @@ gulp.task('eslint', () => {
     path.join(__dirname, 'gulpfile.js'),
     path.join(__dirname, dirs.source, '**/*.js'),
     // Ignore all vendor folder files
-    path.join('!', __dirname, '**/vendor/**', '*')
+    '!' + path.join(__dirname, '**/vendor/**', '*')
   ])
   .pipe(browserSync.reload({stream: true, once: true}))
   .pipe(plugins.eslint({
@@ -115,7 +115,7 @@ gulp.task('protractor', (done) => {
 
 // Imagemin
 gulp.task('imagemin', () => {
-  let dest = path.join(__dirname, taskTarget, dirs.images.replace(/^_/, ''));
+  let dest = path.join(__dirname, taskTarget, dirs.images);
   return gulp.src(path.join(__dirname, dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}'))
     .pipe(plugins.changed(dest))
     .pipe(gulpif(production, plugins.imagemin({
@@ -128,9 +128,9 @@ gulp.task('imagemin', () => {
 
 // Browserify
 gulp.task('browserify', () => {
-  let dest = path.join(__dirname, taskTarget, dirs.scripts.replace(/^_/, ''));
+  let dest = path.join(__dirname, taskTarget, dirs.scripts);
   browserify(
-    path.join(__dirname, dirs.source, dirs.scripts, '/main.<%if (jsFramework === 'react') { %>jsx<% } else { %>js<% } %>'), {
+    path.join(__dirname, dirs.source, dirs.scripts, '/index.js'), {
     debug: true,
     transform: [
       require('envify'),
@@ -143,14 +143,13 @@ gulp.task('browserify', () => {
       require('jstify')<% } %>
     ]
   }).bundle()
-    .pipe(vsource(path.basename('main.js')))
+    .pipe(vsource(path.basename('index.js')))
     .pipe(buffer())
     .pipe(plugins.sourcemaps.init({loadMaps: true}))
       .pipe(gulpif(production, plugins.uglify()))
       .on('error', plugins.util.log)
     .pipe(plugins.sourcemaps.write('./'))
-    .pipe(gulp.dest(dest))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(dest));
 });
 
 // Clean
@@ -163,8 +162,8 @@ gulp.task('clean', del.bind(null, [
 gulp.task('copy', () => {
   let dest = path.join(__dirname, taskTarget);
   return gulp.src([
-      path.join(__dirname, dirs.source, '**/*'),
-      path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')
+      path.join(__dirname, dirs.source, dirs.assets, '**/*'),
+      '!' + path.join(__dirname, dirs.source, dirs.images, '**/*')
     ])
     .pipe(plugins.changed(dest))
     .pipe(gulp.dest(dest));
@@ -228,13 +227,13 @@ gulp.task('serve', [
 
       // Copy
       gulp.watch([
-        path.join(__dirname, dirs.source, '**/*'),
-        path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')
+        path.join(__dirname, dirs.source, dirs.assets, '**/*'),
+        '!' + path.join(__dirname, dirs.source, dirs.images, '**/*')
       ], ['copy']);
 
       // Scripts
       gulp.watch([
-        path.join(__dirname, dirs.source, '**/*.<% if (jsFramework === 'react') { %>{js,jsx}<% } else { %>js<% } %>')
+        path.join(__dirname, dirs.source, '**/*.js')
       ], ['browserify']);
 
       // Images
@@ -242,10 +241,6 @@ gulp.task('serve', [
         path.join(__dirname, dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}')
       ], ['imagemin']);
 
-      // All other files
-      gulp.watch([
-        path.join(__dirname, dirs.temporary, '**/*')
-      ]).on('change', browserSync.reload);
     }
   }
 );

@@ -91,11 +91,11 @@
       "source": "src",
       "destination": "build",
       "temporary": "tmp",
-      "modules": "_modules",
-      "layouts": "_layouts",
-      "images": "_images",
-      "styles": "_styles",
-      "scripts": "_scripts"
+      "//": "Directories relative to `source` directory",
+      "assets": "assets",
+      "images": "assets/images",
+      "styles": "/",
+      "scripts": "/"
     }
   }
 }

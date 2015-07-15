@@ -3,7 +3,7 @@
 import React from 'react';
 import Router from 'react-router';
 import Reflux from 'reflux';
-import mainStore from '../_scripts/stores/main.store';
+import mainStore from '../../stores/main.store';
 let RouteHandler = Router.RouteHandler;
 
 let getState = () => {
@@ -19,10 +19,8 @@ const DefaultComponent = React.createClass({
   },
   render() {
     return (
-      <div className="base-layout">
-        <div className="main-container">
-          <RouteHandler />
-        </div>
+      <div className="main-container">
+        <RouteHandler />
       </div>
     );
   },
