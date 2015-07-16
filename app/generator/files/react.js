@@ -46,7 +46,11 @@ var reactFiles = function reactFiles() {
       this.template('src/index.less', 'src/index.less');
       this.template(
         'src/screens/App/components/home-view/home.view.less',
-        'src/screens/App/components/home-view/home.less'
+        'src/screens/App/components/home-view/home.view.less'
+      );
+      this.template(
+        'src/screens/App/components/app-view/app.view.less',
+        'src/screens/App/components/app-view/app.view.less'
       );
     }
     if (this.cssOption === 'sass') {
@@ -54,14 +58,22 @@ var reactFiles = function reactFiles() {
         this.template('src/index.sass', 'src/index.sass');
         this.template(
           'src/screens/App/components/home-view/home.view.sass',
-          'src/screens/App/components/home-view/home.sass'
+          'src/screens/App/components/home-view/home.view.sass'
+        );
+        this.template(
+          'src/screens/App/components/app-view/app.view.sass',
+          'src/screens/App/components/app-view/app.view.sass'
         );
       }
       else {
         this.template('src/index.scss', 'src/index.scss');
         this.template(
           'src/screens/App/components/home-view/home.view.scss',
-          'src/screens/App/components/home-view/home.scss'
+          'src/screens/App/components/home-view/home.view.scss'
+        );
+        this.template(
+          'src/screens/App/components/app-view/app.view.scss',
+          'src/screens/App/components/app-view/app.view.scss'
         );
       }
     }
@@ -69,7 +81,11 @@ var reactFiles = function reactFiles() {
       this.template('src/index.styl', 'src/index.styl');
       this.template(
         'src/screens/App/components/home-view/home.view.styl',
-        'src/screens/App/components/home-view/home.styl'
+        'src/screens/App/components/home-view/home.view.styl'
+      );
+      this.template(
+        'src/screens/App/components/app-view/app.view.styl',
+        'src/screens/App/components/app-view/app.view.styl'
       );
     }
 

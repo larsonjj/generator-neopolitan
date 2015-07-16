@@ -18,7 +18,7 @@ const DefaultComponent = React.createClass({
   },
   render() {
     return (
-      <div className="main-container">
+      <div className="app-container">
         <RouteHandler />
       </div>
     );

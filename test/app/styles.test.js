@@ -23,7 +23,9 @@ describe('Neopolitan generator using Styles', function() {
     it('Creates expected files', function(done) {
       var expected = [
         'src',
-        'src/index.scss'
+        'src/index.scss',
+        'src/screens/App/components/home-view/home.view.scss',
+        'src/screens/App/components/app-view/app.view.scss'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -37,7 +39,9 @@ describe('Neopolitan generator using Styles', function() {
     describe('With Sass (not Scss) syntax', function() {
       it('Creates expected content', function(done) {
         var expected = [
-          'src/index.sass'
+          'src/index.sass',
+          'src/screens/App/components/home-view/home.view.sass',
+          'src/screens/App/components/app-view/app.view.sass'
         ];
 
         helpers.mockPrompt(this.app, {
@@ -55,7 +59,9 @@ describe('Neopolitan generator using Styles', function() {
     it('Creates expected files', function(done) {
       var expected = [
         'src',
-        'src/index.less'
+        'src/index.less',
+        'src/screens/App/components/home-view/home.view.less',
+        'src/screens/App/components/app-view/app.view.less'
       ];
       var fileContentToTest = [
         ['package.json', /less/i]
@@ -75,7 +81,9 @@ describe('Neopolitan generator using Styles', function() {
     it('Creates expected files', function(done) {
       var expected = [
         'src',
-        'src/index.styl'
+        'src/index.styl',
+        'src/screens/App/components/home-view/home.view.styl',
+        'src/screens/App/components/app-view/app.view.styl'
       ];
 
       helpers.mockPrompt(this.app, {
