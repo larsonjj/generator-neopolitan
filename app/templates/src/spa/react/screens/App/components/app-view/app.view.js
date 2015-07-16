@@ -1,19 +1,18 @@
 'use strict';
 
 import React from 'react';
-import Router from 'react-router';
+import {Router, RouteHandler} from 'react-router';
 import Reflux from 'reflux';
-import mainStore from '../../stores/main.store';
-let RouteHandler = Router.RouteHandler;
+import pageStore from '../../shared/stores/page.store';
 
 let getState = () => {
   return {
-    page: mainStore.getPage()
+    page: pageStore.getPage()
   };
 };
 
 const DefaultComponent = React.createClass({
-  mixins: [Reflux.listenTo(mainStore, '_onStoreUpdate')],
+  mixins: [Reflux.listenTo(pageStore, '_onStoreUpdate')],
   getInitialState() {
     return getState();
   },

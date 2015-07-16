@@ -162,6 +162,7 @@ gulp.task('clean', del.bind(null, [
 gulp.task('copy', () => {
   let dest = path.join(__dirname, taskTarget);
   return gulp.src([
+      path.join(__dirname, dirs.source, 'index.html'),
       path.join(__dirname, dirs.source, dirs.assets, '**/*'),
       '!' + path.join(__dirname, dirs.source, dirs.images, '**/*')
     ])
@@ -240,6 +241,11 @@ gulp.task('serve', [
       gulp.watch([
         path.join(__dirname, dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}')
       ], ['imagemin']);
+
+      // All other files
+      gulp.watch([
+        path.join(__dirname, dirs.temporary, '**/*')
+      ]).on('change', browserSync.reload);
 
     }
   }

@@ -5,10 +5,10 @@
 
 import React from 'react';
 import Router from 'react-router';
-import Routes from './screens/Home';
+import AppRoutes from './screens/App';
 
 // Start listening to route changes
-Router.run(Routes, (Handler) => {
+Router.run(AppRoutes, (Handler) => {
   // Mount app to #app-wrapper
   React.render(<Handler />, document.getElementById('app-wrapper'));
 });

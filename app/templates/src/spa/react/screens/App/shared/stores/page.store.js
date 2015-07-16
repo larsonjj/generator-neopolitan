@@ -1,14 +1,15 @@
 'use strict';
 
 import Reflux from 'reflux';
-import mainActions from '../actions/main.actions';
+import pageActions from '../actions/page.actions';
 
 let _page;
 
+// Store page data (title, etc)
 let mainStore = new Reflux.createStore({
 
   init() {
-    this.listenTo(mainActions.setPage, this.updatePage);
+    this.listenTo(pageActions.setPage, this.updatePage);
   },
 
   updatePage(page) {

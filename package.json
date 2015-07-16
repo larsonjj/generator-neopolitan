@@ -12,10 +12,12 @@
     "browserify",
     "dashboard",
     "backbone",
+    "marionette",
     "react",
     "angular",
     "jsx",
     "reflux",
+    "react-router",
     "underscore"
   ],
   "homepage": "https://github.com/larsonjj/generator-neopolitan",

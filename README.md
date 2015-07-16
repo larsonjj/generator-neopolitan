@@ -4,7 +4,7 @@
 
 # Neopolitan Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-neopolitan.png?branch=master)](https://travis-ci.org/larsonjj/generator-neopolitan) [![NPM version](https://badge.fury.io/js/generator-neopolitan.png)](http://badge.fury.io/js/generator-neopolitan) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-neopolitan/badge.png)](https://coveralls.io/r/larsonjj/generator-neopolitan)
 
-A generator for creating single page applications. Helps you harness the power of your favorite JavaScript frameworks: Angular, React + Flux, Marionette, Gulp, and much more!
+A generator for creating single page applications. Helps you harness the power of your favorite JavaScript frameworks: Angular, React + Reflux, Marionette, Gulp, and much more!
 
 # Table of Contents
 
@@ -113,9 +113,9 @@ Congratulations! You should now have successfully created a Neopolitan project a
 ### Single Page Application Options
 - [Angular](https://angularjs.org/)
 
-- Facebook's [React](http://facebook.github.io/react/) with [ReFlux](https://github.com/spoike/refluxjs)
+- [React](http://facebook.github.io/react/) with [ReFlux](https://github.com/spoike/refluxjs) and [React-Router](https://github.com/rackt/react-router)
 
-- [Marionette](http://marionettejs.com/) with [underscore](http://underscorejs.com/) templating
+- [Marionette](http://marionettejs.com/) with [Underscore](http://underscorejs.com/) templating
 
 
 ## Gulp Workflow
