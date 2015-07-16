@@ -23,9 +23,7 @@ A generator for creating React applications. Helps you harness the power of your
 
 ## What can I create with Neopolitan?
 ### Create Single Page Applications using one of the following:
--  [Angular](https://angularjs.org/), 
--  [Marionette](http://marionettejs.com/)
--  [React](http://facebook.github.io/react/) + [Reflux](https://github.com/spoike/refluxjs).
+-  [React](http://facebook.github.io/react/) + [Reflux](https://github.com/spoike/refluxjs) + [React-Router](https://github.com/rackt/react-router).
 
 Check out the [features](#features) section to see everything this generator has to offer.
 
@@ -99,6 +97,7 @@ Congratulations! You should now have successfully created a Neopolitan project a
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
 - JavaScript Linting with [ESLint](http://eslint.org//)
 - ES6/2015 support out of the box using [Babel](https://babeljs.io/)
+- [React](http://facebook.github.io/react/) with [ReFlux](https://github.com/spoike/refluxjs) and [React-Router](https://github.com/rackt/react-router)
 
 ### Available Options
 
@@ -108,15 +107,6 @@ Congratulations! You should now have successfully created a Neopolitan project a
 - Modular JavaScript with [Browserify](http://browserify.org/).
 - JavaScript unit testing with [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/)
 - Test running with [Karma](http://karma-runner.github.io/0.12/index.html)
-- End-to-end test running with [Protractor](https://angular.github.io/protractor/#/)
-
-### Single Page Application Options
-- [Angular](https://angularjs.org/)
-
-- [React](http://facebook.github.io/react/) with [ReFlux](https://github.com/spoike/refluxjs) and [React-Router](https://github.com/rackt/react-router)
-
-- [Marionette](http://marionettejs.com/) with [Underscore](http://underscorejs.com/) templating
-
 
 ## Gulp Workflow
 
@@ -154,21 +144,6 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 #### React application
 * [neopolitan:module](#react-module)
 
-#### Marionette application
-* [neopolitan:module](#marionette-module)
-* [neopolitan:model](#model)
-* [neopolitan:collection](#collection)
-
-#### Angular application
-* [neopolitan:module](#angular-module)
-* [neopolitan:controller](#controller)
-* [neopolitan:directive](#directive)
-* [neopolitan:filter](#filter)
-* [neopolitan:decorator](#decorator)
-* [neopolitan:service](#service)
-* [neopolitan:factory](#factory)
-* [neopolitan:provider](#provider)
-
 ***Note: Generators need to be run from the root directory of your app.***
 
 ## React Sub-generators
@@ -194,213 +169,6 @@ src/_modules/mymodule/__tests__/mymodule.spec.jsx
 ```
 
 ***NOTE: `{css,styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `CSS, Stylus, Less or Sass` respectively***
-
-## Marionette Sub-generators
-***Note: (The following sub-generators can only be used with Marionette applications)***
-
-### Marionette Module
-Creates a Marionette itemview along with a corresponding template:
-
-Example:
-
-```
-yo neopolitan:module mymodule
-? Where would you like to create this view?: src/_modules
-```
-
-Produces:
-
-```
-src/_modules/mymodule/mymodule.js
-src/_modules/mymodule/mymodule.jst
-src/_modules/mymodule/mymodule.{css,styl,less,scss,sass}
-src/_modules/mymodule/__tests__/mymodule.spec.js
-```
-
-***NOTE: `{css,styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `CSS, Stylus, Less or Sass` respectively***
-
-### Model
-
-Creates a Backbone model.
-
-Example:
-
-```
-yo neopolitan:model mymodel
-? Where would you like to create this model?: src/_scripts/models
-```
-
-Produces:
-
-```
-src/_scripts/models/mymodel.js
-src/_scripts/models/__tests__/mymodel.spec.js
-```
-
-### Collection
-
-Creates a Backbone collection file with the ability to specify which Backbone model to use.
-
-Example:
-
-```
-yo neopolitan:model mycollection
-? Where would you like to create this collection?: src/_scripts/collections
-? What is the name of the model you would like to use with this collection?: mycollection-model
-? What folder is the model file located in?: src/_scripts/models
-```
-
-Produces:
-
-```
-src/_scripts/collections/mycollection.js
-src/_scripts/collections/__tests__/mycollection.spec.js
-```
-
-## Angular Sub-generators
-***Note: (The following sub-generators can only be used with Angular applications)***
-
-### Angular Module
-Creates an Angular template:
-
-Example:
-
-```
-yo neopolitan:module contact
-? Where would you like to create this view?: src/module
-```
-
-Produces:
-
-```
-src/_modules/contact/contact.html
-src/_modules/contact/contact.controller.js
-src/_modules/contact/__tests__/contact.controller.spec.js
-src/_modules/contact/contact.{css,styl,less,scss,sass}
-src/_modules/contact/contact.js
-```
-
-***NOTE: `{css,styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `CSS, Stylus, Less or Sass` respectively***
-
-### Controller
-Creates an Angular controller:
-
-Example:
-
-```
-yo neopolitan:controller mycontroller
-? Where would you like to create this controller?: src/_modules
-```
-
-Produces:
-
-```
-src/_modules/mycontroller/mycontroller.controller.js
-src/_modules/mycontroller/__tests__/mycontroller.controller.spec.js
-```
-
-### Directive
-Creates an Angular directive:
-
-Example:
-
-```
-yo neopolitan:directive mydirective
-? Where would you like to create this directive?: src/_modules
-? Does this directive need an HTML template?: Yes
-```
-
-Produces:
-
-```
-src/_modules/mydirective/mydirective.directive.js
-src/_modules/mydirective/__tests__/mydirective.directive.spec.js
-src/_modules/mydirective/mydirective.html (optional)
-```
-
-### Filter
-Creates an Angular filter:
-
-Example:
-
-```
-yo neopolitan:filter myfilter
-? Where would you like to create this filter?: src/_modules
-```
-
-Produces:
-
-```
-src/_modules/myfilter/myfilter.filter.js
-src/_modules/myfilter/__tests__/myfilter.filter.spec.js
-```
-
-### Decorator
-Creates an Angular decorator:
-
-Example:
-
-```
-yo neopolitan:decorator mydecorator
-? Where would you like to create this decorator?: src/_modules
-```
-
-Produces:
-
-```
-src/_modules/mydecorator/mydecorator.decorator.js
-```
-
-### Service
-Creates an Angular service:
-
-Example:
-
-```
-yo neopolitan:service myservice
-? Where would you like to create this service?: src/_modules
-```
-
-Produces:
-
-```
-src/_modules/myservice/myservice.service.js
-src/_modules/myservice/__tests__/myservice.service.spec.js
-```
-
-### Factory
-Creates an Angular factory:
-
-Example:
-
-```
-yo neopolitan:factory myfactory
-? Where would you like to create this factory?: src/_modules
-```
-
-Produces:
-
-```
-src/_modules/myfactory/myfactory.factory.js
-src/_modules/myfactory/__tests__/myfactory.factory.spec.js
-```
-
-### Provider
-Creates an Angular provider:
-
-Example:
-
-```
-yo neopolitan:provider myprovider
-? Where would you like to create this provider?: src/_modules
-```
-
-Produces:
-
-```
-src/_modules/myprovider/myprovider.provider.js
-src/_modules/myprovider/__tests__/myprovider.provider.spec.js
-```
 
 ## Guides
 
@@ -477,7 +245,8 @@ This command will go through your newly created `.svnignore` file and set the sp
 ##### Typical error message:
 > jQuery is not defined
 
-When adding third-party scripts, you should always link to them using `<script>` tags within your base template file (See [Adding third-party libraries](#adding-third-party-libraries)). However, doing so does not inform ESLint that your new library is defined globally. Thus, giving you errors.
+When adding third-party scripts, you should always import them to your `src/index.js` file (See [Adding third-party libraries](#adding-third-party-libraries)). 
+However, doing so does not inform ESLint that your new library is defined globally. Thus, giving you errors.
 
 ##### Solution
 To remedy this situation, all you need to do is open up your `.eslintrc` file in the root directory of you project, and add your new library name to the `global:` property array:
