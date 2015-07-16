@@ -21,11 +21,9 @@ var order = [
   /* Files */
   'root',
   'image',
-  'angular',
-  'marionette',
   'react',
   'style',
-  'tests',
+  'e2e',
   /* Config */
   'install'   // Handle generator options and run `bower install & npm install`
 ];

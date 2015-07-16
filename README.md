@@ -4,7 +4,7 @@
 
 # Neopolitan Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-neopolitan.png?branch=master)](https://travis-ci.org/larsonjj/generator-neopolitan) [![NPM version](https://badge.fury.io/js/generator-neopolitan.png)](http://badge.fury.io/js/generator-neopolitan) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-neopolitan/badge.png)](https://coveralls.io/r/larsonjj/generator-neopolitan)
 
-A generator for creating single page applications. Helps you harness the power of your favorite JavaScript frameworks: Angular, React + Reflux, Marionette, Gulp, and much more!
+A generator for creating React applications. Helps you harness the power of your favorite tools: React, Reflux, React-Router, ES6/2015, Gulp, and much more!
 
 # Table of Contents
 

@@ -5,7 +5,7 @@ var path = require('path');
 var pjson = require('./package.json');
 var config = pjson.config;
 var dirs = config.directories;
-var testFiles = path.join(__dirname, dirs.source, '**/*.spec.{js,jsx}');
+var testFiles = path.join(__dirname, dirs.source, '**/*.test.js');
 var preprocessors = {};
 preprocessors[testFiles] = ['browserify'];
 
@@ -19,12 +19,7 @@ var karmaConf = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      testFiles<% if (jsFramework === 'angular') { %>,
-      'node_modules/angular/angular.js',
-      'node_modules/angular-mocks/angular-mocks.js',
-      'node_modules/angular-route/angular-route.js'<% } %><% if (jsFramework === 'marionette') { %>
-      'node_modules/backbone/node_modules/underscore/underscore.js',
-      'node_modules/backbone/backbone.js'<% } %>
+      testFiles
     ],
 
     // list of files to exclude
@@ -36,13 +31,7 @@ var karmaConf = function(config) {
       debug: true,
       transform: [
         require('envify'),
-        require('babelify')<% if (jsFramework === 'angular') { %>,
-        require('browserify-ngannotate'),
-        require('browserify-ng-html2js')({
-          module: '<%= _.camelize(projectName) %>',
-          extension: 'html'
-        })<% } else if (jsFramework === 'marionette') { %>,
-        require('jstify')<% } %>
+        require('babelify')
       ]
     },
 

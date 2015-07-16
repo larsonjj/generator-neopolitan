@@ -95,23 +95,7 @@ gulp.task('eslint', () => {
   }))
   .pipe(plugins.eslint.format())
   .pipe(plugins.if(!browserSync.active, plugins.eslint.failAfterError()));
-});<% if (useE2e) { %>
-
-// Protractor end-to-end functional testing
-gulp.task('protractor', (done) => {
-  gulp.src(path.join(__dirname, 'e2e/**/*.spec.js'))
-    .pipe(plugins.protractor.protractor({
-        configFile: path.join(__dirname, 'protractor.conf')
-    }))
-    .on('end', () => {
-      browserSync.exit();
-      return done();
-    })
-    .on('error', (e) => {
-      browserSync.exit();
-      throw e;
-    });
-});<% } %>
+});
 
 // Imagemin
 gulp.task('imagemin', () => {
@@ -258,9 +242,4 @@ gulp.task('test',<% if (testFramework === 'none') { %> ['eslint']);<% } else { %
     singleRun: !watch,
     autoWatch: watch
   }, done);
-});<% } %><% if (useE2e) { %>
-
-// Run end-to-end function tests
-gulp.task('test:e2e', (done) => {
-  runSequence('serve', 'protractor');
 });<% } %>
