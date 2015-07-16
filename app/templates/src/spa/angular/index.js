@@ -5,19 +5,22 @@
 
 import angular from 'angular';
 
-// Include angular routing module
+// Include angular plugins
 import 'angular-route';
+
+// Screens
+import {HomeRoute, HomeController} from './screens/home';
 
 // Main module. Must be loaded before screens and modules
 angular
-  .module('<%= _.camelize(projectName) %>', [
-    'ngRoute'
+  .module('Sample', [
+    'ngRoute',
+    'Templates' // HTML compiled by browserify ng-html2js transform
   ])
-  .config(['$routeProvider', ($routeProvider) => {
+  .config(HomeRoute)
+  .config(($routeProvider) => {
     $routeProvider.otherwise({redirectTo: '/'});
-  }]);
-
-// Include Screens and Modules
-import '../_modules/home/home';
+  })
+  .controller(HomeController);
 
 console.log('Welcome to Neopolitan!');

@@ -3,7 +3,7 @@
 
 import pageStore from '../page.store';
 
-describe('Main', () => {
+describe('Main', function() {
 
   it('provides the "Page Store"', () => {
     // Expect it to exist

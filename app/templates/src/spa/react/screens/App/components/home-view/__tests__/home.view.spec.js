@@ -6,7 +6,7 @@ import React from 'react';
 /*eslint-enable no-unused-vars*/
 import HomeView from '../home.view';
 
-describe('Home Component', () => {
+describe('Home Component', function() {
 
   // Uncomment to use React testing tools
   // var ReactTestUtils;

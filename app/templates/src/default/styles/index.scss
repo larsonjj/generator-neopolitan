@@ -11,8 +11,9 @@
   box-sizing: border-box;
 }
 
-// Screens and Modules
-@import './screens/Home/components/home-view/home';
+// Screens and Modules<% if (jsFramework === 'react') { %>
+@import './screens/Home/components/home-view/home';<% } else if (jsFramework === 'angular') { %>
+@import './screens/home/home';<% } %>
 
 // Styling on warning for users on IE7 or below
 .browsehappy {

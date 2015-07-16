@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {Router, RouteHandler} from 'react-router';
+import {RouteHandler} from 'react-router';
 import Reflux from 'reflux';
 import pageStore from '../../shared/stores/page.store';
 

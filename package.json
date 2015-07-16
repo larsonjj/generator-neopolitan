@@ -9,16 +9,12 @@
     "html5",
     "sass",
     "less",
+    "stylus",
     "browserify",
-    "dashboard",
-    "backbone",
-    "marionette",
     "react",
-    "angular",
     "jsx",
     "reflux",
-    "react-router",
-    "underscore"
+    "react-router"
   ],
   "homepage": "https://github.com/larsonjj/generator-neopolitan",
   "bugs": "https://github.com/larsonjj/generator-neopolitan/issues",

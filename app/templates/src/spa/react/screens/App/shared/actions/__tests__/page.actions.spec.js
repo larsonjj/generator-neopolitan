@@ -3,7 +3,7 @@
 
 import pageActions from '../page.actions';
 
-describe('Main', () => {
+describe('Main', function() {
 
   it('provides the "Page Actions"', () => {
     // Expect it to exist

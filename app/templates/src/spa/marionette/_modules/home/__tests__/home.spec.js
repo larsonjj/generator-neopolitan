@@ -3,7 +3,7 @@
 
 import HomeRouter from '../home';
 
-describe('Home View', () => {
+describe('Home View', function() {
 
   beforeEach(() => {
     this.homeRouter = new HomeRouter();
