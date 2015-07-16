@@ -29,7 +29,8 @@ describe('Neopolitan generator using Default Configuration', function() {
       'package.json',
       '.editorconfig',
       'src/',
-      'src/_images',
+      'src/assets',
+      'src/assets/images',
       'src/robots.txt',
       'src/favicon.ico'
     ];

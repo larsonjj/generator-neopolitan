@@ -39,15 +39,8 @@ ModuleGenerator.prototype.ask = function ask() {
     name: 'moduleFile',
     message: 'Where would you like to create this module?',
     default: function(answers) {
-      return config ? directories.source + '/' + directories.modules : directories.source + '/_modules';
+      return config ? directories.source + '/' + directories.modules : directories.source + '/screens/App/components';
     }
-  }, {
-    when: function(answers) {
-      return self.jsFramework === 'angular';
-    },
-    name: 'moduleURL',
-    message: 'URL of new module?',
-    default: '/someurl'
   }];
 
   this.prompt(prompts, function(answers) {
@@ -74,13 +67,6 @@ ModuleGenerator.prototype.ask = function ask() {
       this._.slugify(this.name.toLowerCase())
     );
 
-    this.dashFile = path.join(
-      answers.moduleFile,
-      this._.slugify(this.name.toLowerCase()),
-      '__dash__',
-      this._.slugify(this.name.toLowerCase()) + '.dash'
-    );
-
     this.moduleURL = answers.moduleURL;
 
     this.htmlURL = path.join(
@@ -96,29 +82,10 @@ ModuleGenerator.prototype.ask = function ask() {
 
 ModuleGenerator.prototype.files = function files() {
 
-  if (this.jsFramework === 'angular') {
-    this.template('angular/module.js', this.moduleFile + '.js');
-    this.template('angular/module.controller.js', this.moduleFile + '.controller.js');
-    this.template('angular/module.html', this.moduleFile + '.html');
+  this.template('react/module.jsx', this.moduleFile + '.jsx');
 
-    if (this.testFramework !== 'none') {
-      this.template('angular/module.spec.js', this.testFile + '.controller.spec.js');
-    }
-  }
-  else if (this.jsFramework === 'react') {
-    this.template('react/module.jsx', this.moduleFile + '.jsx');
-
-    if (this.testFramework !== 'none') {
-      this.template('react/module.spec.js', this.testFile + '.spec.js');
-    }
-  }
-  else if (this.jsFramework === 'marionette') {
-    this.template('marionette/module.js', this.moduleFile + '.js');
-    if (this.testFramework !== 'none') {
-      this.template('marionette/module.spec.js', this.testFile + '.spec.js');
-    }
-
-    this.template('marionette/module.html', this.moduleFile + '.jst');
+  if (this.testFramework !== 'none') {
+    this.template('react/module.spec.js', this.testFile + '.spec.js');
   }
 
   if (this.cssOption === 'sass') {
