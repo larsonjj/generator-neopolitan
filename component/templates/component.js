@@ -1,8 +1,7 @@
 'use strict';
+import React from 'react';
 
-var React = require('react');
-
-var <%= _.classify(name) %> = React.createClass({
+const <%= _.classify(name.toLowerCase()) %> = React.createClass({
   render: function() {
     return (
       <div>
@@ -12,4 +11,4 @@ var <%= _.classify(name) %> = React.createClass({
   }
 });
 
-module.exports = <%= _.classify(name) %>;
+export default <%= _.classify(name.toLowerCase()) %>;

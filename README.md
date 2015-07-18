@@ -81,7 +81,6 @@ Now you can run:
 - `gulp` for testing and building a development version of your site.
 - `gulp --production` same as `gulp` but builds a production version of your site.
 - `gulp test` for linting your scripts running unit tests.
-- `gulp test:e2e` for running end-to-end functional tests.
 
 You can learn more about what tasks are available in the [gulp tasks](#gulp-workflow) section.
 
@@ -137,7 +136,6 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 |Tasks| Description
 |---------|-------
 |`gulp test --watch`| runs [`gulp test`](#gulp-test), but also watches test files and auto runs tests when changes are detected.
-| gulp test:e2e | runs end-to-end functional tests using [Protractor](https://angular.github.io/protractor/#/).
 
 ## Sub-Generators
 

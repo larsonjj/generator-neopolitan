@@ -8,7 +8,7 @@ var assert = yeoman.assert;
 var createAppGenerator = require('../../helpers/create-generator').createAppGenerator;
 var createSubGenerator = require('../../helpers/create-generator').createSubGenerator;
 
-describe('React module sub-generator', function() {
+describe('React component sub-generator', function() {
   beforeEach(function(done) {
     helpers.testDirectory(path.join(__dirname, 'temp'), function(err) {
       if (err) {
@@ -24,22 +24,22 @@ describe('React module sub-generator', function() {
   describe('Create react files when using React', function() {
     it('Handles defaults', function(done) {
       // Filename
-      var module = 'mymodule';
+      var component = 'mycomponent';
       var filesToTest = [
-        'src/_modules/' + module + '/__tests__/' + module + '.spec.js',
-        'src/_modules/' + module + '/' + module + '.jsx'
+        'src/screens/App/components/' + component + '/__tests__/' + component + '.test.js',
+        'src/screens/App/components/' + component + '/' + component + '.js'
       ];
       var fileContentToTest = [
-        ['src/_modules/' + module + '/' + module + '.jsx', /React\.createClass/i]
+        ['src/screens/App/components/' + component + '/' + component + '.js', /React\.createClass/i]
       ];
 
       helpers.mockPrompt(this.app, {
         jsFramework: 'react'
       });
       this.app.run([], function() {
-        createSubGenerator('module', module, {path: '../../../../'}, {
+        createSubGenerator('component', component, {path: '../../../../'}, {
           // mock prompt data
-          moduleFile: 'src/_modules'
+          componentFile: 'src/screens/App/components'
         }, function() {
           assert.file(filesToTest);
           assert.fileContent(fileContentToTest);
@@ -49,37 +49,33 @@ describe('React module sub-generator', function() {
     });
     it('Handles defaults with JSX', function(done) {
       // Filename
-      var module = 'mymodule';
+      var component = 'mycomponent';
       var filesToTest = [
-        'src/_modules/' + module + '/__tests__/' + module + '.spec.js',
-        'src/_modules/' + module + '/' + module + '.jsx'
-      ];
-      var fileContentToTest = [
-        ['src/_modules/' + module + '/__tests__/' + module + '.spec.js', /React\.createFactory/i]
+        'src/screens/App/components/' + component + '/__tests__/' + component + '.test.js',
+        'src/screens/App/components/' + component + '/' + component + '.js'
       ];
 
       helpers.mockPrompt(this.app, {
         jsFramework: 'react'
       });
       this.app.run([], function() {
-        createSubGenerator('module', module, {path: '../../../../'}, {
+        createSubGenerator('component', component, {path: '../../../../'}, {
           // mock prompt data
-          moduleFile: 'src/_modules'
+          componentFile: 'src/screens/App/components'
         }, function() {
           assert.file(filesToTest);
-          assert.fileContent(fileContentToTest);
           done();
         });
       });
     });
     it('Handles defaults without testing', function(done) {
       // Filename
-      var module = 'mymodule';
+      var component = 'mycomponent';
       var filesToTest = [
-        'src/_modules/' + module + '/' + module + '.jsx'
+        'src/screens/App/components/' + component + '/' + component + '.js'
       ];
       var filesNotCreated = [
-        'src/_modules/' + module + '/__tests__/' + module + '.spec.js'
+        'src/screens/App/components/' + component + '/__tests__/' + component + '.test.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -87,9 +83,9 @@ describe('React module sub-generator', function() {
         testFramework: 'none'
       });
       this.app.run([], function() {
-        createSubGenerator('module', module, {path: '../../../../'}, {
+        createSubGenerator('component', component, {path: '../../../../'}, {
           // mock prompt data
-          moduleFile: 'src/_modules'
+          componentFile: 'src/screens/App/components'
         }, function() {
           assert.file(filesToTest);
           assert.noFile(filesNotCreated);
