@@ -26,7 +26,7 @@ A generator for creating React applications. Helps you harness the power of your
 ### Included in every project
 - Built in preview server with [BrowserSync](http://www.browsersync.io/)
 - [.editorconfig](http://editorconfig.org/) for consistent coding styles within text editors
-- Automated build process that includes: compilation of preprocessors (Jade, Sass, etc), minification of CSS and HTML, uglification of Javascript, optimization of images, and processing of [usemin blocks](Usemin blocks)
+- Automated build process that includes: minification of Stylesheets, uglification of Javascript, and optimization of images.
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
 - JavaScript Linting with [ESLint](http://eslint.org//)
 - ES6/2015 support out of the box using [Babel](https://babeljs.io/)
@@ -35,8 +35,7 @@ A generator for creating React applications. Helps you harness the power of your
 ### Available Options
 
 - Project/Site naming
-- Default ignores for [Git](http://git-scm.com/) or [SVN](http://subversion.apache.org/)
-- Stylesheets with [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), [Stylus](http://learnboost.github.io/stylus/).
+- Stylesheets with [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), or [Stylus](http://learnboost.github.io/stylus/).
 - Modular JavaScript with [Browserify](http://browserify.org/).
 - JavaScript unit testing with [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/)
 - Test running with [Karma](http://karma-runner.github.io/0.12/index.html)
