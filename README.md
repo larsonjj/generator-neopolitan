@@ -4,88 +4,22 @@
 
 # Neopolitan Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-neopolitan.png?branch=master)](https://travis-ci.org/larsonjj/generator-neopolitan) [![NPM version](https://badge.fury.io/js/generator-neopolitan.png)](http://badge.fury.io/js/generator-neopolitan) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-neopolitan/badge.png)](https://coveralls.io/r/larsonjj/generator-neopolitan)
 
-A generator for creating React applications. Helps you harness the power of your favorite tools: React, Reflux, React-Router, ES6/2015, Gulp, and much more!
+A generator for creating React applications. Helps you harness the power of your favorite tools: [React](http://facebook.github.io/react/), [Reflux](https://github.com/spoike/refluxjs), [React-Router](https://github.com/rackt/react-router), ES6/2015, Gulp, and much more!
 
 # Table of Contents
 
-- [What can I create with Neopolitan?](#what-can-i-create-with-neopolitan)
-- [Getting Started](#getting-started)
 - [Features](#features)
+- [Getting Started](#getting-started)
+- [Setup](#setup)
 - [Gulp Workflow](#gulp-workflow)
 - [Sub-Generators](#sub-generators)
-- [Automated Documentation](#automated-documentation)
+- [Guides](#guides)
 - [Common Issues](#common-issues)
-- [Testing Generator](#testing-generator)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
+- [Testing Generator](#testing-generator)
 - [Release History](#release-history)
 - [License](#license)
-
-## What can I create with Neopolitan?
-### Create Single Page Applications using one of the following:
--  [React](http://facebook.github.io/react/) + [Reflux](https://github.com/spoike/refluxjs) + [React-Router](https://github.com/rackt/react-router).
-
-Check out the [features](#features) section to see everything this generator has to offer.
-
-## Getting Started
-This generator utilizes [Yeoman](http://yeoman.io/) and [Gulp](http://gulpjs.com/) to Scaffold out projects, automate tasks, and manage front-end dependencies respectively. If this is your first time here, it is recommended you [read about these tools](http://yeoman.io/learning/index.html) before proceeding.
-
-### Installation
-There are a few dependencies that this project relies on:
-
-#### Node.js
-Check to see if you already have Node installed. Do this by bringing up a terminal/command prompt and type `node -v`. If the response shows a version at or above `v0.12.x`, you are all set and can proceed to installing Yeoman, Gulp, and Bower. If you see an error and/or your version is too low, navigate to the [Node.js](http://nodejs.org/) website and install Node from there.
-
-#### Yeoman & Gulp
-Once you have Node installed, make sure you have these tools by opening up a terminal/command prompt and entering following commands:
-
-| Command  | Response
-|---------- |:---------:
-| `yo -v`  | at or above `v1.3.0`
-| `gulp -v` | `gulp` at or above `v3.9.0`
-
-If you get any errors and/or you're version(s) are too low, you should run `npm install -g yo gulp`. This will install all the needed tools and update them to their latest versions.
-
-#### Neopolitan
-Now that you have all the needed dependencies, you can install this generator with the following command: `npm install -g generator-neopolitan`
-
-That completes installation! So at this point you should have all the needed tools to start working Neopolitan.
-
-### Usage
-When starting a new project, you will want to: open up a terminal/command prompt, make a new directory, and navigate into it.
-
-```
-mkdir my-new-project && cd $_
-```
-
-then, run the Neopolitan generator.
-
-```
-yo neopolitan
-```
-
-Optionally, you can skip the automated installation of npm packages by passing in `--skip-install`. The main reason to use this is if you have spotty/no internet connection, but would still like to generate your project.
-
-```
-yo neopolitan --skip-install
-```
-
-Follow all the prompts and choose what suits you most for the project you would like to create. When you finish with all of the prompts, your project scaffold will be created and all dependencies will be installed.
-
-***NOTE: If you used the `--skip-install` option, no dependencies will have been installed. You will need to run `npm install` in your project's root directory in order to get started running automated tasks***
-
-Now you can run:
-
-- `gulp serve` for previewing your site/app on a development server.
-- `gulp serve --production` for previewing a production version of your site/app.
-- `gulp` for testing and building a development version of your site.
-- `gulp --production` same as `gulp` but builds a production version of your site.
-- `gulp test` for linting your scripts running unit tests.
-
-You can learn more about what tasks are available in the [gulp tasks](#gulp-workflow) section.
-
-Congratulations! You should now have successfully created a Neopolitan project and are ready to start building out your site/app.
-
 
 ## Features
 
@@ -106,6 +40,150 @@ Congratulations! You should now have successfully created a Neopolitan project a
 - Modular JavaScript with [Browserify](http://browserify.org/).
 - JavaScript unit testing with [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/)
 - Test running with [Karma](http://karma-runner.github.io/0.12/index.html)
+
+## Getting Started
+This generator utilizes [Yeoman](http://yeoman.io/) and [Gulp](http://gulpjs.com/) to Scaffold out projects, automate tasks, and manage front-end dependencies respectively. If this is your first time here, it is recommended you [read about these tools](http://yeoman.io/learning/index.html) before proceeding.
+
+### Installation
+There are a few dependencies that this project relies on:
+
+> NOTE: For OSX users
+You may have some issues compiling code during installation of packages. Please install Xcode from App Store first. After Xcode is installed, 
+open Xcode and go to ***Preferences -> Download -> Command Line Tools -> Install*** to install command line tools.
+
+#### Node.js
+Check to see if you already have Node installed. Do this by bringing up a terminal/command prompt and type `node -v`. If the response shows a version at or above `v0.12.x`, you are all set and can proceed to installing Yeoman, Gulp, and Bower. If you see an error and/or your version is too low, navigate to the [Node.js](http://nodejs.org/) website and install Node from there.
+
+#### Yeoman & Gulp
+Once you have Node installed, make sure you have these tools by opening up a terminal/command prompt and entering following commands:
+
+| Command  | Response
+|---------- |:---------:
+| `yo -v`  | at or above `v1.3.0`
+| `gulp -v` | `gulp` at or above `v3.9.0`
+
+If you get any errors and/or you're version(s) are too low, you should run `npm install -g yo gulp`. This will install all the needed tools and update them to their latest versions.
+
+#### Neopolitan
+Now that you have all the needed dependencies, you can install this generator with the following command: `npm install -g generator-neopolitan`
+
+That completes installation! So at this point you should have all the needed tools to start working Neopolitan.
+
+## Setup
+When starting a new project, you will want to: open up a terminal/command prompt, make a new directory, and navigate into it.
+
+```
+mkdir my-new-project && cd $_
+```
+
+then, run the Yeogurt generator.
+
+```
+yo neopolitan
+```
+
+***Optionally***, you can skip the automated installation of npm packages by passing in `--skip-install`. The main reason to use this is if you have spotty/no internet connection, but would still like to generate your project.
+
+```
+yo neopolitan --skip-install
+```
+
+Follow all the prompts and choose what suits you most for the project you would like to create. When you finish with all of the prompts, your project scaffold will be created and all dependencies will be installed.
+
+> NOTE: If you used the `--skip-install` option, no dependencies will have been installed and your gulp tasks will NOT work. 
+You will need to run `npm install` in your project's root directory in order to get started running automated tasks
+
+Once everything is installed, you will see a project structure like below:
+
+```
+├── build/                     # Folder for production build output
+├── tmp/                       # Folder for temporary development output
+├── src
+|   ├── _data                  # JSON files that add data to templates (Example, will not be generated)
+|   ├── _images                # Images
+|   ├── _layouts               # Layout structure for app
+|   |   └── base.jade
+|   ├── _modules               # Reusable modules
+|   |   └── navbar             # Example module (will not be generated)
+|   |       ├── __tests__
+|   |       |   └── navbar.spec.js
+|   |       ├── navbar.jade
+|   |       ├── navbar.js
+|   |       └── navbar.scss
+|   ├── _styles               # Global styles, mixins, variables, etc
+|   |   └── main.scss         # Main stylesheet (import everything to this file)
+|   ├── _scripts              # Global scripts, base classes, etc
+|   |   └── main.js           # Main bootstrap file
+|   ├── fonts                 # Fonts (Example, will not be generated)
+|   ├── index.jade            # Homepage template
+|   ├── favicon.ico
+|   └── robots.txt
+├── gulpfile.babel.js         # Gulp task configuration (using ES6)
+└── package.json              # Dependencies and site/folder configuration
+```
+
+Congratulations! You should now have successfully created a Yeogurt project and are ready to start building out your site/app.
+
+Now you can run the following gulp tasks:
+
+- `gulp serve` for previewing your site/app on a development server.
+- `gulp serve --production` for previewing a production version of your site/app.
+- `gulp` for testing and building a development version of your site.
+- `gulp --production` same as `gulp` but builds a production version of your site.
+- `gulp test` for linting your scripts and running unit tests.
+
+You can learn more about what tasks are available in the [gulp tasks](#gulp-workflow) section.
+
+## Configuration
+
+In the `package.json` file, within the root of the generated project, you have the ability to configure some project settings:
+
+### Site
+| Setting | Description |
+|---------|-------
+| host    | Host URL of the development server (browserSync)
+| port    | Port of the development server (browserSync)
+| baseUrl | Root directory of your site
+
+### Main Directories
+| Setting | Description |
+|---------|-------
+| source      | Source folder for all development files
+| destination | Build folder where production version of site is generated
+| temporary   | Temporary folder where development server files are generated
+
+### Source Directories
+Folders relative to the `source` configured directory
+
+| Setting | Description |
+|---------|-------
+| scripts  | Scripts folder where all `.js` files are located (main.js must be in root of this folder)
+| styles   | Styles folder where all stylesheet files are located (main stylesheet must be in root of this folder)
+| assets   | Assets folder where all static files should live (fonts, txt, etc)
+| images   | Images folder where all `.png, jpeg, jpg, svg, gif` files should live
+
+***Default configuration:***
+
+```json
+"//": "CUSTOM CONFIGURATION",
+"config": {
+  "//": "Local Server Settings",
+  "host": "127.0.0.1",
+  "port": "3000",
+  "baseUrl": "/",
+  "//": "Gulp Task Directories",
+  "directories": {
+    "source": "src",
+    "destination": "build",
+    "temporary": "tmp",
+    "//": "Directories relative to `source` directory",
+    "assets": "assets",
+    "images": "assets/images",
+    "styles": "/",
+    "scripts": "/"
+  }
+}
+```
 
 ## Gulp Workflow
 
@@ -171,7 +249,8 @@ src/_modules/mymodule/__tests__/mymodule.spec.jsx
 ## Guides
 
 ### Adding third-party libraries
-Odds are that you will need to add some third party libraries to your project at some point. To do so, it is strongly recommended that you install them using [NPM](http://npmjs.com/):
+Odds are that you will need to add some third party libraries to your project at some point. 
+To do so, it is strongly recommended that you install them using [NPM](http://npmjs.com/):
 
 ```
 npm install [package name] --save
@@ -190,22 +269,38 @@ $(function() {
 And you can access stylesheets by importing them to you chosen preprocessor like so:
 
 ```scss
-// SCSS
+// Using SCSS
+
+@import 'node_modules/bootstrap/less/bootstrap';
+
+// CSS import
 @import 'node_modules/normalize.css/normalize';
 ```
 
 ```sass
-// SASS
+// Using SASS
+
+@import 'node_modules/bootstrap/less/bootstrap';
+
+// CSS import
 @import node_modules/normalize.css/normalize
 ```
 
 ```less
-// LESS
+// Using LESS
+
+@import 'node_modules/bootstrap/less/bootstrap';
+
+// CSS import
 @import (inline) 'node_modules/normalize.css/normalize.css';
 ```
 
 ```stylus
-// Stylus
+// Using Stylus
+
+@import '../../node_modules/bootstrap/less/bootstrap';
+
+// CSS import
 @import '../../node_modules/normalize.css/normalize.css';
 ```
 
@@ -219,10 +314,8 @@ Create a new file in the root of your project named `.svnignore` and give it the
 node_modules
 *.log
 build
-.grunt
-.serve
 tmp
-secrets.js
+.grunt
 .DS_Store
 .yo-rc.json
 ```
@@ -235,7 +328,6 @@ svn propset svn:ignore -R -F .svnignore .
 ```
 
 This command will go through your newly created `.svnignore` file and set the specified files/folders to be ignored by SVN. 
-
 
 ## Common Issues
 
@@ -260,12 +352,6 @@ To remedy this situation, all you need to do is open up your `.eslintrc` file in
 }
 ```
 
-## Testing Generator
-To run unit tests, you have a couple options:
-
-- `npm test`: This will run all unit tests with Mocha and send the report to [coveralls.io](http://coveralls.io) to be processed. (Don't run this for local testing)
-- `npm run localtest`: This is the same as `npm test` only it doesn't send anything to coveralls.io. (Use this for local testing)
-- `npm run localtest-report`: This is the same as `npm run localtest`, but it also generates an HTML report of the current code coverage.
 
 ## Roadmap
 Check out the [Roadmap](ROADMAP.md) to see what's coming down the development pipeline.
@@ -278,6 +364,13 @@ review the [guidelines for contributing](CONTRIBUTING.md).
 * [Bug reports](CONTRIBUTING.md#bugs)
 * [Feature requests](CONTRIBUTING.md#features)
 * [Pull requests](CONTRIBUTING.md#pull-requests)
+
+## Testing Generator
+To run unit tests, you have a couple options:
+
+- `npm test`: This will run all unit tests with Mocha and send the report to [coveralls.io](http://coveralls.io) to be processed. (Don't run this for local testing)
+- `npm run localtest`: This is the same as `npm test` only it doesn't send anything to coveralls.io. (Use this for local testing)
+- `npm run localtest-report`: This is the same as `npm run localtest`, but it also generates an HTML report of the current code coverage.
 
 ## Release History
 
