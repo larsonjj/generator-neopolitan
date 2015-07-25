@@ -13,21 +13,7 @@ var clientPrompts = function clientPrompts() {
 
   this.log('\n---- ' + 'Client'.red.underline + ' ----\n');
 
-  this.prompt([{
-    type: 'list',
-    name: 'jsFramework',
-    message: 'Which ' + 'JavaScript framework/library'.blue + ' would you like to use?',
-    choices: ['React + Reflux + React Router', 'Backbone + Marionette', 'Angular'],
-    filter: function(val) {
-      var filterMap = {
-        'React + Reflux + React Router': 'react',
-        'Backbone + Marionette': 'marionette',
-        'Angular': 'angular'
-      };
-
-      return filterMap[val];
-    }
-  },
+  this.prompt([
   {
     type: 'list',
     name: 'cssOption',

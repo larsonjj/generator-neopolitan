@@ -15,9 +15,6 @@ var rootFiles = function rootFiles() {
   this.copy('gitignore', '.gitignore');
   this.copy('gitattributes', '.gitattributes');
 
-  this.copy('src/default/robots.txt', 'src/robots.txt');
-  this.copy('src/default/favicon.ico', 'src/favicon.ico');
-
   this.copy('editorconfig', '.editorconfig');
   this.template('eslintrc', '.eslintrc');
 
