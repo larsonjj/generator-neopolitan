@@ -77,7 +77,7 @@ When starting a new project, you will want to: open up a terminal/command prompt
 mkdir my-new-project && cd $_
 ```
 
-then, run the Yeogurt generator.
+then, run the Neopolitan generator.
 
 ```
 yo neopolitan
@@ -127,7 +127,7 @@ Once everything is installed, you will see a project structure like below (Based
 └── package.json                              # Dependencies and site/folder configuration
 ```
 
-Congratulations! You should now have successfully created a Yeogurt project and are ready to start building out your site/app.
+Congratulations! You should now have successfully created a Neopolitan project and are ready to start building out your site/app.
 
 Now you can run the following gulp tasks:
 
