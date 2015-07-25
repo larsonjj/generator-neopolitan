@@ -1,6 +1,6 @@
 {
   "name": "generator-neopolitan",
-  "version": "1.0.0-beta2",
+  "version": "1.0.0-beta3",
   "description": "A generator for creating React applications. Helps you harness the power of your favorite tools: React, Reflux, React-Router, ES6/2015, Gulp, and much more!",
   "keywords": [
     "yeoman-generator",
