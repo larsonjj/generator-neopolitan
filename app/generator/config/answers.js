@@ -27,7 +27,7 @@ var answersConfig = function answersConfig() {
   this.projectName = this.answers.projectName;
 
   // Client
-  this.jsFramework = this.answers.jsFramework;
+  this.jsFramework = 'react';
   this.jsOption = this.answers.jsOption;
   this.cssOption = this.answers.cssOption;
   this.sassSyntax = this.answers.sassSyntax;
@@ -37,10 +37,9 @@ var answersConfig = function answersConfig() {
 
   // Testing
   this.testFramework = this.answers.testFramework;
-  this.useE2e = this.answers.useE2e;
 
   // Default jsOption to Browserify
-  this.jsOption = this.answers.jsOption || 'browserify';
+  this.jsOption = 'browserify';
 
 };
 

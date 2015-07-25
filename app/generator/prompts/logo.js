@@ -11,7 +11,8 @@ var logoPrompt = function logoPrompt() {
     ' | \'_ \\ / _ \\/ _ \\| \'_ \\ / _ \\| | | __/ _` | \'_ \\ \n'.red +
     ' | | | |  __/ (_) | |_) | (_) | | | || (_| | | | |\n' +
     ' |_| |_|\\___|\\___/| .__/ \\___/|_|_|\\__\\__,_|_| |_|\n'.grey +
-    '                  |_| \n'.grey;
+    '                  |_|\n'.grey +
+    '                        for building React apps\n'. grey
 
   // have Neopolitan greet the user.
   this.log(neopolitanLogo);

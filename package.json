@@ -1,7 +1,7 @@
 {
   "name": "generator-neopolitan",
-  "version": "1.0.0-beta2",
-  "description": "A generator for creating single page applications. Helps you harness the power of your favorite JavaScript frameworks: Angular, React + Flux, Backbone, Gulp, and much more!",
+  "version": "1.0.0-beta3",
+  "description": "A generator for creating React applications. Helps you harness the power of your favorite tools: React, Reflux, React-Router, ES6/2015, Gulp, and much more!",
   "keywords": [
     "yeoman-generator",
     "neopolitan",
@@ -9,14 +9,12 @@
     "html5",
     "sass",
     "less",
+    "stylus",
     "browserify",
-    "dashboard",
-    "backbone",
     "react",
-    "angular",
     "jsx",
     "reflux",
-    "underscore"
+    "react-router"
   ],
   "homepage": "https://github.com/larsonjj/generator-neopolitan",
   "bugs": "https://github.com/larsonjj/generator-neopolitan/issues",
@@ -32,9 +30,9 @@
   },
   "scripts": {
     "clean": "rimraf node_modules coverage test/app/temp test/subgenerators/temp",
-    "test": "istanbul cover _mocha -- test/app/*.test.js test/subgenerators/angular/*.test.js test/subgenerators/backbone/*.test.js test/subgenerators/react/*.test.js --reporter list --timeout 100000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "localtest": "mocha test/app/*.test.js test/subgenerators/angular/*.test.js test/subgenerators/backbone/*.test.js test/subgenerators/react/*.test.js -b --reporter spec",
-    "localtest-report": "istanbul cover _mocha test/app/*.test.js test/subgenerators/angular/*.test.js test/subgenerators/backbone/*.test.js test/subgenerators/react/*.test.js && open ./coverage/lcov-report/index.html"
+    "test": "istanbul cover _mocha -- test/app/*.test.js test/subgenerators/react/*.test.js --reporter list --timeout 100000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "localtest": "mocha test/app/*.test.js test/subgenerators/react/*.test.js -b --reporter spec",
+    "localtest-report": "istanbul cover _mocha test/app/*.test.js test/subgenerators/react/*.test.js && open ./coverage/lcov-report/index.html"
   },
   "dependencies": {
     "yeoman-generator": "~0.17.7",

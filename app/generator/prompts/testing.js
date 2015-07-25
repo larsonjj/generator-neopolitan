@@ -28,14 +28,6 @@ var testingPrompts = function testingPrompts() {
 
       return filterMap[val];
     }
-  }, {
-    when: function(answers) {
-      return answers.testFramework !== 'none';
-    },
-    type: 'confirm',
-    name: 'useE2e',
-    message: 'Will you be ' + 'running end-to-end tests'.blue + '?',
-    default: true
   }], function(answers) {
     this.testingPrompts = answers;
 

@@ -26,14 +26,14 @@ describe('Neopolitan generator using React', function() {
         it('Creates expected files', function(done) {
           var expected = [
             'src',
-            'src/_scripts/main.jsx',
-            'src/_scripts/routes.jsx',
-            'src/_scripts/stores/main.store.js',
-            'src/_scripts/actions/main.actions.js'
+            'src/index.js',
+            'src/screens/App/index.js',
+            'src/screens/App/shared/stores/page.store.js',
+            'src/screens/App/shared/actions/page.actions.js'
           ];
 
           var fileContentToTest = [
-            ['src/_scripts/routes.jsx', /export/i],
+            ['src/screens/App/index.js', /export/i],
             ['src/index.html', /app\-wrapper/i]
           ];
 
@@ -52,62 +52,54 @@ describe('Neopolitan generator using React', function() {
         });
       });
       describe('Using Jasmine', function() {
-        describe('Using JSX', function() {
-          it('Creates expected files with expected content', function(done) {
-            var expected = [
-              // add files and folders you expect to exist here.
-              'src/_modules/home/home.jsx',
-              'src/_layouts/base.jsx'
-            ];
-            var fileContentToTest = [
-              ['src/_modules/home/home.jsx', /<div>/i],
-              ['package.json', /node-jsx/i],
-              ['src/_scripts/routes.jsx', /jsx/i]
-            ];
+        it('Creates expected files with expected content', function(done) {
+          var expected = [
+            // add files and folders you expect to exist here.
+            'src/screens/App/components/home-view/home.view.js'
+          ];
+          var fileContentToTest = [
+            ['src/screens/App/components/home-view/home.view.js', /<div>/i],
+            ['src/screens/App/index.js', /Route/i]
+          ];
 
-            helpers.mockPrompt(this.app, {
-              singlePageApplication: true,
-              jsFramework: 'react',
-              jsTemplate: false,
-              jsOption: 'browserify',
-              testFramework: 'jasmine'
-            });
+          helpers.mockPrompt(this.app, {
+            singlePageApplication: true,
+            jsFramework: 'react',
+            jsTemplate: false,
+            jsOption: 'browserify',
+            testFramework: 'jasmine'
+          });
 
-            this.app.run([], function() {
-              assert.file(expected);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
+          this.app.run([], function() {
+            assert.file(expected);
+            assert.fileContent(fileContentToTest);
+            done();
           });
         });
       });
       describe('Using Mocha', function() {
-        describe('Using JSX', function() {
-          it('Creates expected files with expected content', function(done) {
-            var expected = [
-              // add files and folders you expect to exist here.
-              'src/_modules/home/home.jsx',
-              'src/_layouts/base.jsx'
-            ];
-            var fileContentToTest = [
-              ['src/_modules/home/home.jsx', /<div>/i],
-              ['package.json', /node-jsx/i],
-              ['src/_scripts/routes.jsx', /jsx/i]
-            ];
+        it('Creates expected files with expected content', function(done) {
+          var expected = [
+            // add files and folders you expect to exist here.
+            'src/screens/App/components/home-view/home.view.js'
+          ];
+          var fileContentToTest = [
+            ['src/screens/App/components/home-view/home.view.js', /<div>/i],
+            ['src/screens/App/index.js', /Route/i]
+          ];
 
-            helpers.mockPrompt(this.app, {
-              singlePageApplication: true,
-              jsFramework: 'react',
-              jsTemplate: false,
-              jsOption: 'browserify',
-              testFramework: 'mocha'
-            });
+          helpers.mockPrompt(this.app, {
+            singlePageApplication: true,
+            jsFramework: 'react',
+            jsTemplate: false,
+            jsOption: 'browserify',
+            testFramework: 'mocha'
+          });
 
-            this.app.run([], function() {
-              assert.file(expected);
-              assert.fileContent(fileContentToTest);
-              done();
-            });
+          this.app.run([], function() {
+            assert.file(expected);
+            assert.fileContent(fileContentToTest);
+            done();
           });
         });
       });

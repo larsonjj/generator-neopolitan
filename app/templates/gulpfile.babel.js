@@ -17,9 +17,9 @@ import gulpif from 'gulp-if';
 // Load all gulp plugins based on their names
 // EX: gulp-copy -> copy
 const plugins = gulpLoadPlugins();
-
+<% if (testFramework !== 'none') { %>
 // Create karma server
-const karma = require('karma').server;
+const karma = require('karma').server;<% } %>
 
 let config = pjson.config;
 let argv = minimist(process.argv.slice(2));
@@ -35,7 +35,7 @@ let browserSync = browserSyncLib.create();
 <% if (cssOption === 'sass') { %>
 // Sass compilation
 gulp.task('sass', () => {
-  let dest = path.join(__dirname, taskTarget, dirs.styles.replace(/^_/, ''));
+  let dest = path.join(__dirname, taskTarget, dirs.styles);
   gulp.src(path.join(__dirname, dirs.source, dirs.styles, '/*.{scss,sass}'))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
@@ -45,14 +45,14 @@ gulp.task('sass', () => {
       includePaths: [path.join(__dirname, dirs.source, dirs.styles) ]
     }).on('error', plugins.sass.logError))
     .pipe(plugins.postcss([autoprefixer({browsers: ['last 2 version', '> 5%', 'safari 5', 'ios 6', 'android 4']})]))
-    .pipe(plugins.sourcemaps.write())
+    .pipe(plugins.sourcemaps.write('./'))
     .pipe(gulp.dest(dest))
     .pipe(browserSync.stream());
 });<% } else if (cssOption === 'less') { %>
 
 // Less compilation
 gulp.task('less', () => {
-  let dest = path.join(__dirname, taskTarget, dirs.styles.replace(/^_/, ''));
+  let dest = path.join(__dirname, taskTarget, dirs.styles);
   return gulp.src(path.join(__dirname, dirs.source, dirs.styles, '/*.less'))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
@@ -60,22 +60,23 @@ gulp.task('less', () => {
       paths: [path.join(__dirname, dirs.source, dirs.styles)]
     }))
     .pipe(plugins.postcss([autoprefixer({browsers: ['ie >= 9']})]))
-    .pipe(plugins.sourcemaps.write())
+    .pipe(plugins.sourcemaps.write('./'))
     .pipe(gulp.dest(dest))
     .pipe(browserSync.stream());
 });<% } else if (cssOption === 'stylus') { %>
 
 // Stylus compilation
 gulp.task('stylus', () => {
-  let dest = path.join(__dirname, taskTarget, dirs.styles.replace(/^_/, ''));
+  let dest = path.join(__dirname, taskTarget, dirs.styles);
   gulp.src(path.join(__dirname, dirs.source, dirs.styles, '/*.styl'))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.stylus({
-      compress: false
+      compress: true,
+      'inline css': true
     }))
     .pipe(plugins.postcss([autoprefixer({browsers: ['ie >= 9']})]))
-    .pipe(plugins.sourcemaps.write())
+    .pipe(plugins.sourcemaps.write('./'))
     .pipe(gulp.dest(dest))
     .pipe(browserSync.stream());
 });<% } %>
@@ -86,7 +87,7 @@ gulp.task('eslint', () => {
     path.join(__dirname, 'gulpfile.js'),
     path.join(__dirname, dirs.source, '**/*.js'),
     // Ignore all vendor folder files
-    path.join('!', __dirname, '**/vendor/**', '*')
+    '!' + path.join(__dirname, '**/vendor/**', '*')
   ])
   .pipe(browserSync.reload({stream: true, once: true}))
   .pipe(plugins.eslint({
@@ -94,27 +95,11 @@ gulp.task('eslint', () => {
   }))
   .pipe(plugins.eslint.format())
   .pipe(plugins.if(!browserSync.active, plugins.eslint.failAfterError()));
-});<% if (useE2e) { %>
-
-// Protractor end-to-end functional testing
-gulp.task('protractor', (done) => {
-  gulp.src(path.join(__dirname, 'e2e/**/*.spec.js'))
-    .pipe(plugins.protractor.protractor({
-        configFile: path.join(__dirname, 'protractor.conf')
-    }))
-    .on('end', () => {
-      browserSync.exit();
-      return done();
-    })
-    .on('error', (e) => {
-      browserSync.exit();
-      throw e;
-    });
-});<% } %>
+});
 
 // Imagemin
 gulp.task('imagemin', () => {
-  let dest = path.join(__dirname, taskTarget, dirs.images.replace(/^_/, ''));
+  let dest = path.join(__dirname, taskTarget, dirs.images);
   return gulp.src(path.join(__dirname, dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}'))
     .pipe(plugins.changed(dest))
     .pipe(gulpif(production, plugins.imagemin({
@@ -127,9 +112,9 @@ gulp.task('imagemin', () => {
 
 // Browserify
 gulp.task('browserify', () => {
-  let dest = path.join(__dirname, taskTarget, dirs.scripts.replace(/^_/, ''));
+  let dest = path.join(__dirname, taskTarget, dirs.scripts);
   browserify(
-    path.join(__dirname, dirs.source, dirs.scripts, '/main.<%if (jsFramework === 'react') { %>jsx<% } else { %>js<% } %>'), {
+    path.join(__dirname, dirs.source, dirs.scripts, '/index.js'), {
     debug: true,
     transform: [
       require('envify'),
@@ -142,14 +127,13 @@ gulp.task('browserify', () => {
       require('jstify')<% } %>
     ]
   }).bundle()
-    .pipe(vsource(path.basename('main.js')))
+    .pipe(vsource(path.basename('index.js')))
     .pipe(buffer())
     .pipe(plugins.sourcemaps.init({loadMaps: true}))
       .pipe(gulpif(production, plugins.uglify()))
       .on('error', plugins.util.log)
     .pipe(plugins.sourcemaps.write('./'))
-    .pipe(gulp.dest(dest))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(dest));
 });
 
 // Clean
@@ -162,8 +146,9 @@ gulp.task('clean', del.bind(null, [
 gulp.task('copy', () => {
   let dest = path.join(__dirname, taskTarget);
   return gulp.src([
-      path.join(__dirname, dirs.source, '**/*'),
-      path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')
+      path.join(__dirname, dirs.source, 'index.html'),
+      path.join(__dirname, dirs.source, dirs.assets, '**/*'),
+      '!' + path.join(__dirname, dirs.source, dirs.images, '**/*')
     ])
     .pipe(plugins.changed(dest))
     .pipe(gulp.dest(dest));
@@ -197,6 +182,7 @@ gulp.task('serve', [
     browserSync.init({
       open: open ? 'local' : false,
       startPath: config.baseUrl,
+      port: config.port || 3000,
       server: {
         baseDir: taskTarget,
         routes: (() => {
@@ -227,13 +213,13 @@ gulp.task('serve', [
 
       // Copy
       gulp.watch([
-        path.join(__dirname, dirs.source, '**/*'),
-        path.join('!', __dirname, dirs.source, '{**/\_*,**/\_*/**}')
+        path.join(__dirname, dirs.source, dirs.assets, '**/*'),
+        '!' + path.join(__dirname, dirs.source, dirs.images, '**/*')
       ], ['copy']);
 
       // Scripts
       gulp.watch([
-        path.join(__dirname, dirs.source, '**/*.<% if (jsFramework === 'react') { %>{js,jsx}<% } else { %>js<% } %>')
+        path.join(__dirname, dirs.source, '**/*.js')
       ], ['browserify']);
 
       // Images
@@ -245,6 +231,7 @@ gulp.task('serve', [
       gulp.watch([
         path.join(__dirname, dirs.temporary, '**/*')
       ]).on('change', browserSync.reload);
+
     }
   }
 );
@@ -256,9 +243,4 @@ gulp.task('test',<% if (testFramework === 'none') { %> ['eslint']);<% } else { %
     singleRun: !watch,
     autoWatch: watch
   }, done);
-});<% } %><% if (useE2e) { %>
-
-// Run end-to-end function tests
-gulp.task('test:e2e', (done) => {
-  runSequence('serve', 'protractor');
 });<% } %>

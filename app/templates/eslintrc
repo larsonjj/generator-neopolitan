@@ -1,5 +1,5 @@
-{<% if (jsFramework === 'react') { %>
-  "parser": "babel-eslint",
+{
+  "parser": "babel-eslint",<% if (jsFramework === 'react') { %>
   "plugins": [
     "react"
   ],
