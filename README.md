@@ -42,7 +42,8 @@ A generator for creating React applications. Helps you harness the power of your
 - Test running with [Karma](http://karma-runner.github.io/0.12/index.html)
 
 ## Getting Started
-This generator utilizes [Yeoman](http://yeoman.io/) and [Gulp](http://gulpjs.com/) to Scaffold out projects, automate tasks, and manage front-end dependencies respectively. If this is your first time here, it is recommended you [read about these tools](http://yeoman.io/learning/index.html) before proceeding.
+This generator utilizes [Yeoman](http://yeoman.io/) and [Gulp](http://gulpjs.com/) to Scaffold out projects, automate tasks, and manage front-end dependencies respectively. 
+If this is your first time here, it is recommended you [read about these tools](http://yeoman.io/learning/index.html) before proceeding.
 
 ### Installation
 There are a few dependencies that this project relies on:
@@ -93,33 +94,37 @@ Follow all the prompts and choose what suits you most for the project you would 
 > NOTE: If you used the `--skip-install` option, no dependencies will have been installed and your gulp tasks will NOT work. 
 You will need to run `npm install` in your project's root directory in order to get started running automated tasks
 
-Once everything is installed, you will see a project structure like below:
+Once everything is installed, you will see a project structure like below (Based on [this](https://gist.github.com/ryanflorence/daafb1e3cb8ad740b346)):
 
 ```
-├── build/                     # Folder for production build output
-├── tmp/                       # Folder for temporary development output
+├── build/                                    # Folder for production build output
+├── tmp/                                      # Folder for temporary development output
 ├── src
-|   ├── _data                  # JSON files that add data to templates (Example, will not be generated)
-|   ├── _images                # Images
-|   ├── _layouts               # Layout structure for app
-|   |   └── base.jade
-|   ├── _modules               # Reusable modules
-|   |   └── navbar             # Example module (will not be generated)
-|   |       ├── __tests__
-|   |       |   └── navbar.spec.js
-|   |       ├── navbar.jade
-|   |       ├── navbar.js
-|   |       └── navbar.scss
-|   ├── _styles               # Global styles, mixins, variables, etc
-|   |   └── main.scss         # Main stylesheet (import everything to this file)
-|   ├── _scripts              # Global scripts, base classes, etc
-|   |   └── main.js           # Main bootstrap file
-|   ├── fonts                 # Fonts (Example, will not be generated)
-|   ├── index.jade            # Homepage template
+|   ├── assets                                # Assets folder (will be copied to build target)
+|   │   ├── images                            # Images
+|   |   └── fonts                             # Fonts (Example, will not be generated)
+|   └── screens
+|   |   └── App                               # App/Home screen ('/' route)
+|   |       ├── components                    # Components specific to '/' route
+|   |       │   ├── app-view                  # Base layout view
+|   |       │   │   ├── __tests__
+|   |       │   │   │   └── app-view.test.js
+|   |       │   │   ├── app.view.js
+|   |       │   │   └── app.view.scss
+|   |       │   └── home-view                 # Homepage view
+|   |       │       ├── __tests__
+|   |       │       │   └── home.view.test.js
+|   |       │       ├── home.view.js
+|   |       │       └── home.view.scss
+|   |       ├── index.js                      # Route handler for '/' route
+|   |       └── shared                        # Shared components, actions, stores, etc
+|   ├── index.html
+|   ├── index.js                              # Main JS file (bootstraps application)
+|   ├── index.scss                            # Main stylesheet (handles importing of all stylesheets)
 |   ├── favicon.ico
 |   └── robots.txt
-├── gulpfile.babel.js         # Gulp task configuration (using ES6)
-└── package.json              # Dependencies and site/folder configuration
+├── gulpfile.babel.js                         # Gulp task configuration (using ES6)
+└── package.json                              # Dependencies and site/folder configuration
 ```
 
 Congratulations! You should now have successfully created a Yeogurt project and are ready to start building out your site/app.
@@ -335,7 +340,7 @@ This command will go through your newly created `.svnignore` file and set the sp
 ##### Typical error message:
 > jQuery is not defined
 
-When adding third-party scripts, you should always import them to your `src/index.js` file (See [Adding third-party libraries](#adding-third-party-libraries)). 
+When adding third-party scripts, you should always import them to your `_scripts/main.js` file (See [Adding third-party libraries](#adding-third-party-libraries)). 
 However, doing so does not inform ESLint that your new library is defined globally. Thus, giving you errors.
 
 ##### Solution
@@ -351,7 +356,6 @@ To remedy this situation, all you need to do is open up your `.eslintrc` file in
 ...
 }
 ```
-
 
 ## Roadmap
 Check out the [Roadmap](ROADMAP.md) to see what's coming down the development pipeline.
