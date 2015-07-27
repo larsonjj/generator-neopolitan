@@ -1,22 +1,19 @@
+<% if (testFramework === 'mocha') { %>/*eslint no-unused-expressions:0 */<% } %>
 'use strict';
 
 /*eslint-disable no-unused-vars*/
-var React = require('react');
+import React from 'react';
 /*eslint-enable no-unused-vars*/
 import <%= _.classify(name.toLowerCase()) %> from '../<%= _.slugify(name.toLowerCase()) %>';
+import testRenderer from '../../../shared/utils/test-renderer';
 
-// Uncomment to use React testing tools
-// var ReactTestUtils;
-// var reactRender;
+describe('<%= _.classify(name.toLowerCase()) %> View', function() {
 
-beforeEach(function() {
-  // ReactTestUtils = require('react/addons').addons.TestUtils;
-  // reactRender = ReactTestUtils.renderIntoDocument;
-  this.<%= _.classify(name.toLowerCase()) %> = <<%= _.classify(name.toLowerCase()) %> />;
-});
+  let component = testRenderer(<<%= _.classify(name.toLowerCase()) %> />);
 
-describe('Testing React Component: <%= _.classify(name.toLowerCase()) %>', function() {
-  it('Should run a few assertions', function() {
-    expect(this.<%= _.classify(name.toLowerCase()) %>)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.exist<% } %>;
+  it('provides the "<%= _.classify(name.toLowerCase()) %> View" instance', () => {
+    // Expect it to exist
+    expect(component)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
   });
+
 });

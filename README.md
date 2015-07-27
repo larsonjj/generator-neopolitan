@@ -29,14 +29,13 @@ A generator for creating React applications. Helps you harness the power of your
 - Automated build process that includes: minification of Stylesheets, uglification of Javascript, and optimization of images.
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
 - JavaScript Linting with [ESLint](http://eslint.org//)
-- ES6/2015 support out of the box using [Babel](https://babeljs.io/)
+- ES6/2015 support out of the box using [Browserify](http://browserify.org/) with [Babel](https://babeljs.io/)
 - [React](http://facebook.github.io/react/) with [ReFlux](https://github.com/spoike/refluxjs) and [React-Router](https://github.com/rackt/react-router)
 
 ### Available Options
 
 - Project/Site naming
 - Stylesheets with [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), or [Stylus](http://learnboost.github.io/stylus/).
-- Modular JavaScript with [Browserify](http://browserify.org/).
 - JavaScript unit testing with [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/)
 - Test running with [Karma](http://karma-runner.github.io/0.12/index.html)
 
