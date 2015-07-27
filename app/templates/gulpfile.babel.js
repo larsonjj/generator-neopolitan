@@ -4,7 +4,6 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSyncLib from 'browser-sync';
 import pjson from './package.json';
 import minimist from 'minimist';
-import runSequence from 'run-sequence';
 import pngquant from 'imagemin-pngquant';
 import del from 'del';
 import autoprefixer from 'autoprefixer-core';
@@ -120,7 +119,7 @@ gulp.task('browserify', () => {
     debug: true,
     transform: [
       envify,
-      babelify.configure({stage: 0}) // Enable ES6/ES7
+      babelify.configure() // Enable ES6 features
     ]
   }).bundle()
     .pipe(vsource(path.basename('index.js')))

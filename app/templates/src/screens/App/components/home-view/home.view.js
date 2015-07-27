@@ -4,7 +4,6 @@ import React from 'react';
 import {branch} from 'baobab-react/decorators';
 import appActions from '../../shared/actions/app.actions';
 
-@branch()
 class HomeView extends React.Component {
   componentWillMount() {
     appActions.setPage({title: 'Home'});

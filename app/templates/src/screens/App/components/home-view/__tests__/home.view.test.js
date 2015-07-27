@@ -5,23 +5,19 @@
 import React from 'react';
 /*eslint-enable no-unused-vars*/
 import HomeView from '../home.view';
-import ReactAddons from 'react/addons';
+import testRenderer from '../../../shared/utils/test-renderer';
 
-describe('Home Component', function() {
+describe('Home View', function() {
 
-  // Uncomment to use React testing tools
-  let ReactTestUtils;
-  let reactRender;
+  let component = testRenderer(<HomeView />);
 
-  beforeEach(() => {
-    ReactTestUtils = ReactAddons.addons.TestUtils;
-    reactRender = ReactTestUtils.renderIntoDocument;
-    this.homeView = <HomeView />;
+  it('provides the "Home View" instance', () => {
+    // Expect it to exist
+    expect(component)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
   });
 
-  it('provides the "Home Component" instance', () => {
-    // Expect it to exist
-    expect(this.homeView)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
+  it('should contain an H1 with a welcome message', () => {
+    expect(component.props.children[0].props.children)<% if (testFramework === 'jasmine') { %>.toContain(<h1>Welcome to Neopolitan!</h1>)<% } else if (testFramework === 'mocha') { %>.to.contain(<h1>Welcome to Neopolitan!</h1>)<% } %>;
   });
 
 });
