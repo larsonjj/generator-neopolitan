@@ -9,7 +9,7 @@ import AppStore from '../../shared/stores/app.store';
 class AppView extends React.Component {
   render() {
     return (
-      <div className="app-container">
+      <div className="app-content">
         <RouteHandler />
       </div>
     );
