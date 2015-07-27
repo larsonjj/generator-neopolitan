@@ -5,16 +5,17 @@
 import React from 'react';
 /*eslint-enable no-unused-vars*/
 import HomeView from '../home.view';
+import ReactAddons from 'react/addons';
 
 describe('Home Component', function() {
 
   // Uncomment to use React testing tools
-  // var ReactTestUtils;
-  // var reactRender;
+  let ReactTestUtils;
+  let reactRender;
 
   beforeEach(() => {
-    // ReactTestUtils = require('react/addons').addons.TestUtils;
-    // reactRender = ReactTestUtils.renderIntoDocument;
+    ReactTestUtils = ReactAddons.addons.TestUtils;
+    reactRender = ReactTestUtils.renderIntoDocument;
     this.homeView = <HomeView />;
   });
 

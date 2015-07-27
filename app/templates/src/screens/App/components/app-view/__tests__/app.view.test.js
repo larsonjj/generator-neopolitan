@@ -5,16 +5,17 @@
 import React from 'react';
 /*eslint-enable no-unused-vars*/
 import AppView from '../app.view';
+import ReactAddons from 'react/addons';
 
 describe('App View', function() {
 
   // Uncomment to use React testing tools
-  // var ReactTestUtils;
-  // var reactRender;
+  let ReactTestUtils;
+  let reactRender;
 
   beforeEach(() => {
-    // ReactTestUtils = require('react/addons').addons.TestUtils;
-    // reactRender = ReactTestUtils.renderIntoDocument;
+    ReactTestUtils = ReactAddons.addons.TestUtils;
+    reactRender = ReactTestUtils.renderIntoDocument;
     this.appView = <AppView />;
   });
 

@@ -7,7 +7,7 @@ import HomeView from './components/home-view/home.view';
 
 export default (
   <Route name='App' path='/' handler={AppView}>
-    // Place all sub routes here
+    // Place sub routes here
 
     // Default route
     <DefaultRoute name='Home' handler={HomeView} />
