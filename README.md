@@ -4,7 +4,7 @@
 
 # Neopolitan Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-neopolitan.png?branch=master)](https://travis-ci.org/larsonjj/generator-neopolitan) [![NPM version](https://badge.fury.io/js/generator-neopolitan.png)](http://badge.fury.io/js/generator-neopolitan) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-neopolitan/badge.png)](https://coveralls.io/r/larsonjj/generator-neopolitan)
 
-A generator for creating React applications. Helps you harness the power of your favorite tools: [React](http://facebook.github.io/react/), [Reflux](https://github.com/spoike/refluxjs), [React-Router](https://github.com/rackt/react-router), ES6/2015, Gulp, and much more!
+A generator for creating React applications. Helps you harness the power of your favorite tools: [React](http://facebook.github.io/react/), [React-Router](https://github.com/rackt/react-router), [Baobab](https://github.com/Yomguithereal/baobab), ES6/2015, Gulp, and much more!
 
 # Table of Contents
 
@@ -30,7 +30,7 @@ A generator for creating React applications. Helps you harness the power of your
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
 - JavaScript Linting with [ESLint](http://eslint.org//)
 - ES6/2015 support out of the box using [Browserify](http://browserify.org/) with [Babel](https://babeljs.io/)
-- [React](http://facebook.github.io/react/) with [ReFlux](https://github.com/spoike/refluxjs) and [React-Router](https://github.com/rackt/react-router)
+- [React](http://facebook.github.io/react/) with [Baobab](https://github.com/Yomguithereal/baobab) and [React-Router](https://github.com/rackt/react-router)
 
 ### Available Options
 
