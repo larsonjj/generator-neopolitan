@@ -1,11 +1,11 @@
 {
-  "parser": "babel-eslint",<% if (jsFramework === 'react') { %>
+  "parser": "babel-eslint",
   "plugins": [
     "react"
   ],
   "ecmaFeatures": {
     "jsx": true
-  },<% } %>
+  },
   "env": {
     "browser": true,
     "amd": true,
@@ -13,9 +13,7 @@
     "es6": true
   },
   "globals": {
-    "DocumentFragment": true,<% if (jsFramework === 'angular') { %>
-    "angular": true,
-    "inject": true,<% } %>
+    "DocumentFragment": true,
     "it": true,
     "describe": true,
     "beforeEach": true,

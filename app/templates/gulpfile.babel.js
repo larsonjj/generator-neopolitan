@@ -13,6 +13,8 @@ import buffer from 'vinyl-buffer';
 import glob from 'glob';
 import browserify from 'browserify';
 import gulpif from 'gulp-if';
+import envify from 'envify';
+import babelify from 'babelify';
 
 // Load all gulp plugins based on their names
 // EX: gulp-copy -> copy
@@ -117,14 +119,8 @@ gulp.task('browserify', () => {
     path.join(__dirname, dirs.source, dirs.scripts, '/index.js'), {
     debug: true,
     transform: [
-      require('envify'),
-      require('babelify')<% if (jsFramework === 'angular') { %>,
-      require('browserify-ngannotate'),
-      require('browserify-ng-html2js')({
-        module: '<%= _.camelize(projectName) %>',
-        extension: 'html'
-      })<% } else if (jsFramework === 'marionette') { %>,
-      require('jstify')<% } %>
+      envify,
+      babelify.configure({stage: 0}) // Enable ES6/ES7
     ]
   }).bundle()
     .pipe(vsource(path.basename('index.js')))

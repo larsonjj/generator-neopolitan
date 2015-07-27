@@ -2,31 +2,18 @@
 
 import React from 'react';
 import {RouteHandler} from 'react-router';
-import Reflux from 'reflux';
-import pageStore from '../../shared/stores/page.store';
+import {root} from 'baobab-react/decorators';
+import AppStore from '../../shared/stores/app.store';
 
-let getState = () => {
-  return {
-    page: pageStore.getPage()
-  };
-};
-
-const DefaultComponent = React.createClass({
-  mixins: [Reflux.listenTo(pageStore, '_onStoreUpdate')],
-  getInitialState() {
-    return getState();
-  },
+@root(AppStore)
+class AppView extends React.Component {
   render() {
     return (
-      <div className="app-container">
+      <div className="app-content">
         <RouteHandler />
       </div>
     );
-  },
-  // Event handler for 'change' events coming from store mixins.
-  _onStoreUpdate() {
-    this.setState(getState());
   }
-});
+}
 
-export default DefaultComponent;
+export default AppView;
