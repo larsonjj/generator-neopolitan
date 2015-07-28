@@ -30,7 +30,7 @@ describe('React component sub-generator', function() {
         'src/screens/App/components/' + component + '/' + component + '.js'
       ];
       var fileContentToTest = [
-        ['src/screens/App/components/' + component + '/' + component + '.js', /React\.createClass/i]
+        ['src/screens/App/components/' + component + '/' + component + '.js', /React\.Component/i]
       ];
 
       helpers.mockPrompt(this.app, {

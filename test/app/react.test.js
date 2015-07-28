@@ -28,8 +28,8 @@ describe('Neopolitan generator using React', function() {
             'src',
             'src/index.js',
             'src/screens/App/index.js',
-            'src/screens/App/shared/stores/page.store.js',
-            'src/screens/App/shared/actions/page.actions.js'
+            'src/screens/App/shared/trees/app.tree.js',
+            'src/screens/App/shared/actions/app.actions.js'
           ];
 
           var fileContentToTest = [
