@@ -221,18 +221,18 @@ Example:
 
 ```
 yo neopolitan:module mycomponent
-? Where would you like to create this react component?: src/_modules
+? Where would you like to create this react component?: src/screens/App/components
 ```
 
 Produces:
 
 ```
-src/_modules/mymodule/mymodule.jsx
-src/_modules/mymodule/mymodule.{css,styl,less,scss,sass}
-src/_modules/mymodule/__tests__/mymodule.spec.jsx
+src/screens/App/components/mycomponent/mycomponent.jsx
+src/screens/App/components/mycomponent/mycomponent.{styl,less,scss,sass}
+src/screens/App/components/mycomponent/__tests__/mycomponent.spec.jsx
 ```
 
-***NOTE: `{css,styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `CSS, Stylus, Less or Sass` respectively***
+***NOTE: `{styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `Stylus, Less or Sass` respectively***
 
 ## Guides
 
