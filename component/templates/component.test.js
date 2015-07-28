@@ -5,7 +5,7 @@
 import React from 'react';
 /*eslint-enable no-unused-vars*/
 import <%= _.classify(name.toLowerCase()) %> from '../<%= _.slugify(name.toLowerCase()) %>';
-import testRenderer from '../../../shared/utils/test-renderer';
+import testRenderer from 'utils/test-renderer';
 
 describe('<%= _.classify(name.toLowerCase()) %> View', function() {
 

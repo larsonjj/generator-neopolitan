@@ -5,7 +5,7 @@
 import React from 'react';
 /*eslint-enable no-unused-vars*/
 import {TestComponent as AppView} from '../app.view';
-import testRenderer from '../../../shared/utils/test-renderer';
+import testRenderer from 'utils/test-renderer';
 
 describe('App View', function() {
 

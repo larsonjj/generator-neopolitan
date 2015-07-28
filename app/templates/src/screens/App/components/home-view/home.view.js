@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {branch} from 'baobab-react/decorators';
-import appActions from '../../shared/actions/app.actions';
+import appActions from 'actions/app.actions';
 
 class HomeView extends React.Component {
   componentWillMount() {

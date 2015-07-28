@@ -31,7 +31,8 @@ var karmaConf = function(config) {
       debug: true,
       transform: [
         require('envify'),
-        require('babelify').configure()
+        require('babelify'),
+        require('resolvify')
       ]
     },
 

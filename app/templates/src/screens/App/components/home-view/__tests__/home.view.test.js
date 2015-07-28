@@ -5,7 +5,7 @@
 import React from 'react';
 /*eslint-enable no-unused-vars*/
 import HomeView from '../home.view';
-import testRenderer from '../../../shared/utils/test-renderer';
+import testRenderer from 'utils/test-renderer';
 
 describe('Home View', function() {
 
