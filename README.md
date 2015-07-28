@@ -155,16 +155,6 @@ In the `package.json` file, within the root of the generated project, you have t
 | destination | Build folder where production version of site is generated
 | temporary   | Temporary folder where development server files are generated
 
-### Source Directories
-Folders relative to the `source` configured directory
-
-| Setting | Description |
-|---------|-------
-| scripts  | Scripts folder where all `.js` files are located (main.js must be in root of this folder)
-| styles   | Styles folder where all stylesheet files are located (main stylesheet must be in root of this folder)
-| assets   | Assets folder where all static files should live (fonts, txt, etc)
-| images   | Images folder where all `.png, jpeg, jpg, svg, gif` files should live
-
 ***Default configuration:***
 
 ```json
@@ -178,12 +168,7 @@ Folders relative to the `source` configured directory
   "directories": {
     "source": "src",
     "destination": "build",
-    "temporary": "tmp",
-    "//": "Directories relative to `source` directory",
-    "assets": "assets",
-    "images": "assets/images",
-    "styles": "/",
-    "scripts": "/"
+    "temporary": "tmp"
   }
 }
 ```
