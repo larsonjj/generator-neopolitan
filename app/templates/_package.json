@@ -67,12 +67,7 @@
     "directories": {
       "source": "src",
       "destination": "build",
-      "temporary": "tmp",
-      "//": "Directories relative to `source` directory",
-      "assets": "assets",
-      "images": "assets/images",
-      "styles": "/",
-      "scripts": "/"
+      "temporary": "tmp"
     }
   }
 }

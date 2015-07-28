@@ -37,7 +37,7 @@ let browserSync = browserSyncLib.create();
 // Sass compilation
 gulp.task('sass', () => {
   let dest = path.join(__dirname, taskTarget, dirs.styles);
-  gulp.src(path.join(__dirname, dirs.source, dirs.styles, '/*.{scss,sass}'))
+  gulp.src(path.join(__dirname, dirs.source, '*.{scss,sass}'))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.sass({
@@ -54,7 +54,7 @@ gulp.task('sass', () => {
 // Less compilation
 gulp.task('less', () => {
   let dest = path.join(__dirname, taskTarget, dirs.styles);
-  return gulp.src(path.join(__dirname, dirs.source, dirs.styles, '/*.less'))
+  return gulp.src(path.join(__dirname, dirs.source, '*.less'))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.less({
@@ -69,7 +69,7 @@ gulp.task('less', () => {
 // Stylus compilation
 gulp.task('stylus', () => {
   let dest = path.join(__dirname, taskTarget, dirs.styles);
-  gulp.src(path.join(__dirname, dirs.source, dirs.styles, '/*.styl'))
+  gulp.src(path.join(__dirname, dirs.source, '*.styl'))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.stylus({
@@ -100,8 +100,8 @@ gulp.task('eslint', () => {
 
 // Imagemin
 gulp.task('imagemin', () => {
-  let dest = path.join(__dirname, taskTarget, dirs.images);
-  return gulp.src(path.join(__dirname, dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}'))
+  let dest = path.join(__dirname, taskTarget, 'assets/images');
+  return gulp.src(path.join(__dirname, dirs.source, 'assets/images/**/*.{jpg,jpeg,gif,svg,png}'))
     .pipe(plugins.changed(dest))
     .pipe(gulpif(production, plugins.imagemin({
       progressive: true,
@@ -113,9 +113,9 @@ gulp.task('imagemin', () => {
 
 // Browserify
 gulp.task('browserify', () => {
-  let dest = path.join(__dirname, taskTarget, dirs.scripts);
+  let dest = path.join(__dirname, taskTarget);
   browserify(
-    path.join(__dirname, dirs.source, dirs.scripts, '/index.js'), {
+    path.join(__dirname, dirs.source, 'index.js'), {
     debug: true,
     transform: [
       envify,
@@ -142,8 +142,8 @@ gulp.task('copy', () => {
   let dest = path.join(__dirname, taskTarget);
   return gulp.src([
       path.join(__dirname, dirs.source, 'index.html'),
-      path.join(__dirname, dirs.source, dirs.assets, '**/*'),
-      '!' + path.join(__dirname, dirs.source, dirs.images, '**/*')
+      path.join(__dirname, dirs.source, 'assets/**/*'),
+      '!' + path.join(__dirname, dirs.source, 'assets/images/**/*')
     ])
     .pipe(plugins.changed(dest))
     .pipe(gulp.dest(dest));
@@ -196,20 +196,20 @@ gulp.task('serve', [
 <% if (cssOption === 'sass') { %>
       // Styles
       gulp.watch([
-        path.join(__dirname, dirs.source, dirs.styles, '**/*.{scss,sass}')
+        path.join(__dirname, dirs.source, '**/*.{scss,sass}')
       ], ['sass']);<% } else if (cssOption === 'less') { %>
       gulp.watch([
-        path.join(__dirname, dirs.source, dirs.styles, '**/*.less')
+        path.join(__dirname, dirs.source, '**/*.less')
       ], ['less']);<% } else if (cssOption === 'stylus') { %>
       gulp.watch([
-        path.join(__dirname, dirs.source, dirs.styles, '**/*.styl')
+        path.join(__dirname, dirs.source, '**/*.styl')
       ], ['stylus']);
       <% } %>
 
       // Copy
       gulp.watch([
-        path.join(__dirname, dirs.source, dirs.assets, '**/*'),
-        '!' + path.join(__dirname, dirs.source, dirs.images, '**/*')
+        path.join(__dirname, dirs.source, 'assets/**/*'),
+        '!' + path.join(__dirname, dirs.source, 'assets/images/**/*')
       ], ['copy']);
 
       // Scripts
@@ -219,7 +219,7 @@ gulp.task('serve', [
 
       // Images
       gulp.watch([
-        path.join(__dirname, dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}')
+        path.join(__dirname, dirs.source, 'assets/images/**/*.{jpg,jpeg,gif,svg,png}')
       ], ['imagemin']);
 
       // All other files
