@@ -1,12 +1,13 @@
 'use strict';
 
 import React from 'react';
-import pageActions from '../../shared/actions/page.actions';
+import {branch} from 'baobab-react/decorators';
+import appActions from '../../shared/actions/app.actions';
 
-const AppComponent = React.createClass({
+class HomeView extends React.Component {
   componentWillMount() {
-    pageActions.setPage({title: '<%= projectName %>'});
-  },
+    appActions.setPage({title: 'Home'});
+  }
   render() {
     return (
       <div>
@@ -23,6 +24,6 @@ const AppComponent = React.createClass({
       </div>
     );
   }
-});
+}
 
-export default AppComponent;
+export default HomeView;

@@ -25,31 +25,11 @@ describe('Neopolitan generator using existing configuration', function() {
       '.yo-rc.json'
     ];
     var fileContentToTest = [
-      ['.yo-rc.json', /marionette/i]
-    ];
-
-    helpers.mockPrompt(this.app, {
-      existingConfig: false,
-      jsFramework: 'marionette'
-    });
-
-    this.app.run([], function() {
-      assert.file(expected);
-      assert.fileContent(fileContentToTest);
-      done();
-    });
-  });
-
-  it('Creates expected files with expected content', function(done) {
-    var expected = [
-      '.yo-rc.json'
-    ];
-    var fileContentToTest = [
       ['.yo-rc.json', /react/i]
     ];
 
     helpers.mockPrompt(this.app, {
-      existingConfig: true,
+      existingConfig: false,
       jsFramework: 'react'
     });
 

@@ -4,7 +4,7 @@
 
 # Neopolitan Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-neopolitan.png?branch=master)](https://travis-ci.org/larsonjj/generator-neopolitan) [![NPM version](https://badge.fury.io/js/generator-neopolitan.png)](http://badge.fury.io/js/generator-neopolitan) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-neopolitan/badge.png)](https://coveralls.io/r/larsonjj/generator-neopolitan)
 
-A generator for creating React applications. Helps you harness the power of your favorite tools: [React](http://facebook.github.io/react/), [Reflux](https://github.com/spoike/refluxjs), [React-Router](https://github.com/rackt/react-router), ES6/2015, Gulp, and much more!
+A generator for creating React applications. Helps you harness the power of your favorite tools: [React](http://facebook.github.io/react/), [React-Router](https://github.com/rackt/react-router), [Baobab](https://github.com/Yomguithereal/baobab), ES6/2015, Gulp, and much more!
 
 # Table of Contents
 
@@ -29,14 +29,13 @@ A generator for creating React applications. Helps you harness the power of your
 - Automated build process that includes: minification of Stylesheets, uglification of Javascript, and optimization of images.
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
 - JavaScript Linting with [ESLint](http://eslint.org//)
-- ES6/2015 support out of the box using [Babel](https://babeljs.io/)
-- [React](http://facebook.github.io/react/) with [ReFlux](https://github.com/spoike/refluxjs) and [React-Router](https://github.com/rackt/react-router)
+- ES6/2015 support out of the box using [Browserify](http://browserify.org/) with [Babel](https://babeljs.io/)
+- [React](http://facebook.github.io/react/) with [Baobab](https://github.com/Yomguithereal/baobab) and [React-Router](https://github.com/rackt/react-router)
 
 ### Available Options
 
 - Project/Site naming
 - Stylesheets with [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), or [Stylus](http://learnboost.github.io/stylus/).
-- Modular JavaScript with [Browserify](http://browserify.org/).
 - JavaScript unit testing with [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/)
 - Test running with [Karma](http://karma-runner.github.io/0.12/index.html)
 
@@ -156,16 +155,6 @@ In the `package.json` file, within the root of the generated project, you have t
 | destination | Build folder where production version of site is generated
 | temporary   | Temporary folder where development server files are generated
 
-### Source Directories
-Folders relative to the `source` configured directory
-
-| Setting | Description |
-|---------|-------
-| scripts  | Scripts folder where all `.js` files are located (main.js must be in root of this folder)
-| styles   | Styles folder where all stylesheet files are located (main stylesheet must be in root of this folder)
-| assets   | Assets folder where all static files should live (fonts, txt, etc)
-| images   | Images folder where all `.png, jpeg, jpg, svg, gif` files should live
-
 ***Default configuration:***
 
 ```json
@@ -179,12 +168,7 @@ Folders relative to the `source` configured directory
   "directories": {
     "source": "src",
     "destination": "build",
-    "temporary": "tmp",
-    "//": "Directories relative to `source` directory",
-    "assets": "assets",
-    "images": "assets/images",
-    "styles": "/",
-    "scripts": "/"
+    "temporary": "tmp"
   }
 }
 ```
@@ -272,37 +256,41 @@ $(function() {
 
 And you can access stylesheets by importing them to you chosen preprocessor like so:
 
+**Using SCSS:**
+
 ```scss
-// Using SCSS
+// SCSS
+@import 'node_modules/bootstrap-sass-official/scss/bootstrap';
 
-@import 'node_modules/bootstrap/less/bootstrap';
-
-// CSS import
+// CSS
 @import 'node_modules/normalize.css/normalize';
 ```
 
+**Using SASS:**
+
 ```sass
-// Using SASS
+// SASS
+@import node_modules/bootstrap-sass-official/scss/bootstrap
 
-@import 'node_modules/bootstrap/less/bootstrap';
-
-// CSS import
+// CSS
 @import node_modules/normalize.css/normalize
 ```
 
-```less
-// Using LESS
+**Using LESS:**
 
+```less
+// LESS
 @import 'node_modules/bootstrap/less/bootstrap';
 
-// CSS import
+// CSS
 @import (inline) 'node_modules/normalize.css/normalize.css';
 ```
 
-```stylus
-// Using Stylus
+**Using Stylus:**
 
-@import '../../node_modules/bootstrap/less/bootstrap';
+```stylus
+// Stylus
+@import '../../node_modules/bootstrap-stylus/bootstrap';
 
 // CSS import
 @import '../../node_modules/normalize.css/normalize.css';

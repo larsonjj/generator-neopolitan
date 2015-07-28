@@ -1,14 +1,14 @@
 'use strict';
 import React from 'react';
 
-const <%= _.classify(name.toLowerCase()) %> = React.createClass({
-  render: function() {
+class <%= _.classify(name.toLowerCase()) %> extends React.Component {
+  render() {
     return (
       <div>
         <p ref="p"><%= name.toLowerCase() %> component</p>
       </div>
     );
   }
-});
+}
 
 export default <%= _.classify(name.toLowerCase()) %>;
