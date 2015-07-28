@@ -122,6 +122,16 @@ gulp.task('browserify', () => {
       babelify.configure() // Enable ES6 features
     ]
   }).bundle()
+    .on('error', function (err) {
+      plugins.util.log(
+        plugins.util.colors.red("Browserify compile error:"),
+        err.message,
+        '\n\n',
+        err.codeFrame.replace(' ', ''),
+        '\n'
+      );
+      this.emit('end');
+    })
     .pipe(vsource(path.basename('index.js')))
     .pipe(buffer())
     .pipe(plugins.sourcemaps.init({loadMaps: true}))
