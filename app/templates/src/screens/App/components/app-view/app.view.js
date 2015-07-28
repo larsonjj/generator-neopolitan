@@ -3,7 +3,7 @@
 import React from 'react';
 import {RouteHandler} from 'react-router';
 import {root} from 'baobab-react/higher-order';
-import AppStore from '../../shared/stores/app.store';
+import AppTree from '../../shared/trees/app.tree';
 
 class AppView extends React.Component {
   render() {
@@ -15,7 +15,7 @@ class AppView extends React.Component {
   }
 }
 
-export default root(AppView, AppStore);
+export default root(AppView, AppTree);
 
 // Export a un-decorated version of the component for testing
 export let TestComponent = AppView;

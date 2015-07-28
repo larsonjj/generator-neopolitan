@@ -1,12 +1,12 @@
 'use strict';
 
-import AppStore from '../stores/app.store';
+import AppTree from '../trees/app.tree';
 
 let actions = {
   setPage(page) {
     let title = '<%= projectName %> | '.concat(page.title || 'Not Found');
     document.title = title;
-    AppStore.set('page', page);
+    AppTree.set('page', page);
   }
 };
 

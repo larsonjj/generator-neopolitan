@@ -3,10 +3,10 @@
 var Baobab = require('baobab');
 
 // Store all application data
-let AppStore = new Baobab({
+let AppTree = new Baobab({
   page: {
     title: '<%= projectName %>'
   }
 });
 
-export default AppStore;
+export default AppTree;
