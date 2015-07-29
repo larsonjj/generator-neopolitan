@@ -1,7 +1,6 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var getDirCount = require('../helpers/get-dir-count');
 var path = require('path');
 var pjson = require(path.join(process.cwd(), './package.json'));
 var config = pjson.config;
@@ -29,36 +28,38 @@ util.inherits(ComponentGenerator, yeoman.generators.NamedBase);
 // Prompts
 ComponentGenerator.prototype.ask = function ask() {
 
-  var self = this;
-  var done = this.async();
-  var prompts = [{
-    name: 'componentFile',
-    message: 'Where would you like to create this component?',
-    default: function(answers) {
-      return 'src/screens/App/components';
+  var routeDir = function(route) {
+    if (route === '/' || !route) {
+      return path.join('src/screens/App/components');
     }
-  }];
+    var newUrl = route.replace('/', '').split('/').reduce(function(item, newItem) {
+      if (newItem) {
+      return item + '/screens/' + newItem;
+      }
+      return item;
+    })
+    return path.join('src/screens/App/screens/', newUrl, 'components');
+  };
 
-  this.prompt(prompts, function(answers) {
+  this.route = routeDir('/');
+  if (this.options.route) {
+    this.route = routeDir(this.options.route);
+  }
 
-    this.componentFile = path.join(
-      answers.componentFile,
-      this._.slugify(this.name.toLowerCase()),
-      this._.slugify(this.name.toLowerCase())
-    );
 
-    // Get source directory
-    this.rootDir = getDirCount(this.componentFile.replace(directories.source + '/', ''));
+  this.componentFile = path.join(
+    this.route,
+    this._.slugify(this.name.toLowerCase()),
+    this._.slugify(this.name.toLowerCase())
+  );
 
-    this.testFile = path.join(
-      answers.componentFile,
-      this._.slugify(this.name.toLowerCase()),
-      '__tests__',
-      this._.slugify(this.name.toLowerCase())
-    );
+  this.testFile = path.join(
+    this.route,
+    this._.slugify(this.name.toLowerCase()),
+    '__tests__',
+    this._.slugify(this.name.toLowerCase())
+  );
 
-    done();
-  }.bind(this));
 };
 
 ComponentGenerator.prototype.files = function files() {
