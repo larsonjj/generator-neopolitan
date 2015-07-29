@@ -91,6 +91,7 @@ var reactFiles = function reactFiles() {
 
     // App Shared Files
     this.directory('src/screens/App/shared', 'src/screens/App/shared');
+
   }
 };
 
