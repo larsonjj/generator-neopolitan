@@ -234,6 +234,20 @@ src/screens/App/components/mycomponent/__tests__/mycomponent.spec.jsx
 
 ***NOTE: `{styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `Stylus, Less or Sass` respectively***
 
+#### Options
+This subgenerator has a couple options to help customize where your new component will be generated.
+
+| Options | Description |
+|-------- | ----------- |
+| `--route`| Determines which screen to place component. Example: `--route=/contact` will place component within the `src/screens/App/screens/contact/components` folder
+| `--shared`| Identifies component as shared and will be placed within the `shared/components` folder rather than the `components` folder of the specified screen. Example: `src/screens/App/shared/components`
+
+##### Usage
+
+```
+yo neopolitan:module mycomponent [options]
+```
+
 ## Guides
 
 ### Adding third-party libraries

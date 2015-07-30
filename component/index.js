@@ -26,11 +26,16 @@ var ComponentGenerator = module.exports = function ComponentGenerator() {
 util.inherits(ComponentGenerator, yeoman.generators.NamedBase);
 
 // Prompts
-ComponentGenerator.prototype.ask = function ask() {
+ComponentGenerator.prototype.setup = function setup() {
+
+  this.shared = false;
+  if (this.options.shared) {
+    this.shared = this.options.shared;
+  }
 
   var routeDir = function(route) {
     if (route === '/' || !route) {
-      return path.join('src/screens/App/components');
+      return path.join('src/screens/App/' + (this.shared ? 'shared/components' : 'components'));
     }
     var newUrl = route.replace('/', '').split('/').reduce(function(item, newItem) {
       if (newItem) {
@@ -38,14 +43,15 @@ ComponentGenerator.prototype.ask = function ask() {
       }
       return item;
     })
-    return path.join('src/screens/App/screens/', newUrl, 'components');
-  };
+    return path.join('src/screens/App/screens/', newUrl, (this.shared ? 'shared/components' : 'components'));
+  }.bind(this);
 
   this.route = routeDir('/');
   if (this.options.route) {
     this.route = routeDir(this.options.route);
   }
 
+  console.log(this.route);
 
   this.componentFile = path.join(
     this.route,

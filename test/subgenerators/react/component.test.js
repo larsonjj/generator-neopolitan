@@ -47,22 +47,43 @@ describe('React component sub-generator', function() {
         });
       });
     });
-    it('Handles defaults with JSX', function(done) {
+    it('Handles defaults with "route" option', function(done) {
       // Filename
       var component = 'mycomponent';
       var filesToTest = [
-        'src/screens/App/components/' + component + '/__tests__/' + component + '.test.js',
-        'src/screens/App/components/' + component + '/' + component + '.js'
+        'src/screens/App/screens/contact/components/' + component + '/__tests__/' + component + '.test.js',
+        'src/screens/App/screens/contact/components/' + component + '/' + component + '.js'
       ];
 
       helpers.mockPrompt(this.app, {
         jsFramework: 'react'
       });
       this.app.run([], function() {
-        createSubGenerator('component', component, {path: '../../../../'}, {
-          // mock prompt data
-          componentFile: 'src/screens/App/components'
-        }, function() {
+        createSubGenerator('component', component, {
+          path: '../../../../',
+          route: '/contact'
+        }, {}, function() {
+          assert.file(filesToTest);
+          done();
+        });
+      });
+    });
+    it('Handles defaults with "shared" option', function(done) {
+      // Filename
+      var component = 'mycomponent';
+      var filesToTest = [
+        'src/screens/App/shared/components/' + component + '/__tests__/' + component + '.test.js',
+        'src/screens/App/shared/components/' + component + '/' + component + '.js'
+      ];
+
+      helpers.mockPrompt(this.app, {
+        jsFramework: 'react'
+      });
+      this.app.run([], function() {
+        createSubGenerator('component', component, {
+          path: '../../../../',
+          shared: true
+        }, {}, function() {
           assert.file(filesToTest);
           done();
         });
