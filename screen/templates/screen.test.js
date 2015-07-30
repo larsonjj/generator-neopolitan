@@ -4,20 +4,16 @@
 /*eslint-disable no-unused-vars*/
 import React from 'react';
 /*eslint-enable no-unused-vars*/
-import {TestComponent as AppView} from '../app.view';
+import <%= _.classify(name.toLowerCase()) %> from '../<%= _.slugify(name.toLowerCase()) %>';
 import testRenderer from 'utils/test-renderer';
 
-describe('App View', function() {
+describe('<%= _.classify(name.toLowerCase()) %> View', function() {
 
-  let component = testRenderer(<AppView />);
+  let component = testRenderer(<<%= _.classify(name.toLowerCase()) %> />);
 
-  it('provides the "App View" instance', () => {
+  it('provides the "<%= _.classify(name.toLowerCase()) %> View" instance', () => {
     // Expect it to exist
     expect(component)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
-  });
-
-  it('should contain a wrapper div', () => {
-    expect(component.type)<% if (testFramework === 'jasmine') { %>.toBe('div')<% } else if (testFramework === 'mocha') { %>.to.equal('div')<% } %>;
   });
 
 });

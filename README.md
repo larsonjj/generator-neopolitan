@@ -230,20 +230,22 @@ src/screens/App/screens/Contact/components/contact/contact.{styl,less,scss,sass}
 src/screens/App/screens/Contact/components/contact/__tests__/contact.test.js
 ```
 
+Example #2:
+
+```
+yo neopolitan:screen support/contact
+```
+
+Produces:
+
+```
+src/screens/App/screens/Support/screens/Contact/index.js
+src/screens/App/screens/Support/screens/Contact/components/contact/contact.js
+src/screens/App/screens/Support/screens/Contact/components/contact/contact.{styl,less,scss,sass}
+src/screens/App/screens/Support/screens/Contact/components/contact/__tests__/contact.test.js
+```
+
 ***NOTE: `{styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `Stylus, Less or Sass` respectively***
-
-#### Options
-This subgenerator has a couple options to help customize where your new component will be generated.
-
-| Options | Description |
-|-------- | ----------- |
-| `route`| Determines which screen to place component. Example: `--route=/contact` will place files within the `src/screens/App/screens/Contact` folder
-
-##### Usage
-
-```
-yo neopolitan:screen contact --[option]
-```
 
 ### Component
 
