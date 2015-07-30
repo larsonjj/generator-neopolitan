@@ -3,9 +3,9 @@
 import React from 'react';
 import {RouteHandler} from 'react-router';
 import {root} from 'baobab-react/higher-order';
-import AppTree from 'trees/app.tree';
+import GlobalTree from 'trees/global.tree';
 
-class AppView extends React.Component {
+class Layout extends React.Component {
   render() {
     return (
       <div className="app-content">
@@ -15,7 +15,7 @@ class AppView extends React.Component {
   }
 }
 
-export default root(AppView, AppTree);
+export default root(Layout, GlobalTree);
 
 // Export a un-decorated version of the component for testing
-export let TestComponent = AppView;
+export let TestComponent = Layout;

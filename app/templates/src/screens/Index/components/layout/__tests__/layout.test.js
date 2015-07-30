@@ -4,14 +4,14 @@
 /*eslint-disable no-unused-vars*/
 import React from 'react';
 /*eslint-enable no-unused-vars*/
-import {TestComponent as AppView} from '../app.view';
+import {TestComponent as Layout} from '../layout';
 import testRenderer from 'utils/test-renderer';
 
-describe('App View', function() {
+describe('Layout', function() {
 
-  let component = testRenderer(<AppView />);
+  let component = testRenderer(<Layout />);
 
-  it('provides the "App View" instance', () => {
+  it('provides the "Layout" instance', () => {
     // Expect it to exist
     expect(component)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
   });
