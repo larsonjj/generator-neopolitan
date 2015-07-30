@@ -49,10 +49,12 @@ ScreenGenerator.prototype.setup = function setup() {
     return path.join('src/screens/App/screens/', screenName);
   }.bind(this);
 
-  this.userRoute = path.join('/', this._.slugify(this.name.toLowerCase()));
   this.route = routeDir(this.name);
 
-  var newRouteName = this._.last(this.name.split('/'));
+  this.newRouteName = this._.last(this.name.split('/'));
+  this.cleanedURL = this.name.split('/').reduce(function(item, newItem) {
+    return  this._.slugify(item.toLowerCase()) + '/' + this._.slugify(newItem.toLowerCase());
+  }.bind(this));
 
   this.screenFile = path.join(
     this.route,
@@ -62,16 +64,16 @@ ScreenGenerator.prototype.setup = function setup() {
   this.testFile = path.join(
     this.route,
     'components',
-    this._.slugify(newRouteName.toLowerCase()),
+    this._.slugify(this.newRouteName.toLowerCase()),
     '__tests__',
-    this._.slugify(newRouteName.toLowerCase())
+    this._.slugify(this.newRouteName.toLowerCase())
   );
 
   this.componentFile = path.join(
     this.route,
     'components',
-    this._.slugify(newRouteName.toLowerCase()),
-    this._.slugify(newRouteName.toLowerCase())
+    this._.slugify(this.newRouteName.toLowerCase()),
+    this._.slugify(this.newRouteName.toLowerCase())
   );
 
 };

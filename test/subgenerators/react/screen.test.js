@@ -54,7 +54,7 @@ describe('React screen sub-generator', function() {
         'src/screens/App/screens/Contact/screens/' + screenCaptilized + '/components/us/us.js'
       ];
       var fileContentToTest = [
-        ['src/screens/App/screens/Contact/screens/' + screenCaptilized + '/components/us/us.js', /React\.Component/i]
+        ['src/screens/App/screens/Contact/screens/' + screenCaptilized + '/components/us/us.js', /path\=\'\/us\'/i]
       ];
 
       helpers.mockPrompt(this.app, {
