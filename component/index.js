@@ -35,19 +35,27 @@ ComponentGenerator.prototype.setup = function setup() {
 
   var routeDir = function(route) {
     if (route === '/' || !route) {
-      return path.join(directories.source, 'screens/Index/' + (this.shared ? 'shared/components' : 'components'));
+      return path.join(
+        directories.source, directories.screens, '/Index/',
+        (this.shared ? path.join(directories.shared, directories.components) : directories.components));
     }
     // remove duplicate slashes (///contact/////us -> /contact/us)
     var _route = route.replace(/(\/)\/+/g, "$1");
     var newRouteName = this._.last(route.split('/'));
     var newUrl = route.replace('/', '').split('/').reduce(function(item, newItem) {
       if (newItem) {
-      return this._.capitalize(this._.slugify(item.toLowerCase())) + '/screens/' + this._.capitalize(this._.slugify(newItem.toLowerCase()));
+        return path.join(
+          this._.capitalize(this._.slugify(item.toLowerCase())),
+          directories.screens, this._.capitalize(this._.slugify(newItem.toLowerCase()))
+        );
       }
       return this._.capitalize(this._.slugify(item.toLowerCase()));
     }.bind(this))
     var screenName = newUrl.replace(newRouteName, this._.capitalize(this._.slugify(newRouteName.toLowerCase())));
-    return path.join(directories.source, 'screens/Index/screens/', screenName, (this.shared ? 'shared/components' : 'components'));
+    return path.join(
+      directories.source, directories.screens, 'Index', directories.screens, screenName,
+      (this.shared ? path.join(directories.shared, directories.components) : directories.components)
+    );
   }.bind(this);
 
   this.route = routeDir('/');

@@ -73,7 +73,12 @@
     "directories": {
       "source": "src",
       "destination": "build",
-      "temporary": "tmp"
+      "temporary": "tmp",
+      "//": "Directories within the `source` directory",
+      "assets": "assets",
+      "screens": "screens",
+      "shared": "shared",
+      "components": "components"
     }
   }
 }
