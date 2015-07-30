@@ -206,14 +206,14 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 ## Sub-Generators
 
 #### React application
-* [neopolitan:screen](#react-screen)
-* [neopolitan:component](#react-component)
+* [neopolitan:screen](#screen)
+* [neopolitan:component](#component)
 
 ***Note: Generators need to be run from the root directory of your app.***
 
-### React Screen
+### Screen
 
-Creates React Screen File.
+Creates a new Screen.
 
 Example:
 
@@ -245,9 +245,9 @@ This subgenerator has a couple options to help customize where your new componen
 yo neopolitan:screen contact --[option]
 ```
 
-### React Component
+### Component
 
-Creates React Component File.
+Creates a new Component.
 
 Example:
 
