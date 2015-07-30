@@ -39,6 +39,7 @@ var reactFiles = function reactFiles() {
         'src/screens/Index/components/index/__tests__/index.test.js'
       );
       this.template('test/karma/karma.conf.js', 'karma.conf.js');
+      this.template('test/karma/phantomjs-shims.js', 'phantomjs-shims.js');
     }
 
     // Styles

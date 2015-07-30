@@ -49,7 +49,7 @@
     "browserify" : "~10.0.0"<% } %><% if (testFramework !== 'none') { %>,
     "karma": "~0.12.21",
     "karma-browserify": "~4.2.1",
-    "karma-chrome-launcher": "~0.1.2"<% if (testFramework === 'jasmine') { %>,
+    "karma-phantomjs-launcher": "~0.2.0"<% if (testFramework === 'jasmine') { %>,
     "karma-jasmine": "~0.2.0"<% } else if (testFramework === 'mocha') { %>,
     "karma-chai": "~0.1.0",
     "chai": "*",

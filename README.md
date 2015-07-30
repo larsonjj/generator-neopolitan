@@ -30,7 +30,7 @@ A generator for creating React applications. Helps you harness the power of your
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
 - JavaScript Linting with [ESLint](http://eslint.org//)
 - ES6/2015 support out of the box using [Browserify](http://browserify.org/) with [Babel](https://babeljs.io/)
-- [React](http://facebook.github.io/react/) with [Baobab](https://github.com/Yomguithereal/baobab) and [React-Router](https://github.com/rackt/react-router)
+- [React](http://facebook.github.io/react/) with [React-Router](https://github.com/rackt/react-router) and [Baobab](https://github.com/Yomguithereal/baobab)
 
 ### Available Options
 
@@ -102,20 +102,20 @@ Once everything is installed, you will see a project structure like below (Based
 |   │   ├── images                            # Images
 |   |   └── fonts                             # Fonts (Example, will not be generated)
 |   └── screens
-|   |   └── App                               # App/Home screen ('/' route)
+|   |   └── Index                             # Index/Home screen ('/' route)
 |   |       ├── components                    # Components specific to '/' route
-|   |       │   ├── app-view                  # Base layout view
+|   |       │   ├── layout                    # Base layout view (Header, Footer, Sidebar, Content, etc)
 |   |       │   │   ├── __tests__
-|   |       │   │   │   └── app-view.test.js
-|   |       │   │   ├── app.view.js
-|   |       │   │   └── app.view.scss
-|   |       │   └── home-view                 # Homepage view
+|   |       │   │   │   └── layout.test.js
+|   |       │   │   ├── layout.js
+|   |       │   │   └── layout.scss
+|   |       │   └── index                     # Index/Homepage view
 |   |       │       ├── __tests__
-|   |       │       │   └── home.view.test.js
-|   |       │       ├── home.view.js
-|   |       │       └── home.view.scss
+|   |       │       │   └── index.test.js
+|   |       │       ├── index.js
+|   |       │       └── index.scss
 |   |       ├── index.js                      # Route handler for '/' route
-|   |       └── shared                        # Shared components, actions, stores, etc
+|   |       └── shared                        # Shared components, actions, trees, etc
 |   ├── index.html
 |   ├── index.js                              # Main JS file (bootstraps application)
 |   ├── index.scss                            # Main stylesheet (handles importing of all stylesheets)
