@@ -51,8 +51,8 @@ describe('React component sub-generator', function() {
       // Filename
       var component = 'mycomponent';
       var filesToTest = [
-        'src/screens/Index/screens/contact/components/' + component + '/__tests__/' + component + '.test.js',
-        'src/screens/Index/screens/contact/components/' + component + '/' + component + '.js'
+        'src/screens/Index/screens/Contact/components/' + component + '/__tests__/' + component + '.test.js',
+        'src/screens/Index/screens/Contact/components/' + component + '/' + component + '.js'
       ];
 
       helpers.mockPrompt(this.app, {
