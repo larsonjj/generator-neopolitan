@@ -21,7 +21,7 @@ describe('Test Renderer', function() {
 
   it('provides the "Test Renderer" Shallow Rendered Component with type of "div"', () => {
     // Expect it to exist
-    expect(component.type)<% if (testFramework === 'jasmine') { %>.toBe('div')<% } else if (testFramework === 'mocha') { %>.to.equal('div'))<% } %>;
+    expect(component.type)<% if (testFramework === 'jasmine') { %>.toBe('div')<% } else if (testFramework === 'mocha') { %>.to.equal('div')<% } %>;
   });
 
 });

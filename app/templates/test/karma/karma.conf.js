@@ -19,6 +19,7 @@ var karmaConf = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      './phantomjs-shims.js', // Shims unsupported ES5 features for PhantomJS v1.9.x
       testFiles
     ],
 
@@ -31,7 +32,8 @@ var karmaConf = function(config) {
       debug: true,
       transform: [
         require('envify'),
-        require('babelify').configure()
+        require('babelify'),
+        require('resolvify')
       ]
     },
 
@@ -67,7 +69,7 @@ var karmaConf = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
     // If browser does not capture in given timeout [ms], kill it
     captureTimeout: 60000,

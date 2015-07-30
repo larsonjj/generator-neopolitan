@@ -24,8 +24,8 @@ describe('Neopolitan generator using Styles', function() {
       var expected = [
         'src',
         'src/index.scss',
-        'src/screens/App/components/home-view/home.view.scss',
-        'src/screens/App/components/app-view/app.view.scss'
+        'src/screens/Index/components/index/index.scss',
+        'src/screens/Index/components/layout/layout.scss'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -40,8 +40,8 @@ describe('Neopolitan generator using Styles', function() {
       it('Creates expected content', function(done) {
         var expected = [
           'src/index.sass',
-          'src/screens/App/components/home-view/home.view.sass',
-          'src/screens/App/components/app-view/app.view.sass'
+          'src/screens/Index/components/index/index.sass',
+          'src/screens/Index/components/layout/layout.sass'
         ];
 
         helpers.mockPrompt(this.app, {
@@ -60,8 +60,8 @@ describe('Neopolitan generator using Styles', function() {
       var expected = [
         'src',
         'src/index.less',
-        'src/screens/App/components/home-view/home.view.less',
-        'src/screens/App/components/app-view/app.view.less'
+        'src/screens/Index/components/index/index.less',
+        'src/screens/Index/components/layout/layout.less'
       ];
       var fileContentToTest = [
         ['package.json', /less/i]
@@ -82,8 +82,8 @@ describe('Neopolitan generator using Styles', function() {
       var expected = [
         'src',
         'src/index.styl',
-        'src/screens/App/components/home-view/home.view.styl',
-        'src/screens/App/components/app-view/app.view.styl'
+        'src/screens/Index/components/index/index.styl',
+        'src/screens/Index/components/layout/layout.styl'
       ];
 
       helpers.mockPrompt(this.app, {

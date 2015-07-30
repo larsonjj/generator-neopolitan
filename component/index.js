@@ -1,7 +1,6 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var getDirCount = require('../helpers/get-dir-count');
 var path = require('path');
 var pjson = require(path.join(process.cwd(), './package.json'));
 var config = pjson.config;
@@ -27,38 +26,49 @@ var ComponentGenerator = module.exports = function ComponentGenerator() {
 util.inherits(ComponentGenerator, yeoman.generators.NamedBase);
 
 // Prompts
-ComponentGenerator.prototype.ask = function ask() {
+ComponentGenerator.prototype.setup = function setup() {
 
-  var self = this;
-  var done = this.async();
-  var prompts = [{
-    name: 'componentFile',
-    message: 'Where would you like to create this component?',
-    default: function(answers) {
-      return 'src/screens/App/components';
+  this.shared = false;
+  if (this.options.shared) {
+    this.shared = this.options.shared;
+  }
+
+  var routeDir = function(route) {
+    if (route === '/' || !route) {
+      return path.join(directories.source, 'screens/Index/' + (this.shared ? 'shared/components' : 'components'));
     }
-  }];
+    // remove duplicate slashes (///contact/////us -> /contact/us)
+    var _route = route.replace(/(\/)\/+/g, "$1");
+    var newRouteName = this._.last(route.split('/'));
+    var newUrl = route.replace('/', '').split('/').reduce(function(item, newItem) {
+      if (newItem) {
+      return this._.capitalize(this._.slugify(item.toLowerCase())) + '/screens/' + this._.capitalize(this._.slugify(newItem.toLowerCase()));
+      }
+      return this._.capitalize(this._.slugify(item.toLowerCase()));
+    }.bind(this))
+    var screenName = newUrl.replace(newRouteName, this._.capitalize(this._.slugify(newRouteName.toLowerCase())));
+    console.log("=====================");
+    return path.join(directories.source, 'screens/Index/screens/', screenName, (this.shared ? 'shared/components' : 'components'));
+  }.bind(this);
 
-  this.prompt(prompts, function(answers) {
+  this.route = routeDir('/');
+  if (this.options.route) {
+    this.route = routeDir(this.options.route);
+  }
 
-    this.componentFile = path.join(
-      answers.componentFile,
-      this._.slugify(this.name.toLowerCase()),
-      this._.slugify(this.name.toLowerCase())
-    );
+  this.componentFile = path.join(
+    this.route,
+    this._.slugify(this.name.toLowerCase()),
+    this._.slugify(this.name.toLowerCase())
+  );
 
-    // Get source directory
-    this.rootDir = getDirCount(this.componentFile.replace(directories.source + '/', ''));
+  this.testFile = path.join(
+    this.route,
+    this._.slugify(this.name.toLowerCase()),
+    '__tests__',
+    this._.slugify(this.name.toLowerCase())
+  );
 
-    this.testFile = path.join(
-      answers.componentFile,
-      this._.slugify(this.name.toLowerCase()),
-      '__tests__',
-      this._.slugify(this.name.toLowerCase())
-    );
-
-    done();
-  }.bind(this));
 };
 
 ComponentGenerator.prototype.files = function files() {

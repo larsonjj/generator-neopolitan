@@ -30,7 +30,7 @@ A generator for creating React applications. Helps you harness the power of your
 - [Sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) for JavaScript and Stylesheets
 - JavaScript Linting with [ESLint](http://eslint.org//)
 - ES6/2015 support out of the box using [Browserify](http://browserify.org/) with [Babel](https://babeljs.io/)
-- [React](http://facebook.github.io/react/) with [Baobab](https://github.com/Yomguithereal/baobab) and [React-Router](https://github.com/rackt/react-router)
+- [React](http://facebook.github.io/react/) with [React-Router](https://github.com/rackt/react-router) and [Baobab](https://github.com/Yomguithereal/baobab)
 
 ### Available Options
 
@@ -102,20 +102,20 @@ Once everything is installed, you will see a project structure like below (Based
 |   │   ├── images                            # Images
 |   |   └── fonts                             # Fonts (Example, will not be generated)
 |   └── screens
-|   |   └── App                               # App/Home screen ('/' route)
+|   |   └── Index                             # Index/Home screen ('/' route)
 |   |       ├── components                    # Components specific to '/' route
-|   |       │   ├── app-view                  # Base layout view
+|   |       │   ├── layout                    # Base layout view (Header, Footer, Sidebar, Content, etc)
 |   |       │   │   ├── __tests__
-|   |       │   │   │   └── app-view.test.js
-|   |       │   │   ├── app.view.js
-|   |       │   │   └── app.view.scss
-|   |       │   └── home-view                 # Homepage view
+|   |       │   │   │   └── layout.test.js
+|   |       │   │   ├── layout.js
+|   |       │   │   └── layout.scss
+|   |       │   └── index                     # Index/Homepage view
 |   |       │       ├── __tests__
-|   |       │       │   └── home.view.test.js
-|   |       │       ├── home.view.js
-|   |       │       └── home.view.scss
+|   |       │       │   └── index.test.js
+|   |       │       ├── index.js
+|   |       │       └── index.scss
 |   |       ├── index.js                      # Route handler for '/' route
-|   |       └── shared                        # Shared components, actions, stores, etc
+|   |       └── shared                        # Shared components, actions, trees, etc
 |   ├── index.html
 |   ├── index.js                              # Main JS file (bootstraps application)
 |   ├── index.scss                            # Main stylesheet (handles importing of all stylesheets)
@@ -206,33 +206,80 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 ## Sub-Generators
 
 #### React application
-* [neopolitan:module](#react-module)
+* [neopolitan:screen](#screen)
+* [neopolitan:component](#component)
 
 ***Note: Generators need to be run from the root directory of your app.***
 
-## React Sub-generators
-***Note: (The following sub-generators can only be used with React applications)***
+### Screen
 
-### React Module
-
-Creates React Component File.
+Creates a new Screen.
 
 Example:
 
 ```
-yo neopolitan:module mycomponent
-? Where would you like to create this react component?: src/_modules
+yo neopolitan:screen contact
 ```
 
 Produces:
 
 ```
-src/_modules/mymodule/mymodule.jsx
-src/_modules/mymodule/mymodule.{css,styl,less,scss,sass}
-src/_modules/mymodule/__tests__/mymodule.spec.jsx
+src/screens/App/screens/Contact/index.js
+src/screens/App/screens/Contact/components/contact/contact.js
+src/screens/App/screens/Contact/components/contact/contact.{styl,less,scss,sass}
+src/screens/App/screens/Contact/components/contact/__tests__/contact.test.js
 ```
 
-***NOTE: `{css,styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `CSS, Stylus, Less or Sass` respectively***
+Example #2:
+
+```
+yo neopolitan:screen support/contact
+```
+
+Produces:
+
+```
+src/screens/App/screens/Support/screens/Contact/index.js
+src/screens/App/screens/Support/screens/Contact/components/contact/contact.js
+src/screens/App/screens/Support/screens/Contact/components/contact/contact.{styl,less,scss,sass}
+src/screens/App/screens/Support/screens/Contact/components/contact/__tests__/contact.test.js
+```
+
+***NOTE: `{styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `Stylus, Less or Sass` respectively***
+
+### Component
+
+Creates a new Component.
+
+Example:
+
+```
+yo neopolitan:component mycomponent
+```
+
+Produces:
+
+```
+src/screens/App/components/mycomponent/mycomponent.js
+src/screens/App/components/mycomponent/mycomponent.{styl,less,scss,sass}
+src/screens/App/components/mycomponent/__tests__/mycomponent.test.js
+```
+
+***NOTE: `{styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `Stylus, Less or Sass` respectively***
+
+#### Options
+This subgenerator has a couple options to help customize where your new component will be generated.
+
+| Options | Description |
+|-------- | ----------- |
+| `route`| Determines which screen to place component. Example: `--route=/contact` will place component files within the `src/screens/App/screens/Contact/components` folder
+| `shared`| Specifies component files be placed within the `shared/components` folder rather than the `components` folder of the specified screen. Example: `src/screens/App/shared/components`
+
+##### Usage
+
+```
+yo neopolitan:component mycomponent --[option]
+```
 
 ## Guides
 

@@ -1,12 +1,11 @@
 'use strict';
 
 import React from 'react';
-import {branch} from 'baobab-react/decorators';
-import appActions from '../../shared/actions/app.actions';
+import globalActions from 'actions/global.actions';
 
-class HomeView extends React.Component {
+class Index extends React.Component {
   componentWillMount() {
-    appActions.setPage({title: 'Home'});
+    globalActions.setPage({title: 'Home'});
   }
   render() {
     return (
@@ -26,4 +25,4 @@ class HomeView extends React.Component {
   }
 }
 
-export default HomeView;
+export default Index;

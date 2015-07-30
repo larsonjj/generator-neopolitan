@@ -14,6 +14,9 @@ import browserify from 'browserify';
 import gulpif from 'gulp-if';
 import envify from 'envify';
 import babelify from 'babelify';
+import resolvify from 'resolvify';
+import watchify from 'watchify';
+import _ from 'lodash';
 
 // Load all gulp plugins based on their names
 // EX: gulp-copy -> copy
@@ -36,14 +39,14 @@ let browserSync = browserSyncLib.create();
 <% if (cssOption === 'sass') { %>
 // Sass compilation
 gulp.task('sass', () => {
-  let dest = path.join(__dirname, taskTarget, dirs.styles);
+  let dest = path.join(__dirname, taskTarget);
   gulp.src(path.join(__dirname, dirs.source, '*.{scss,sass}'))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.sass({
       outputStyle: 'expanded',
       precision: 10,
-      includePaths: [path.join(__dirname, dirs.source, dirs.styles) ]
+      includePaths: [path.join(__dirname, dirs.source) ]
     }).on('error', plugins.sass.logError))
     .pipe(plugins.postcss([autoprefixer({browsers: ['last 2 version', '> 5%', 'safari 5', 'ios 6', 'android 4']})]))
     .pipe(plugins.sourcemaps.write('./'))
@@ -53,12 +56,12 @@ gulp.task('sass', () => {
 
 // Less compilation
 gulp.task('less', () => {
-  let dest = path.join(__dirname, taskTarget, dirs.styles);
+  let dest = path.join(__dirname, taskTarget);
   return gulp.src(path.join(__dirname, dirs.source, '*.less'))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.less({
-      paths: [path.join(__dirname, dirs.source, dirs.styles)]
+      paths: [path.join(__dirname, dirs.source)]
     }))
     .pipe(plugins.postcss([autoprefixer({browsers: ['ie >= 9']})]))
     .pipe(plugins.sourcemaps.write('./'))
@@ -68,7 +71,7 @@ gulp.task('less', () => {
 
 // Stylus compilation
 gulp.task('stylus', () => {
-  let dest = path.join(__dirname, taskTarget, dirs.styles);
+  let dest = path.join(__dirname, taskTarget);
   gulp.src(path.join(__dirname, dirs.source, '*.styl'))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
@@ -111,23 +114,39 @@ gulp.task('imagemin', () => {
     .pipe(gulp.dest(dest));
 });
 
-// Browserify
-gulp.task('browserify', () => {
+// Browserify Task
+
+// Options
+let customOpts = {
+  entries: [path.join(__dirname, dirs.source, 'index.js')],
+  debug: true,
+  transform: [
+    envify,   // Sets NODE_ENV for better optimization of npm packages
+    babelify, // Enable ES6 features
+    resolvify // Enable module resolving for custom folders
+  ],
+  fullPaths: true // for watchify
+}
+
+// Setup browserify
+let b = browserify(customOpts);
+
+if (!production) {
+  // Setup Watchify for faster builds
+  let opts = _.assign({}, watchify.args, customOpts);
+  b = watchify(browserify(opts));
+}
+
+let browserifyTask = function() {
   let dest = path.join(__dirname, taskTarget);
-  browserify(
-    path.join(__dirname, dirs.source, 'index.js'), {
-    debug: true,
-    transform: [
-      envify,
-      babelify.configure() // Enable ES6 features
-    ]
-  }).bundle()
+
+  return b.bundle()
     .on('error', function (err) {
       plugins.util.log(
         plugins.util.colors.red("Browserify compile error:"),
         err.message,
         '\n\n',
-        err.codeFrame.replace(' ', ''),
+        err.codeFrame,
         '\n'
       );
       this.emit('end');
@@ -139,7 +158,12 @@ gulp.task('browserify', () => {
       .on('error', plugins.util.log)
     .pipe(plugins.sourcemaps.write('./'))
     .pipe(gulp.dest(dest));
-});
+};
+
+b.on('update', browserifyTask); // on any dep update, runs the bundler
+b.on('log', plugins.util.log); // output build logs to terminal
+
+gulp.task('browserify', browserifyTask);
 
 // Clean
 gulp.task('clean', del.bind(null, [
@@ -222,11 +246,6 @@ gulp.task('serve', [
         '!' + path.join(__dirname, dirs.source, 'assets/images/**/*')
       ], ['copy']);
 
-      // Scripts
-      gulp.watch([
-        path.join(__dirname, dirs.source, '**/*.js')
-      ], ['browserify']);
-
       // Images
       gulp.watch([
         path.join(__dirname, dirs.source, 'assets/images/**/*.{jpg,jpeg,gif,svg,png}')
@@ -234,7 +253,8 @@ gulp.task('serve', [
 
       // All other files
       gulp.watch([
-        path.join(__dirname, dirs.temporary, '**/*')
+        path.join(__dirname, dirs.temporary, '**/*'),
+        '!' + path.join(__dirname, dirs.temporary, '**/*.js')
       ]).on('change', browserSync.reload);
 
     }

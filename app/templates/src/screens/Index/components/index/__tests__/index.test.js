@@ -4,14 +4,14 @@
 /*eslint-disable no-unused-vars*/
 import React from 'react';
 /*eslint-enable no-unused-vars*/
-import HomeView from '../home.view';
-import testRenderer from '../../../shared/utils/test-renderer';
+import Index from '../index';
+import testRenderer from 'utils/test-renderer';
 
-describe('Home View', function() {
+describe('Index', function() {
 
-  let component = testRenderer(<HomeView />);
+  let component = testRenderer(<Index />);
 
-  it('provides the "Home View" instance', () => {
+  it('provides the "Index" instance', () => {
     // Expect it to exist
     expect(component)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
   });

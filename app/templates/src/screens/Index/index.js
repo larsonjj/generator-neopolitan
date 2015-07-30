@@ -2,14 +2,14 @@
 import React from 'react';
 /*eslint-enable no-unused-vars*/
 import { Route, DefaultRoute } from 'react-router';
-import AppView from './components/app-view/app.view';
-import HomeView from './components/home-view/home.view';
+import Layout from './components/layout/layout';
+import Index from './components/index/index';
 
 export default (
-  <Route name='App' path='/' handler={AppView}>
+  <Route name='App' path='/' handler={Layout}>
     // Place sub routes here
 
     // Default route
-    <DefaultRoute name='Home' handler={HomeView} />
+    <DefaultRoute name='Home' handler={Index} />
   </Route>
 );

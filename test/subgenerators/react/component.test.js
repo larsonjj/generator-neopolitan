@@ -26,11 +26,11 @@ describe('React component sub-generator', function() {
       // Filename
       var component = 'mycomponent';
       var filesToTest = [
-        'src/screens/App/components/' + component + '/__tests__/' + component + '.test.js',
-        'src/screens/App/components/' + component + '/' + component + '.js'
+        'src/screens/Index/components/' + component + '/__tests__/' + component + '.test.js',
+        'src/screens/Index/components/' + component + '/' + component + '.js'
       ];
       var fileContentToTest = [
-        ['src/screens/App/components/' + component + '/' + component + '.js', /React\.Component/i]
+        ['src/screens/Index/components/' + component + '/' + component + '.js', /React\.Component/i]
       ];
 
       helpers.mockPrompt(this.app, {
@@ -39,7 +39,7 @@ describe('React component sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('component', component, {path: '../../../../'}, {
           // mock prompt data
-          componentFile: 'src/screens/App/components'
+          componentFile: 'src/screens/Index/components'
         }, function() {
           assert.file(filesToTest);
           assert.fileContent(fileContentToTest);
@@ -47,22 +47,43 @@ describe('React component sub-generator', function() {
         });
       });
     });
-    it('Handles defaults with JSX', function(done) {
+    it('Handles defaults with "route" option', function(done) {
       // Filename
       var component = 'mycomponent';
       var filesToTest = [
-        'src/screens/App/components/' + component + '/__tests__/' + component + '.test.js',
-        'src/screens/App/components/' + component + '/' + component + '.js'
+        'src/screens/Index/screens/contact/components/' + component + '/__tests__/' + component + '.test.js',
+        'src/screens/Index/screens/contact/components/' + component + '/' + component + '.js'
       ];
 
       helpers.mockPrompt(this.app, {
         jsFramework: 'react'
       });
       this.app.run([], function() {
-        createSubGenerator('component', component, {path: '../../../../'}, {
-          // mock prompt data
-          componentFile: 'src/screens/App/components'
-        }, function() {
+        createSubGenerator('component', component, {
+          path: '../../../../',
+          route: '/contact'
+        }, {}, function() {
+          assert.file(filesToTest);
+          done();
+        });
+      });
+    });
+    it('Handles defaults with "shared" option', function(done) {
+      // Filename
+      var component = 'mycomponent';
+      var filesToTest = [
+        'src/screens/Index/shared/components/' + component + '/__tests__/' + component + '.test.js',
+        'src/screens/Index/shared/components/' + component + '/' + component + '.js'
+      ];
+
+      helpers.mockPrompt(this.app, {
+        jsFramework: 'react'
+      });
+      this.app.run([], function() {
+        createSubGenerator('component', component, {
+          path: '../../../../',
+          shared: true
+        }, {}, function() {
           assert.file(filesToTest);
           done();
         });
@@ -72,10 +93,10 @@ describe('React component sub-generator', function() {
       // Filename
       var component = 'mycomponent';
       var filesToTest = [
-        'src/screens/App/components/' + component + '/' + component + '.js'
+        'src/screens/Index/components/' + component + '/' + component + '.js'
       ];
       var filesNotCreated = [
-        'src/screens/App/components/' + component + '/__tests__/' + component + '.test.js'
+        'src/screens/Index/components/' + component + '/__tests__/' + component + '.test.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -85,7 +106,7 @@ describe('React component sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('component', component, {path: '../../../../'}, {
           // mock prompt data
-          componentFile: 'src/screens/App/components'
+          componentFile: 'src/screens/Index/components'
         }, function() {
           assert.file(filesToTest);
           assert.noFile(filesNotCreated);

@@ -27,13 +27,13 @@ describe('Neopolitan generator using React', function() {
           var expected = [
             'src',
             'src/index.js',
-            'src/screens/App/index.js',
-            'src/screens/App/shared/trees/app.tree.js',
-            'src/screens/App/shared/actions/app.actions.js'
+            'src/screens/Index/index.js',
+            'src/screens/Index/shared/trees/global.tree.js',
+            'src/screens/Index/shared/actions/global.actions.js'
           ];
 
           var fileContentToTest = [
-            ['src/screens/App/index.js', /export/i],
+            ['src/screens/Index/index.js', /export/i],
             ['src/index.html', /app\-wrapper/i]
           ];
 
@@ -55,11 +55,11 @@ describe('Neopolitan generator using React', function() {
         it('Creates expected files with expected content', function(done) {
           var expected = [
             // add files and folders you expect to exist here.
-            'src/screens/App/components/home-view/home.view.js'
+            'src/screens/Index/components/index/index.js'
           ];
           var fileContentToTest = [
-            ['src/screens/App/components/home-view/home.view.js', /<div>/i],
-            ['src/screens/App/index.js', /Route/i]
+            ['src/screens/Index/components/index/index.js', /<div>/i],
+            ['src/screens/Index/index.js', /Route/i]
           ];
 
           helpers.mockPrompt(this.app, {
@@ -81,11 +81,11 @@ describe('Neopolitan generator using React', function() {
         it('Creates expected files with expected content', function(done) {
           var expected = [
             // add files and folders you expect to exist here.
-            'src/screens/App/components/home-view/home.view.js'
+            'src/screens/Index/components/index/index.js'
           ];
           var fileContentToTest = [
-            ['src/screens/App/components/home-view/home.view.js', /<div>/i],
-            ['src/screens/App/index.js', /Route/i]
+            ['src/screens/Index/components/index/index.js', /<div>/i],
+            ['src/screens/Index/index.js', /Route/i]
           ];
 
           helpers.mockPrompt(this.app, {

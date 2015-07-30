@@ -4,14 +4,14 @@
 /*eslint-disable no-unused-vars*/
 import React from 'react';
 /*eslint-enable no-unused-vars*/
-import <%= _.classify(name.toLowerCase()) %> from '../<%= _.slugify(name.toLowerCase()) %>';
+import <%= _.classify(newRouteName.toLowerCase()) %> from '../<%= _.slugify(newRouteName.toLowerCase()) %>';
 import testRenderer from 'utils/test-renderer';
 
-describe('<%= _.classify(name.toLowerCase()) %> View', function() {
+describe('<%= _.classify(newRouteName.toLowerCase()) %> View', function() {
 
-  let component = testRenderer(<<%= _.classify(name.toLowerCase()) %> />);
+  let component = testRenderer(<<%= _.classify(newRouteName.toLowerCase()) %> />);
 
-  it('provides the "<%= _.classify(name.toLowerCase()) %> View" instance', () => {
+  it('provides the "<%= _.classify(newRouteName.toLowerCase()) %> View" instance', () => {
     // Expect it to exist
     expect(component)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
   });
