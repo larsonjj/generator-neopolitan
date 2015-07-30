@@ -5,7 +5,7 @@ import { Route, DefaultRoute } from 'react-router';
 import <%= _.classify(newRouteName) %> from './components/<%= _.slugify(newRouteName.toLowerCase()) %>/<%= _.slugify(newRouteName.toLowerCase()) %>';
 
 export default (
-  <Route name='<%= _.capitalize(newRouteName) %>' path='/<%= cleanedURL %>'>
+  <Route name='<%= _.capitalize(newRouteName) %>' path='<%= cleanedURL %>'>
     // Place sub routes here
 
     // Default route

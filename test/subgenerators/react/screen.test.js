@@ -27,11 +27,11 @@ describe('React screen sub-generator', function() {
       var screen = 'contact';
       var screenCaptilized = 'Contact';
       var filesToTest = [
-        'src/screens/App/screens/' + screenCaptilized + '/components/' + screen + '/__tests__/' + screen + '.test.js',
-        'src/screens/App/screens/' + screenCaptilized + '/components/' + screen + '/' + screen + '.js'
+        'src/screens/Index/screens/' + screenCaptilized + '/components/' + screen + '/__tests__/' + screen + '.test.js',
+        'src/screens/Index/screens/' + screenCaptilized + '/components/' + screen + '/' + screen + '.js'
       ];
       var fileContentToTest = [
-        ['src/screens/App/screens/' + screenCaptilized +  '/components/' + screen +'/' + screen + '.js', /React\.Component/i]
+        ['src/screens/Index/screens/' + screenCaptilized +  '/components/' + screen +'/' + screen + '.js', /React\.Component/i]
       ];
 
       helpers.mockPrompt(this.app, {
@@ -50,12 +50,12 @@ describe('React screen sub-generator', function() {
       var screen = '/contact/us';
       var screenCaptilized = 'Us';
       var filesToTest = [
-        'src/screens/App/screens/Contact/screens/' + screenCaptilized + '/components/us/__tests__/us.test.js',
-        'src/screens/App/screens/Contact/screens/' + screenCaptilized + '/components/us/us.js'
+        'src/screens/Index/screens/Contact/screens/' + screenCaptilized + '/components/us/__tests__/us.test.js',
+        'src/screens/Index/screens/Contact/screens/' + screenCaptilized + '/components/us/us.js'
       ];
       var fileContentToTest = [
-        ['src/screens/App/screens/Contact/screens/' + screenCaptilized + '/components/us/us.js', /React\.Component/i],
-        ['src/screens/App/screens/Contact/screens/' + screenCaptilized + '/index.js', /path\=\'\/contact\/us\'/i]
+        ['src/screens/Index/screens/Contact/screens/' + screenCaptilized + '/components/us/us.js', /React\.Component/i],
+        ['src/screens/Index/screens/Contact/screens/' + screenCaptilized + '/index.js', /path\=\'\/contact\/us\'/i]
       ];
 
       helpers.mockPrompt(this.app, {
@@ -76,10 +76,10 @@ describe('React screen sub-generator', function() {
       var screen = 'contact';
       var screenCaptilized = 'Contact';
       var filesToTest = [
-        'src/screens/App/screens/' + screenCaptilized + '/components/' + screen + '/' + screen + '.js'
+        'src/screens/Index/screens/' + screenCaptilized + '/components/' + screen + '/' + screen + '.js'
       ];
       var filesNotCreated = [
-        'src/screens/App/screens/' + screenCaptilized + '/components/' + screen + '/' + screen + '/__tests__/' + screen + '.test.js'
+        'src/screens/Index/screens/' + screenCaptilized + '/components/' + screen + '/' + screen + '/__tests__/' + screen + '.test.js'
       ];
 
       helpers.mockPrompt(this.app, {

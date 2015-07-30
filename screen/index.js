@@ -29,14 +29,14 @@ util.inherits(ScreenGenerator, yeoman.generators.NamedBase);
 ScreenGenerator.prototype.setup = function setup() {
 
   // remove duplicate slashes (///contact/////us -> /contact/us)
-  this.name = this.name.replace(/(\/)\/+/g, "$1");
+  this.name = this.name.replace(/(\/)\/+/g, '$1');
 
   // Add '/' to name if it doesn't have it
   this.name = this.name.split('')[0] === '/' ? this.name : '/' + this.name;
 
   var routeDir = function(route) {
     if (route === '/' || !route) {
-      return path.join('src/screens/App/screens');
+      return path.join(directories.source, 'screens/Index/screens');
     }
     var newRouteName = this._.last(this.name.split('/'));
     var newUrl = route.replace('/', '').split('/').reduce(function(item, newItem) {
@@ -46,14 +46,16 @@ ScreenGenerator.prototype.setup = function setup() {
       return this._.capitalize(this._.slugify(item.toLowerCase()));
     }.bind(this))
     var screenName = newUrl.replace(newRouteName, this._.capitalize(this._.slugify(newRouteName.toLowerCase())));
-    return path.join('src/screens/App/screens/', screenName);
+    return path.join(directories.source, 'screens/Index/screens/', screenName);
   }.bind(this);
 
   this.route = routeDir(this.name);
 
   this.newRouteName = this._.last(this.name.split('/'));
   this.cleanedURL = this.name.split('/').reduce(function(item, newItem) {
-    return  this._.slugify(item.toLowerCase()) + '/' + this._.slugify(newItem.toLowerCase());
+    var url = '/' + this._.slugify(item.toLowerCase()) + '/' + this._.slugify(newItem.toLowerCase());
+    // remove duplicate slashes (///contact/////us -> /contact/us)
+    return url.replace(/(\/)\/+/g, '$1');
   }.bind(this));
 
   this.screenFile = path.join(

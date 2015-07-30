@@ -26,11 +26,11 @@ describe('React component sub-generator', function() {
       // Filename
       var component = 'mycomponent';
       var filesToTest = [
-        'src/screens/App/components/' + component + '/__tests__/' + component + '.test.js',
-        'src/screens/App/components/' + component + '/' + component + '.js'
+        'src/screens/Index/components/' + component + '/__tests__/' + component + '.test.js',
+        'src/screens/Index/components/' + component + '/' + component + '.js'
       ];
       var fileContentToTest = [
-        ['src/screens/App/components/' + component + '/' + component + '.js', /React\.Component/i]
+        ['src/screens/Index/components/' + component + '/' + component + '.js', /React\.Component/i]
       ];
 
       helpers.mockPrompt(this.app, {
@@ -39,7 +39,7 @@ describe('React component sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('component', component, {path: '../../../../'}, {
           // mock prompt data
-          componentFile: 'src/screens/App/components'
+          componentFile: 'src/screens/Index/components'
         }, function() {
           assert.file(filesToTest);
           assert.fileContent(fileContentToTest);
@@ -51,8 +51,8 @@ describe('React component sub-generator', function() {
       // Filename
       var component = 'mycomponent';
       var filesToTest = [
-        'src/screens/App/screens/contact/components/' + component + '/__tests__/' + component + '.test.js',
-        'src/screens/App/screens/contact/components/' + component + '/' + component + '.js'
+        'src/screens/Index/screens/contact/components/' + component + '/__tests__/' + component + '.test.js',
+        'src/screens/Index/screens/contact/components/' + component + '/' + component + '.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -72,8 +72,8 @@ describe('React component sub-generator', function() {
       // Filename
       var component = 'mycomponent';
       var filesToTest = [
-        'src/screens/App/shared/components/' + component + '/__tests__/' + component + '.test.js',
-        'src/screens/App/shared/components/' + component + '/' + component + '.js'
+        'src/screens/Index/shared/components/' + component + '/__tests__/' + component + '.test.js',
+        'src/screens/Index/shared/components/' + component + '/' + component + '.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -93,10 +93,10 @@ describe('React component sub-generator', function() {
       // Filename
       var component = 'mycomponent';
       var filesToTest = [
-        'src/screens/App/components/' + component + '/' + component + '.js'
+        'src/screens/Index/components/' + component + '/' + component + '.js'
       ];
       var filesNotCreated = [
-        'src/screens/App/components/' + component + '/__tests__/' + component + '.test.js'
+        'src/screens/Index/components/' + component + '/__tests__/' + component + '.test.js'
       ];
 
       helpers.mockPrompt(this.app, {
@@ -106,7 +106,7 @@ describe('React component sub-generator', function() {
       this.app.run([], function() {
         createSubGenerator('component', component, {path: '../../../../'}, {
           // mock prompt data
-          componentFile: 'src/screens/App/components'
+          componentFile: 'src/screens/Index/components'
         }, function() {
           assert.file(filesToTest);
           assert.noFile(filesNotCreated);

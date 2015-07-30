@@ -35,23 +35,26 @@ ComponentGenerator.prototype.setup = function setup() {
 
   var routeDir = function(route) {
     if (route === '/' || !route) {
-      return path.join('src/screens/App/' + (this.shared ? 'shared/components' : 'components'));
+      return path.join(directories.source, 'screens/Index/' + (this.shared ? 'shared/components' : 'components'));
     }
+    // remove duplicate slashes (///contact/////us -> /contact/us)
+    var _route = route.replace(/(\/)\/+/g, "$1");
+    var newRouteName = this._.last(route.split('/'));
     var newUrl = route.replace('/', '').split('/').reduce(function(item, newItem) {
       if (newItem) {
-      return item + '/screens/' + newItem;
+      return this._.capitalize(this._.slugify(item.toLowerCase())) + '/screens/' + this._.capitalize(this._.slugify(newItem.toLowerCase()));
       }
-      return item;
-    })
-    return path.join('src/screens/App/screens/', newUrl, (this.shared ? 'shared/components' : 'components'));
+      return this._.capitalize(this._.slugify(item.toLowerCase()));
+    }.bind(this))
+    var screenName = newUrl.replace(newRouteName, this._.capitalize(this._.slugify(newRouteName.toLowerCase())));
+    console.log("=====================");
+    return path.join(directories.source, 'screens/Index/screens/', screenName, (this.shared ? 'shared/components' : 'components'));
   }.bind(this);
 
   this.route = routeDir('/');
   if (this.options.route) {
     this.route = routeDir(this.options.route);
   }
-
-  console.log(this.route);
 
   this.componentFile = path.join(
     this.route,
