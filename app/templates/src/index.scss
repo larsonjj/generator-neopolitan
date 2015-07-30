@@ -2,7 +2,7 @@
 @import 'node_modules/normalize.css/normalize';
 
 // Box sizing partial styles:
-// Apply a natural box layout model to all elements
+// Indexly a natural box layout model to all elements
 *,
 *:before,
 *:after {
@@ -12,8 +12,8 @@
 }
 
 // Screens and Modules
-@import './screens/App/components/app-view/app.view';
-@import './screens/App/components/home-view/home.view';
+@import './screens/Index/components/layout/layout';
+@import './screens/Index/components/index/index';
 
 // Styling on warning for users on IE7 or below
 .browsehappy {
