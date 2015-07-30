@@ -224,10 +224,10 @@ yo neopolitan:screen contact
 Produces:
 
 ```
-src/screens/App/screens/Contact/index.js
-src/screens/App/screens/Contact/components/contact/contact.js
-src/screens/App/screens/Contact/components/contact/contact.{styl,less,scss,sass}
-src/screens/App/screens/Contact/components/contact/__tests__/contact.test.js
+src/screens/Index/screens/Contact/index.js
+src/screens/Index/screens/Contact/components/contact/contact.js
+src/screens/Index/screens/Contact/components/contact/contact.{styl,less,scss,sass}
+src/screens/Index/screens/Contact/components/contact/__tests__/contact.test.js
 ```
 
 Example #2:
@@ -239,10 +239,10 @@ yo neopolitan:screen support/contact
 Produces:
 
 ```
-src/screens/App/screens/Support/screens/Contact/index.js
-src/screens/App/screens/Support/screens/Contact/components/contact/contact.js
-src/screens/App/screens/Support/screens/Contact/components/contact/contact.{styl,less,scss,sass}
-src/screens/App/screens/Support/screens/Contact/components/contact/__tests__/contact.test.js
+src/screens/Index/screens/Support/screens/Contact/index.js
+src/screens/Index/screens/Support/screens/Contact/components/contact/contact.js
+src/screens/Index/screens/Support/screens/Contact/components/contact/contact.{styl,less,scss,sass}
+src/screens/Index/screens/Support/screens/Contact/components/contact/__tests__/contact.test.js
 ```
 
 ***NOTE: `{styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `Stylus, Less or Sass` respectively***
@@ -260,9 +260,9 @@ yo neopolitan:component mycomponent
 Produces:
 
 ```
-src/screens/App/components/mycomponent/mycomponent.js
-src/screens/App/components/mycomponent/mycomponent.{styl,less,scss,sass}
-src/screens/App/components/mycomponent/__tests__/mycomponent.test.js
+src/screens/Index/components/mycomponent/mycomponent.js
+src/screens/Index/components/mycomponent/mycomponent.{styl,less,scss,sass}
+src/screens/Index/components/mycomponent/__tests__/mycomponent.test.js
 ```
 
 ***NOTE: `{styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `Stylus, Less or Sass` respectively***
@@ -272,8 +272,8 @@ This subgenerator has a couple options to help customize where your new componen
 
 | Options | Description |
 |-------- | ----------- |
-| `route`| Determines which screen to place component. Example: `--route=/contact` will place component files within the `src/screens/App/screens/Contact/components` folder
-| `shared`| Specifies component files be placed within the `shared/components` folder rather than the `components` folder of the specified screen. Example: `src/screens/App/shared/components`
+| `route`| Determines which screen to place component. Example: `--route=/contact` will place component files within the `src/screens/Index/screens/Contact/components` folder
+| `shared`| Specifies component files be placed within the `shared/components` folder rather than the `components` folder of the specified screen. Example: `src/screens/Index/shared/components`
 
 ##### Usage
 
