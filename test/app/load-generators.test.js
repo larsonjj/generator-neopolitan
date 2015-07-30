@@ -8,5 +8,6 @@ describe('Neopolitan generator and sub-generators', function() {
     assert(require('../../app') !== undefined);
     // Sub-generators
     assert(require('../../component') !== undefined);
+    assert(require('../../screen') !== undefined);
   });
 });
