@@ -47,7 +47,6 @@ ComponentGenerator.prototype.setup = function setup() {
       return this._.capitalize(this._.slugify(item.toLowerCase()));
     }.bind(this))
     var screenName = newUrl.replace(newRouteName, this._.capitalize(this._.slugify(newRouteName.toLowerCase())));
-    console.log("=====================");
     return path.join(directories.source, 'screens/Index/screens/', screenName, (this.shared ? 'shared/components' : 'components'));
   }.bind(this);
 
