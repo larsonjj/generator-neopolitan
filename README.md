@@ -155,6 +155,16 @@ In the `package.json` file, within the root of the generated project, you have t
 | destination | Build folder where production version of site is generated
 | temporary   | Temporary folder where development server files are generated
 
+### Source Directories
+Folders that live within the `source` configured directory
+
+| Setting | Description |
+|---------|-------
+| assets  | Determines the folder name where all static files (fonts, images, etc) are located. (these files will get copied over to your build target)
+| screens   | Determines the folder name where all of your route files are generated (i.e. `src/screens` or `src/screens/Index/screens`)
+| shared  | Determines the folder name where your shared components reside (i.e. `src/screens/Index/shared`)
+| components  | Determines the folder name where your non-shared components reside (i.e. `src/screens/Index/components`)
+
 ***Default configuration:***
 
 ```json
@@ -168,7 +178,12 @@ In the `package.json` file, within the root of the generated project, you have t
   "directories": {
     "source": "src",
     "destination": "build",
-    "temporary": "tmp"
+    "temporary": "tmp",
+    "//": "Directories within the `source` directory",
+    "assets": "assets",
+    "screens": "screens",
+    "shared": "shared",
+    "components": "components"
   }
 }
 ```

@@ -103,8 +103,8 @@ gulp.task('eslint', () => {
 
 // Imagemin
 gulp.task('imagemin', () => {
-  let dest = path.join(__dirname, taskTarget, 'assets/images');
-  return gulp.src(path.join(__dirname, dirs.source, 'assets/images/**/*.{jpg,jpeg,gif,svg,png}'))
+  let dest = path.join(__dirname, taskTarget, dirs.assets, 'images');
+  return gulp.src(path.join(__dirname, dirs.source, dirs.assets, 'images/**/*.{jpg,jpeg,gif,svg,png}'))
     .pipe(plugins.changed(dest))
     .pipe(gulpif(production, plugins.imagemin({
       progressive: true,
@@ -176,8 +176,8 @@ gulp.task('copy', () => {
   let dest = path.join(__dirname, taskTarget);
   return gulp.src([
       path.join(__dirname, dirs.source, 'index.html'),
-      path.join(__dirname, dirs.source, 'assets/**/*'),
-      '!' + path.join(__dirname, dirs.source, 'assets/images/**/*')
+      path.join(__dirname, dirs.source, dirs.assets, '**/*'),
+      '!' + path.join(__dirname, dirs.source, dirs.assets, 'images/**/*')
     ])
     .pipe(plugins.changed(dest))
     .pipe(gulp.dest(dest));
@@ -242,13 +242,13 @@ gulp.task('serve', [
 
       // Copy
       gulp.watch([
-        path.join(__dirname, dirs.source, 'assets/**/*'),
-        '!' + path.join(__dirname, dirs.source, 'assets/images/**/*')
+        path.join(__dirname, dirs.source, dirs.assets, '**/*'),
+        '!' + path.join(__dirname, dirs.source, dirs.assets, 'images/**/*')
       ], ['copy']);
 
       // Images
       gulp.watch([
-        path.join(__dirname, dirs.source, 'assets/images/**/*.{jpg,jpeg,gif,svg,png}')
+        path.join(__dirname, dirs.source, dirs.assets, 'images/**/*.{jpg,jpeg,gif,svg,png}')
       ], ['imagemin']);
 
       // All other files

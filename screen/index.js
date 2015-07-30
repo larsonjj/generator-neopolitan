@@ -36,17 +36,20 @@ ScreenGenerator.prototype.setup = function setup() {
 
   var routeDir = function(route) {
     if (route === '/' || !route) {
-      return path.join(directories.source, 'screens/Index/screens');
+      return path.join(directories.source, directories.screens, 'Index', directories.screens);
     }
     var newRouteName = this._.last(this.name.split('/'));
     var newUrl = route.replace('/', '').split('/').reduce(function(item, newItem) {
       if (newItem) {
-      return this._.capitalize(this._.slugify(item.toLowerCase())) + '/screens/' + newItem;
+        return path.join(
+          this._.capitalize(this._.slugify(item.toLowerCase())),
+          directories.screens, newItem
+        );
       }
       return this._.capitalize(this._.slugify(item.toLowerCase()));
     }.bind(this))
     var screenName = newUrl.replace(newRouteName, this._.capitalize(this._.slugify(newRouteName.toLowerCase())));
-    return path.join(directories.source, 'screens/Index/screens/', screenName);
+    return path.join(directories.source, directories.screens, 'Index', directories.screens, screenName);
   }.bind(this);
 
   this.route = routeDir(this.name);
@@ -65,7 +68,7 @@ ScreenGenerator.prototype.setup = function setup() {
 
   this.testFile = path.join(
     this.route,
-    'components',
+    directories.components,
     this._.slugify(this.newRouteName.toLowerCase()),
     '__tests__',
     this._.slugify(this.newRouteName.toLowerCase())
@@ -73,7 +76,7 @@ ScreenGenerator.prototype.setup = function setup() {
 
   this.componentFile = path.join(
     this.route,
-    'components',
+    directories.components,
     this._.slugify(this.newRouteName.toLowerCase()),
     this._.slugify(this.newRouteName.toLowerCase())
   );
