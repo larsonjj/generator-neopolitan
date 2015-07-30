@@ -206,30 +206,28 @@ Runs ESLint and Karma to lint and run JavaScript tests, respectively.
 ## Sub-Generators
 
 #### React application
-* [neopolitan:module](#react-module)
+* [neopolitan:screen](#react-screen)
+* [neopolitan:component](#react-component)
 
 ***Note: Generators need to be run from the root directory of your app.***
 
-## React Sub-generators
-***Note: (The following sub-generators can only be used with React applications)***
+### React Screen
 
-### React Module
-
-Creates React Component File.
+Creates React Screen File.
 
 Example:
 
 ```
-yo neopolitan:module mycomponent
-? Where would you like to create this react component?: src/screens/App/components
+yo neopolitan:screen contact
 ```
 
 Produces:
 
 ```
-src/screens/App/components/mycomponent/mycomponent.jsx
-src/screens/App/components/mycomponent/mycomponent.{styl,less,scss,sass}
-src/screens/App/components/mycomponent/__tests__/mycomponent.spec.jsx
+src/screens/App/screens/Contact/index.js
+src/screens/App/screens/Contact/components/contact/contact.js
+src/screens/App/screens/Contact/components/contact/contact.{styl,less,scss,sass}
+src/screens/App/screens/Contact/components/contact/__tests__/contact.test.js
 ```
 
 ***NOTE: `{styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `Stylus, Less or Sass` respectively***
@@ -239,13 +237,46 @@ This subgenerator has a couple options to help customize where your new componen
 
 | Options | Description |
 |-------- | ----------- |
-| `--route`| Determines which screen to place component. Example: `--route=/contact` will place component within the `src/screens/App/screens/contact/components` folder
-| `--shared`| Identifies component as shared and will be placed within the `shared/components` folder rather than the `components` folder of the specified screen. Example: `src/screens/App/shared/components`
+| `route`| Determines which screen to place component. Example: `--route=/contact` will place files within the `src/screens/App/screens/Contact` folder
 
 ##### Usage
 
 ```
-yo neopolitan:module mycomponent [options]
+yo neopolitan:screen contact --[option]
+```
+
+### React Component
+
+Creates React Component File.
+
+Example:
+
+```
+yo neopolitan:component mycomponent
+```
+
+Produces:
+
+```
+src/screens/App/components/mycomponent/mycomponent.js
+src/screens/App/components/mycomponent/mycomponent.{styl,less,scss,sass}
+src/screens/App/components/mycomponent/__tests__/mycomponent.test.js
+```
+
+***NOTE: `{styl,less,scss,sass}` means that the file extension will match the preprocessor you chose: `Stylus, Less or Sass` respectively***
+
+#### Options
+This subgenerator has a couple options to help customize where your new component will be generated.
+
+| Options | Description |
+|-------- | ----------- |
+| `route`| Determines which screen to place component. Example: `--route=/contact` will place component files within the `src/screens/App/screens/Contact/components` folder
+| `shared`| Specifies component files be placed within the `shared/components` folder rather than the `components` folder of the specified screen. Example: `src/screens/App/shared/components`
+
+##### Usage
+
+```
+yo neopolitan:component mycomponent --[option]
 ```
 
 ## Guides
