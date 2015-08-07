@@ -3,9 +3,9 @@
 
 import globalActions from '../global.actions';
 
-describe('App', function() {
+describe('Global Actions', function() {
 
-  it('provides the "App Actions"', () => {
+  it('provides the "Global Actions" object', () => {
     // Expect it to exist
     expect(globalActions)<% if (testFramework === 'jasmine') { %>.toBeDefined()<% } else if (testFramework === 'mocha') { %>.to.be.ok<% } %>;
   });
