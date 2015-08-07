@@ -3,4 +3,3 @@ node_modules
 build
 tmp
 .DS_Store
-.yo-rc.json
