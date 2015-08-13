@@ -94,5 +94,87 @@ describe('React screen sub-generator', function() {
         });
       });
     });
+    it('Handles defaults with sass (scss syntax)', function(done) {
+      // Filename
+      var screen = 'contact';
+      var screenCaptilized = 'Contact';
+      var filesToTest = [
+        'src/screens/Index/screens/' + screenCaptilized + '/components/' + screen + '/' + screen + '.scss'
+      ];
+
+      helpers.mockPrompt(this.app, {
+        jsFramework: 'react',
+        testFramework: 'none',
+        cssOption: 'sass',
+        sassSyntax: 'scss'
+      });
+      this.app.run([], function() {
+        createSubGenerator('screen', screen, {path: '../../../../'}, {}, function() {
+          assert.file(filesToTest);
+          done();
+        });
+      });
+    });
+    it('Handles defaults with sass (sass syntax)', function(done) {
+      // Filename
+      var screen = 'contact';
+      var screenCaptilized = 'Contact';
+      var filesToTest = [
+        'src/screens/Index/screens/' + screenCaptilized + '/components/' + screen + '/' + screen + '.sass'
+      ];
+
+      helpers.mockPrompt(this.app, {
+        jsFramework: 'react',
+        testFramework: 'none',
+        cssOption: 'sass',
+        sassSyntax: 'sass'
+      });
+      this.app.run([], function() {
+        createSubGenerator('screen', screen, {path: '../../../../'}, {}, function() {
+          assert.file(filesToTest);
+          done();
+        });
+      });
+    });
+    it('Handles defaults with less', function(done) {
+      // Filename
+      var screen = 'contact';
+      var screenCaptilized = 'Contact';
+      var filesToTest = [
+        'src/screens/Index/screens/' + screenCaptilized + '/components/' + screen + '/' + screen + '.less'
+      ];
+
+      helpers.mockPrompt(this.app, {
+        jsFramework: 'react',
+        testFramework: 'none',
+        cssOption: 'less'
+      });
+      this.app.run([], function() {
+        createSubGenerator('screen', screen, {path: '../../../../'}, {}, function() {
+          assert.file(filesToTest);
+          done();
+        });
+      });
+    });
+    it('Handles defaults with stylus', function(done) {
+      // Filename
+      var screen = 'contact';
+      var screenCaptilized = 'Contact';
+      var filesToTest = [
+        'src/screens/Index/screens/' + screenCaptilized + '/components/' + screen + '/' + screen + '.styl'
+      ];
+
+      helpers.mockPrompt(this.app, {
+        jsFramework: 'react',
+        testFramework: 'none',
+        cssOption: 'stylus'
+      });
+      this.app.run([], function() {
+        createSubGenerator('screen', screen, {path: '../../../../'}, {}, function() {
+          assert.file(filesToTest);
+          done();
+        });
+      });
+    });
   });
 });

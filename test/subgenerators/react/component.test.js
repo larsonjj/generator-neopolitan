@@ -114,5 +114,95 @@ describe('React component sub-generator', function() {
         });
       });
     });
+    it('Handles defaults with sass (scss syntax)', function(done) {
+      // Filename
+      var component = 'mycomponent';
+      var filesToTest = [
+        'src/screens/Index/components/' + component + '/' + component + '.scss'
+      ];
+
+      helpers.mockPrompt(this.app, {
+        jsFramework: 'react',
+        testFramework: 'none',
+        'cssOption': 'sass',
+        'sassSyntax': 'scss'
+      });
+      this.app.run([], function() {
+        createSubGenerator('component', component, {path: '../../../../'}, {
+          // mock prompt data
+          componentFile: 'src/screens/Index/components'
+        }, function() {
+          assert.file(filesToTest);
+          done();
+        });
+      });
+    });
+    it('Handles defaults with sass (sass syntax)', function(done) {
+      // Filename
+      var component = 'mycomponent';
+      var filesToTest = [
+        'src/screens/Index/components/' + component + '/' + component + '.sass'
+      ];
+
+      helpers.mockPrompt(this.app, {
+        jsFramework: 'react',
+        testFramework: 'none',
+        'cssOption': 'sass',
+        'sassSyntax': 'sass'
+      });
+      this.app.run([], function() {
+        createSubGenerator('component', component, {path: '../../../../'}, {
+          // mock prompt data
+          componentFile: 'src/screens/Index/components'
+        }, function() {
+          assert.file(filesToTest);
+          done();
+        });
+      });
+    });
+    it('Handles defaults with less', function(done) {
+      // Filename
+      var component = 'mycomponent';
+      var filesToTest = [
+        'src/screens/Index/components/' + component + '/' + component + '.less'
+      ];
+
+      helpers.mockPrompt(this.app, {
+        jsFramework: 'react',
+        testFramework: 'none',
+        'cssOption': 'less'
+      });
+      this.app.run([], function() {
+        createSubGenerator('component', component, {path: '../../../../'}, {
+          // mock prompt data
+          componentFile: 'src/screens/Index/components'
+        }, function() {
+          assert.file(filesToTest);
+          done();
+        });
+      });
+    });
+    it('Handles defaults with stylus', function(done) {
+      // Filename
+      var component = 'mycomponent';
+      var filesToTest = [
+        'src/screens/Index/components/' + component + '/' + component + '.styl'
+      ];
+
+      helpers.mockPrompt(this.app, {
+        jsFramework: 'react',
+        testFramework: 'none',
+        'cssOption': 'stylus'
+      });
+      this.app.run([], function() {
+        createSubGenerator('component', component, {path: '../../../../'}, {
+          // mock prompt data
+          componentFile: 'src/screens/Index/components'
+        }, function() {
+          assert.file(filesToTest);
+          done();
+        });
+      });
+    });
   });
 });
