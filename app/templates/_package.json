@@ -58,7 +58,7 @@
     "mocha": "*"<% } %><% } %>
   },
   "scripts": {
-    "clean": "rimraf node_modules tmp build"
+    "clean-deps": "rimraf node_modules"
   },
   "engines": {
     "node": ">=0.12.0"
@@ -69,7 +69,6 @@
     "//": "Local Server Settings",
     "host": "127.0.0.1",
     "port": "3000",
-    "baseUrl": "/",
     "//": "Gulp Task Directories",
     "directories": {
       "source": "src",
@@ -80,6 +79,13 @@
       "screens": "screens",
       "shared": "shared",
       "components": "components"
+    },
+    "//": "Entry files",
+    "entries": {
+      "js": "index**.js"<% if (cssOption === 'sass') { %>,
+      "css": "index**.{sass,scss}"<% } else if (cssOption === 'less') { %>,
+      "css": "index**.less"<% } else if (cssOption === 'stylus') { %>,
+      "css": "index**.styl"<% } %>
     }
   }
 }
