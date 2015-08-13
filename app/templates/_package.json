@@ -58,7 +58,7 @@
     "mocha": "*"<% } %><% } %>
   },
   "scripts": {
-    "clean": "rimraf node_modules tmp build"
+    "clean-deps": "rimraf node_modules"
   },
   "engines": {
     "node": ">=0.12.0"
@@ -80,6 +80,13 @@
       "screens": "screens",
       "shared": "shared",
       "components": "components"
+    },
+    "//": "Entry files",
+    "entries": {
+      "js": "main**.js"<% if (cssOption === 'sass') { %>,
+      "css": "main**.{sass,scss}"<% } else if (cssOption === 'less') { %>,
+      "css": "main**.less"<% } else if (cssOption === 'stylus') { %>,
+      "css": "main**.styl"<% } %>
     }
   }
 }

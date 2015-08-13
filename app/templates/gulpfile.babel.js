@@ -30,6 +30,7 @@ let production = !!(argv.production);
 let watch = !!(argv.watch);
 let open = !!(argv.open);
 let dirs = config.directories;
+let entries = config.entries;
 let taskTarget = production ? dirs.destination : dirs.temporary;
 
 // Create a new browserSync instance
@@ -39,7 +40,7 @@ let browserSync = browserSyncLib.create();
 // Sass compilation
 gulp.task('sass', () => {
   let dest = path.join(__dirname, taskTarget);
-  gulp.src(path.join(__dirname, dirs.source, '*.{scss,sass}'))
+  gulp.src(path.join(__dirname, dirs.source, entries.css))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.sass({
@@ -56,7 +57,7 @@ gulp.task('sass', () => {
 // Less compilation
 gulp.task('less', () => {
   let dest = path.join(__dirname, taskTarget);
-  return gulp.src(path.join(__dirname, dirs.source, '*.less'))
+  return gulp.src(path.join(__dirname, dirs.source, entries.css))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.less({
@@ -71,7 +72,7 @@ gulp.task('less', () => {
 // Stylus compilation
 gulp.task('stylus', () => {
   let dest = path.join(__dirname, taskTarget);
-  gulp.src(path.join(__dirname, dirs.source, '*.styl'))
+  gulp.src(path.join(__dirname, dirs.source, entries.css))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.stylus({
@@ -114,57 +115,106 @@ gulp.task('imagemin', () => {
 });
 
 // Browserify Task
+let browserifyTask = function(entry) {
+  let dest = path.join(__dirname, taskTarget, dirs.scripts.replace(/^_/, ''));
+  let customOpts = {
+    entries: [entry],
+    debug: true,
+    transform: [
+      envify,  // Sets NODE_ENV for better optimization of npm packages
+      babelify // Enable ES6 features
+    ]
+  };
 
-// Options
-let customOpts = {
-  entries: [path.join(__dirname, dirs.source, 'index.js')],
-  debug: true,
-  transform: [
-    envify,   // Sets NODE_ENV for better optimization of npm packages
-    babelify, // Enable ES6 features
-    resolvify // Enable module resolving for custom folders
-  ],
-  fullPaths: true // for watchify
-}
+  let bundler = browserify(customOpts);
 
-// Setup browserify
-let b = browserify(customOpts);
+  if (!production) {
+    // Setup Watchify for faster builds
+    let opts = _.assign({}, watchify.args, customOpts);
+    bundler = watchify(browserify(opts));
+  }
 
-if (!production) {
-  // Setup Watchify for faster builds
-  let opts = _.assign({}, watchify.args, customOpts);
-  b = watchify(browserify(opts));
-}
+  let rebundle = function() {
+    let startTime = new Date().getTime();
+    bundler.bundle()
+      .on('error', function (err) {
+        plugins.util.log(
+          plugins.util.colors.red("Browserify compile error:"),
+          err.message,
+          '\n\n',
+          err.codeFrame,
+          '\n'
+        );
+        this.emit('end');
+      })
+      .pipe(vsource(path.basename(entry)))
+      .pipe(buffer())
+      .pipe(plugins.sourcemaps.init({loadMaps: true}))
+        .pipe(gulpif(production, plugins.uglify()))
+        .on('error', plugins.util.log)
+      .pipe(plugins.sourcemaps.write('./'))
+      .pipe(gulp.dest(dest))
+      .on('end', function() {
+        let time = (new Date().getTime() - startTime) / 1000;
+        return console.log(
+          plugins.util.colors.cyan(entry)
+          + " was browserified: "
+          + plugins.util.colors.magenta(time + 's'));
+      });
+  };
 
-let browserifyTask = function() {
-  let dest = path.join(__dirname, taskTarget);
-
-  return b.bundle()
-    .on('error', function (err) {
-      plugins.util.log(
-        plugins.util.colors.red("Browserify compile error:"),
-        err.message,
-        '\n\n',
-        err.codeFrame,
-        '\n'
-      );
-      this.emit('end');
-    })
-    .pipe(vsource(path.basename('index.js')))
-    .pipe(buffer())
-    .pipe(plugins.sourcemaps.init({loadMaps: true}))
-      .pipe(gulpif(production, plugins.uglify()))
-      .on('error', plugins.util.log)
-    .pipe(plugins.sourcemaps.write('./'))
-    .pipe(gulp.dest(dest));
+  if (!production) {
+    bundler.on('update', browserifyTask); // on any dep update, runs the bundler
+    bundler.on('log', plugins.util.log); // output build logs to terminal
+  }
+  return rebundle();
 };
 
-if (!production) {
-  b.on('update', browserifyTask); // on any dep update, runs the bundler
-  b.on('log', plugins.util.log); // output build logs to terminal
-}
+gulp.task('browserify', function(done) {
+  return glob(path.join(__dirname, dirs.source, dirs.scripts,  entries.js), function(err, files) {
+    if(err) done(err);
+    return files.map(function(entry) {
+      return browserifyTask(entry)
+    });
+  });
+});
 
-gulp.task('browserify', browserifyTask);
+// Default task
+gulp.task('watch', () => {
+  if (!production) {<% if (cssOption === 'sass') { %>
+    // Styles
+    gulp.watch([
+      path.join(__dirname, dirs.source, dirs.styles, '**/*.{scss,sass}'),
+      path.join(__dirname, dirs.source, dirs.modules, '**/*.{scss,sass}')
+    ], ['sass']);<% } else if (cssOption === 'less') { %>
+    gulp.watch([
+      path.join(__dirname, dirs.source, dirs.styles, '**/*.less'),
+      path.join(__dirname, dirs.source, dirs.modules, '**/*.less'),
+    ], ['less']);<% } else if (cssOption === 'stylus') { %>
+    gulp.watch([
+      path.join(__dirname, dirs.source, dirs.styles, '**/*.styl'),
+      path.join(__dirname, dirs.source, dirs.modules, '**/*.styl')
+    ], ['stylus']);
+    <% } %>
+
+    // Copy
+    gulp.watch([
+      path.join(__dirname, dirs.source, 'index.html'),
+      path.join(__dirname, dirs.source, dirs.assets, '**/*'),
+      '!' + path.join(__dirname, dirs.source, dirs.assets, 'images/**/*')
+    ], ['copy']);
+
+    // Images
+    gulp.watch([
+      path.join(__dirname, dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}')
+    ], ['imagemin']);
+
+    // All other files
+    gulp.watch([
+      path.join(__dirname, dirs.temporary, '**/*')
+    ]).on('change', browserSync.reload);
+  }
+});
 
 // Clean
 gulp.task('clean', del.bind(null, [
@@ -184,6 +234,26 @@ gulp.task('copy', () => {
     .pipe(gulp.dest(dest));
 });
 
+// BrowserSync
+gulp.task('browserSync', () => {
+  browserSync.init({
+    open: open ? 'local' : false,
+    startPath: config.baseUrl,
+    port: config.port || 3000,
+    server: {
+      baseDir: taskTarget,
+      routes: (() => {
+        let routes = {};
+
+        // Map base URL to routes
+        routes[config.baseUrl] = taskTarget;
+
+        return routes;
+      })()
+    }
+  });
+});
+
 // Default task
 gulp.task('default', ['clean'], () => {
   gulp.start('build');
@@ -192,75 +262,25 @@ gulp.task('default', ['clean'], () => {
 // Build production-ready code
 gulp.task('build', [
   'copy',
-  'imagemin',<% if (cssOption === 'less') { %>
-  'less',<% } else if (cssOption === 'sass') { %>
-  'sass',<% } else if (cssOption === 'stylus') { %>
-  'stylus',<% } %>
-  'browserify'
+  'imagemin'<% if (cssOption === 'less') { %>,
+  'less'<% } else if (cssOption === 'sass') { %>,
+  'sass'<% } else if (cssOption === 'stylus') { %>,
+  'stylus'<% } %>,
+  'browserify',
+  'browserSync'
 ]);
 
 // Server tasks with watch
 gulp.task('serve', [
     'imagemin',
-    'copy'<% if (jsOption === 'browserify') { %>,
-    'browserify'<% } %><% if (cssOption === 'less') { %>,
+    'copy'<% if (cssOption === 'less') { %>,
     'less'<% } %><% if (cssOption === 'sass') { %>,
     'sass'<% } %><% if (cssOption === 'stylus') { %>,
-    'stylus'<% } %>
-  ], () => {
-
-    browserSync.init({
-      open: open ? 'local' : false,
-      startPath: config.baseUrl,
-      port: config.port || 3000,
-      server: {
-        baseDir: taskTarget,
-        routes: (() => {
-          let routes = {};
-
-          // Map base URL to routes
-          routes[config.baseUrl] = taskTarget;
-
-          return routes;
-        })()
-      }
-    });
-
-    // If running in dev mode
-    if (!production) {
-<% if (cssOption === 'sass') { %>
-      // Styles
-      gulp.watch([
-        path.join(__dirname, dirs.source, '**/*.{scss,sass}')
-      ], ['sass']);<% } else if (cssOption === 'less') { %>
-      gulp.watch([
-        path.join(__dirname, dirs.source, '**/*.less')
-      ], ['less']);<% } else if (cssOption === 'stylus') { %>
-      gulp.watch([
-        path.join(__dirname, dirs.source, '**/*.styl')
-      ], ['stylus']);
-      <% } %>
-
-      // Copy
-      gulp.watch([
-        path.join(__dirname, dirs.source, dirs.assets, '**/*'),
-        '!' + path.join(__dirname, dirs.source, dirs.assets, 'images/**/*')
-      ], ['copy']);
-
-      // Images
-      gulp.watch([
-        path.join(__dirname, dirs.source, dirs.assets, 'images/**/*.{jpg,jpeg,gif,svg,png}')
-      ], ['imagemin']);
-
-      // All other files
-      gulp.watch([
-        path.join(__dirname, dirs.temporary, '**/*'),
-        '!' + path.join(__dirname, dirs.temporary, '**/*.js')
-      ]).on('change', browserSync.reload);
-
-    }
-  }
-);
+    'stylus'<% } %>,
+    'browserify',
+    'browserSync',
+    'watch'
+]);
 
 // Testing
 gulp.task('test',<% if (testFramework === 'none') { %> ['eslint']);<% } else { %> (done) => {
