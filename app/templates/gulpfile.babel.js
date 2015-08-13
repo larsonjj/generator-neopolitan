@@ -116,13 +116,14 @@ gulp.task('imagemin', () => {
 
 // Browserify Task
 let browserifyTask = function(entry) {
-  let dest = path.join(__dirname, taskTarget, dirs.scripts.replace(/^_/, ''));
+  let dest = path.join(__dirname, taskTarget);
   let customOpts = {
     entries: [entry],
     debug: true,
     transform: [
       envify,  // Sets NODE_ENV for better optimization of npm packages
-      babelify // Enable ES6 features
+      babelify, // Enable ES6 features
+      resolvify // Allow for require()'s to search for custom folders other than node_modules
     ]
   };
 
@@ -171,7 +172,7 @@ let browserifyTask = function(entry) {
 };
 
 gulp.task('browserify', function(done) {
-  return glob(path.join(__dirname, dirs.source, dirs.scripts,  entries.js), function(err, files) {
+  return glob(path.join(__dirname, dirs.source, entries.js), function(err, files) {
     if(err) done(err);
     return files.map(function(entry) {
       return browserifyTask(entry)
@@ -184,16 +185,13 @@ gulp.task('watch', () => {
   if (!production) {<% if (cssOption === 'sass') { %>
     // Styles
     gulp.watch([
-      path.join(__dirname, dirs.source, dirs.styles, '**/*.{scss,sass}'),
-      path.join(__dirname, dirs.source, dirs.modules, '**/*.{scss,sass}')
+      path.join(__dirname, dirs.source, '**/*.{scss,sass}')
     ], ['sass']);<% } else if (cssOption === 'less') { %>
     gulp.watch([
-      path.join(__dirname, dirs.source, dirs.styles, '**/*.less'),
-      path.join(__dirname, dirs.source, dirs.modules, '**/*.less'),
+      path.join(__dirname, dirs.source, '**/*.less')
     ], ['less']);<% } else if (cssOption === 'stylus') { %>
     gulp.watch([
-      path.join(__dirname, dirs.source, dirs.styles, '**/*.styl'),
-      path.join(__dirname, dirs.source, dirs.modules, '**/*.styl')
+      path.join(__dirname, dirs.source, '**/*.styl')
     ], ['stylus']);
     <% } %>
 
@@ -206,7 +204,7 @@ gulp.task('watch', () => {
 
     // Images
     gulp.watch([
-      path.join(__dirname, dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}')
+      path.join(__dirname, dirs.source, dirs.assets, 'images/**/*.{jpg,jpeg,gif,svg,png}')
     ], ['imagemin']);
 
     // All other files
@@ -241,15 +239,7 @@ gulp.task('browserSync', () => {
     startPath: config.baseUrl,
     port: config.port || 3000,
     server: {
-      baseDir: taskTarget,
-      routes: (() => {
-        let routes = {};
-
-        // Map base URL to routes
-        routes[config.baseUrl] = taskTarget;
-
-        return routes;
-      })()
+      baseDir: taskTarget
     }
   });
 });
