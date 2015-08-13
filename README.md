@@ -165,6 +165,16 @@ Folders that live within the `source` configured directory
 | shared  | Determines the folder name where your shared components reside (i.e. `src/screens/Index/shared`)
 | components  | Determines the folder name where your non-shared components reside (i.e. `src/screens/Index/components`)
 
+### Entry files
+Files that should be searched for and created by build tasks.
+File strings and [Globs](https://github.com/isaacs/node-glob) can be used to process desired file(s).
+Ex: `main**.js` will process all files that start with `main` and end with `.js`
+
+| Setting | Description |
+|---------|-------
+| js     | Tells browserify what file(s) to bundle and generate at your desired build target
+| css  | Tells your stylesheet preprocessor (Sass, Less, etc) what file(s) to generate at your desired build target
+
 ***Default configuration:***
 
 ```json
