@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/larsonjj/generator-neopolitan/master/docs/images/logo.png" />
 </p>
 
-# Neopolitan Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-neopolitan.png?branch=master)](https://travis-ci.org/larsonjj/generator-neopolitan) [![NPM version](https://badge.fury.io/js/generator-neopolitan.png)](http://badge.fury.io/js/generator-neopolitan) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-neopolitan/badge.png)](https://coveralls.io/r/larsonjj/generator-neopolitan)
+# Neopolitan Generator [![Build Status](https://secure.travis-ci.org/larsonjj/generator-neopolitan.png?branch=master)](https://travis-ci.org/larsonjj/generator-neopolitan) [![NPM version](https://badge.fury.io/js/generator-neopolitan.png)](http://badge.fury.io/js/generator-neopolitan) [![Coverage Status](https://coveralls.io/repos/larsonjj/generator-neopolitan/badge.svg?branch=master&service=github)](https://coveralls.io/github/larsonjj/generator-neopolitan?branch=master)
 
 A generator for creating React applications. Helps you harness the power of your favorite tools: [React](http://facebook.github.io/react/), [React-Router](https://github.com/rackt/react-router), [Baobab](https://github.com/Yomguithereal/baobab), ES6/2015, Gulp, and much more!
 
