@@ -168,7 +168,7 @@ Folders that live within the `source` configured directory
 ### Entry files
 Files that should be searched for and created by build tasks.
 File strings and [Globs](https://github.com/isaacs/node-glob) can be used to process desired file(s).
-Ex: `main**.js` will process all files that start with `main` and end with `.js`
+Ex: `index**.js` will process all files that start with `index` and end with `.js`
 
 | Setting | Description |
 |---------|-------
@@ -194,6 +194,11 @@ Ex: `main**.js` will process all files that start with `main` and end with `.js`
     "screens": "screens",
     "shared": "shared",
     "components": "components"
+  },
+  "//": "Entry files",
+  "entries": {
+    "js": "index.js",
+    "css": "index.{scss,sass,styl,less}"
   }
 }
 ```
@@ -316,17 +321,20 @@ To do so, it is strongly recommended that you install them using [NPM](http://np
 npm install [package name] --save
 ```
 
-Once installed, you can access scripts within your JavaScript files like so:
+#### Scripts
+
+Once installed, you can import scripts within your JavaScript files like so:
 
 ```js
-import $ from 'jquery';
+import _ from 'lodash';
 
-$(function() {
-  console.log('Hello');
-});
+_.assign({ 'user': 'barney' }, { 'age': 40 }, { 'user': 'fred' });
+// → { 'user': 'fred', 'age': 40 }
 ```
 
-And you can access stylesheets by importing them to you chosen preprocessor like so:
+#### Stylesheets
+
+You can also access stylesheets by importing them to you chosen preprocessor like so:
 
 **Using SCSS:**
 
@@ -368,6 +376,110 @@ And you can access stylesheets by importing them to you chosen preprocessor like
 @import '../../node_modules/normalize.css/normalize.css';
 ```
 
+#### Using Non-CommonJS modules with browserify-shim
+
+Sometimes you need to use libraries that attach themselves to the window object and don't work with browserify very well.
+In this case, you can use a transform called [browserify-shim](https://github.com/thlorenz/browserify-shim).
+
+***Step 1: Install browserify-shim transform for browserify***
+
+Browserify doesn't support Non-CommonJS scripts out of the box (jQuery plugins, window.* libs, etc), but you can install a transform called 'browserify-shim' to remedy that:
+
+```
+npm install --save-dev browserify-shim
+```
+
+Once it is installed, you will need to add it to your `gulp/browserify` task configuration like so:
+
+```js
+import browserifyShim from 'browserify-shim';
+
+...
+
+transform: [
+  envify,  // Sets NODE_ENV for better optimization of npm packages
+  babelify, // Enable ES6 features
+  browserifyShim // <-- Enable shim
+]
+```
+
+***Step 2: Install desired npm package***
+
+Now you can install your desired npm package:
+
+```
+// Example: three.js
+
+npm install --save three
+```
+
+***Step 3: Setup browserify-shim***
+
+Add the following to your `package.json` file:
+
+```json
+"browserify-shim": {
+  "three": "global:THREE"
+ }
+```
+> Note: [slick-carousel](http://kenwheeler.github.io/slick/) requires jQuery, hence the `"depends": "jquery:$"`
+
+***Step 4: Import file to your project***
+
+Now you can include your desired module/lib within your `src/_scripts/main.js` file:
+
+```js
+import 'three'; // Adds three.js library to window.THREE
+```
+
+#### Using Bower
+
+If you can't find your desired package on the NPM registry and you wish to use Bower to manage some front-end packages, you can accomplish this in a couple steps:
+
+***Step 1: Install Bower***
+
+```
+npm install -g bower
+```
+
+***Step2: Create `bower.json`***
+
+Create a `bower.json` file within the root directory of your generated project
+with the following contents:
+
+```json
+{
+  "name": "Sample",
+  "version": "0.0.1",
+  "authors": [
+    "John Doe <john.doe@someurl.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {}
+}
+```
+
+> Note: Be sure to update the name, version, author, etc info to your liking
+
+***Step 3: Install package***
+
+```
+bower install --save [package name]
+```
+
+***Step 4: Use package***
+
+If the package installed is a javascript library, you will need to shim it. Instructions for this are in the [browserify-shim](#using-non-commonjs-modules-with-browserify-shim) section of this README.
+
+If the package is CSS, Sass, Less, or Stylus, you can follow the instructions in the [Stylesheets](#stylesheets) section of this README
+
 ### Using SVN
 If you plan on using SVN instead of Git, you will want to setup some default ignores to make sure you aren't committing extraneous/generated files to your codebase. To do this, adhere to the following steps:
 
@@ -396,10 +508,10 @@ This command will go through your newly created `.svnignore` file and set the sp
 
 ### ESLint giving errors for third-party scripts
 ##### Typical error message:
-> jQuery is not defined
+> THREE is not defined
 
 When adding third-party scripts, you should always import them to your `_scripts/main.js` file (See [Adding third-party libraries](#adding-third-party-libraries)). 
-However, doing so does not inform ESLint that your new library is defined globally. Thus, giving you errors.
+However, if you [shimmed](#using-non-commonjs-modules-with-browserify-shim) the library/package to be global (ex: window.THREE), ESLint will not know that your new library is defined globally. Thus, giving you errors.
 
 ##### Solution
 To remedy this situation, all you need to do is open up your `.eslintrc` file in the root directory of you project, and add your new library name to the `global:` property array:
@@ -409,7 +521,7 @@ To remedy this situation, all you need to do is open up your `.eslintrc` file in
 {
 ...
   globals: {
-    jQuery: true // Tells ESLint that jQuery is defined globally
+    THREE: true // Tells ESLint that THREE is defined globally
   }
 ...
 }
