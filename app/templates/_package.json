@@ -12,6 +12,7 @@
     "babelify": "~6.0.2",
     "lodash": "~3.10.0",
     "watchify": "~3.3.0 ",
+    "wrench": "~1.5.8",
     "babel-eslint": "~3.1.19",
     "babel-core": "~5.6.15",
     "eslint-plugin-react": "~2.6.2",
@@ -23,6 +24,7 @@
     "gulp-changed": "~1.2.1",
     "gulp-uglify": "~1.2.0",
     "gulp-if": "~1.2.5",
+    "gulp-rename": "~1.2.2",
     "glob": "~5.0.10",
     "gulp-data": "~1.2.0",
     "gulp-sourcemaps": "~1.5.2",
@@ -82,10 +84,10 @@
     },
     "//": "Entry files",
     "entries": {
-      "js": "index**.js"<% if (cssOption === 'sass') { %>,
-      "css": "index**.{sass,scss}"<% } else if (cssOption === 'less') { %>,
-      "css": "index**.less"<% } else if (cssOption === 'stylus') { %>,
-      "css": "index**.styl"<% } %>
+      "js": "index.js"<% if (cssOption === 'sass') { %>,
+      "css": "index.{sass,scss}"<% } else if (cssOption === 'less') { %>,
+      "css": "index.less"<% } else if (cssOption === 'stylus') { %>,
+      "css": "index.styl"<% } %>
     }
   }
 }
