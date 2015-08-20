@@ -1,3 +1,9 @@
+### v1.2.0:
+#### date: 2015-8-19
+##### changes:
+* Updated documentation
+* Seperated gulp tasks into their own files
+
 ### v1.1.0:
 #### date: 2015-8-13
 ##### changes:
