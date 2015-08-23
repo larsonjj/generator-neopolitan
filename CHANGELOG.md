@@ -1,3 +1,8 @@
+### v1.2.1:
+#### date: 2015-8-22
+##### changes:
+* Fix location of normalize.css in stylus template
+
 ### v1.2.0:
 #### date: 2015-8-19
 ##### changes:
