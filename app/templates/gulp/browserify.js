@@ -27,7 +27,7 @@ export default function(gulp, plugins, args, config, taskTarget) {
         transform: [
           envify,  // Sets NODE_ENV for better optimization of npm packages
           babelify, // Enable ES6 features
-          resolvify
+          resolvify // allow `shared` folder modules to be required
         ]
       };
 
@@ -45,9 +45,8 @@ export default function(gulp, plugins, args, config, taskTarget) {
           .on('error', function (err) {
             plugins.util.log(
               plugins.util.colors.red('Browserify compile error:'),
-              err.message,
-              '\n\n',
-              err.codeFrame,
+              '\n',
+              err,
               '\n'
             );
             this.emit('end');
@@ -59,7 +58,7 @@ export default function(gulp, plugins, args, config, taskTarget) {
             .on('error', plugins.util.log)
           .pipe(plugins.rename(function(path) {
             // Remove 'source' directory as well as prefixed folder underscores
-            // Ex: 'src/_scripts' --> '/scripts'
+            // Ex: 'src/scripts' --> '/scripts'
             path.dirname = path.dirname.replace(dirs.source, '');
           }))
           .pipe(plugins.sourcemaps.write('./'))

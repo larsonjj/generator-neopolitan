@@ -389,28 +389,14 @@ Browserify doesn't support Non-CommonJS scripts out of the box (jQuery plugins, 
 npm install --save-dev browserify-shim
 ```
 
-Once it is installed, you will need to add it to your `gulp/browserify` task configuration like so:
-
-```js
-import browserifyShim from 'browserify-shim';
-
-...
-
-transform: [
-  envify,  // Sets NODE_ENV for better optimization of npm packages
-  babelify, // Enable ES6 features
-  browserifyShim // <-- Enable shim
-]
-```
-
 ***Step 2: Install desired npm package***
 
 Now you can install your desired npm package:
 
 ```
-// Example: three.js
+// Example: jQuery plugin
 
-npm install --save three
+npm install --save slick-carousel
 ```
 
 ***Step 3: Setup browserify-shim***
@@ -418,9 +404,18 @@ npm install --save three
 Add the following to your `package.json` file:
 
 ```json
+"browserify": {
+  "transform": [ "browserify-shim" ]
+},
+"browser": {
+  "slick-carousel": "./node_modules/slick-carousel/slick/slick.js"
+},
 "browserify-shim": {
-  "three": "global:THREE"
- }
+  "slick-carousel": {
+    "exports": null,
+    "depends": "jquery:$"
+  }
+},
 ```
 > Note: [slick-carousel](http://kenwheeler.github.io/slick/) requires jQuery, hence the `"depends": "jquery:$"`
 
@@ -429,7 +424,9 @@ Add the following to your `package.json` file:
 Now you can include your desired module/lib within your `src/_scripts/main.js` file:
 
 ```js
-import 'three'; // Adds three.js library to window.THREE
+import 'slick-carousel';
+
+$('#someId').slick(); // Activates slick plugin
 ```
 
 #### Using Bower
@@ -491,7 +488,6 @@ node_modules
 *.log
 build
 tmp
-.grunt
 .DS_Store
 ```
 
