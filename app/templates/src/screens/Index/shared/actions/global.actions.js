@@ -2,7 +2,7 @@
 
 import GlobalTree from '../trees/global.tree';
 
-let globaActions = {
+let globalActions = {
   setPage(page) {
     let title = '<%= projectName %> | '.concat(page.title || 'Not Found');
     document.title = title;
@@ -10,4 +10,4 @@ let globaActions = {
   }
 };
 
-export default globaActions;
+export default globalActions;
