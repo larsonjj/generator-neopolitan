@@ -36,7 +36,7 @@ A generator for creating React applications. Helps you harness the power of your
 
 - Project/Site naming
 - Stylesheets with [Less](http://lesscss.org/), [Sass](http://sass-lang.com/) (via [node-sass](https://github.com/andrew/node-sass)), or [Stylus](http://learnboost.github.io/stylus/).
-- JavaScript unit testing with [Jasmine](http://jasmine.github.io/) or [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/)
+- JavaScript unit testing with [Jasmine](http://jasmine.github.io/) or [Mocha](http://mochajs.org/) + [Chai](http://chaijs.com/)
 - Test running with [Karma](http://karma-runner.github.io/0.12/index.html)
 
 ## Getting Started
