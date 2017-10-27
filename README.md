@@ -1,3 +1,5 @@
+> NOTE: This repository is no longer maintained
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/larsonjj/generator-neopolitan/master/docs/images/logo.png" />
 </p>
